@@ -1,0 +1,48 @@
+2026-11-10 20:24:08,770 INFO __main__: Starting traffic data pipeline.
+2026-11-10 20:24:08,883 INFO __main__: Loaded 48204 records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Metro_Interstate_Traffic_Volume.csv; required schema validated.
+2026-11-10 20:24:08,905 INFO __main__: Cleaning step: standardized categorical values; changed 48204 cells.
+2026-11-10 20:24:09,243 INFO __main__: Cleaning step: parsed and validated 48204 date_time values.
+2026-11-10 20:24:09,286 INFO __main__: Cleaning step: removed 17 exact duplicate rows; 48187 records remain.
+2026-11-10 20:24:09,291 INFO __main__: Cleaning step: kept the first row for each date_time and removed 7612 duplicate-hour rows; 40575 records remain.
+2026-11-10 20:24:09,484 WARNING __main__: Invalid temperature 0 K at cleaned record 10081; will impute by month.
+2026-11-10 20:24:09,484 WARNING __main__: Invalid temperature 0 K at cleaned record 10082; will impute by month.
+2026-11-10 20:24:09,484 WARNING __main__: Invalid temperature 0 K at cleaned record 10083; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10084; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10129; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10130; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10131; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10132; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10133; will impute by month.
+2026-11-10 20:24:09,485 WARNING __main__: Invalid temperature 0 K at cleaned record 10134; will impute by month.
+2026-11-10 20:24:09,499 WARNING __main__: Physically implausible rainfall 9831.3 mm at cleaned record 21226; will impute by month.
+2026-11-10 20:24:09,528 INFO __main__: Cleaning step: imputed 10 temp outliers using monthly medians (by month: {1: 4, 2: 6}).
+2026-11-10 20:24:09,528 INFO __main__: Cleaning step: imputed 1 rain_1h outliers using monthly medians (by month: {7: 1}).
+2026-11-10 20:24:09,712 WARNING __main__: Known low-traffic outage on 23-24 July 2016 is preserved (48 records); review before modelling.
+2026-11-10 20:24:09,792 INFO __main__: Wrote 40575 cleaned records to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-10 20:24:09,800 INFO __main__: Traffic data pipeline completed successfully.
+2026-11-10 20:32:49,411 INFO __main__: Starting traffic data pipeline.
+2026-11-10 20:32:49,526 INFO __main__: Loaded 48204 records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Metro_Interstate_Traffic_Volume.csv; required schema validated.
+2026-11-10 20:32:49,549 INFO __main__: Cleaning step: standardized categorical values; changed 48204 cells.
+2026-11-10 20:32:49,893 INFO __main__: Cleaning step: parsed and validated 48204 date_time values.
+2026-11-10 20:32:49,941 INFO __main__: Cleaning step: removed 17 exact duplicate rows; 48187 records remain.
+2026-11-10 20:32:49,941 WARNING __main__: Removed 17 exact duplicate rows.
+2026-11-10 20:32:49,947 INFO __main__: Cleaning step: kept the first row for each date_time and removed 7612 duplicate-hour rows; 40575 records remain.
+2026-11-10 20:32:49,947 WARNING __main__: Dropped 7612 rows with duplicate date_time values, keeping the first row.
+2026-11-10 20:32:50,150 WARNING __main__: Invalid temperature 0 K at cleaned record 10081; will impute by month.
+2026-11-10 20:32:50,150 WARNING __main__: Invalid temperature 0 K at cleaned record 10082; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10083; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10084; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10129; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10130; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10131; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10132; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10133; will impute by month.
+2026-11-10 20:32:50,152 WARNING __main__: Invalid temperature 0 K at cleaned record 10134; will impute by month.
+2026-11-10 20:32:50,166 WARNING __main__: Physically implausible rainfall 9831.3 mm at cleaned record 21226; will impute by month.
+2026-11-10 20:32:50,194 INFO __main__: Cleaning step: processed 10 temp outliers using monthly medians (by month: {1: 4, 2: 6}).
+2026-11-10 20:32:50,194 WARNING __main__: Imputed 10 temp outlier values using monthly medians.
+2026-11-10 20:32:50,194 INFO __main__: Cleaning step: processed 1 rain_1h outliers using monthly medians (by month: {7: 1}).
+2026-11-10 20:32:50,194 WARNING __main__: Imputed 1 rain_1h outlier values using monthly medians.
+2026-11-10 20:32:50,383 WARNING __main__: Known low-traffic outage on 23-24 July 2016 is preserved (48 records); review before modelling.
+2026-11-10 20:32:50,468 INFO __main__: Wrote 40575 cleaned records to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-10 20:32:50,474 INFO __main__: Traffic data pipeline completed successfully.
