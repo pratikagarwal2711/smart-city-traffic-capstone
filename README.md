@@ -1,4 +1,150 @@
-# smart-city-traffic-capstone
-AI, ML and Data Science Capstone Project - Pratik Agarwal
+# Smart-City Traffic Capstone
 
-See [Part-2/README.md](./Part-2/README.md) for the data pipeline instructions.
+Further analysis of the Metro Interstate Traffic Volume dataset for a
+smart-city mobility audience. Part 1 contains the completed database,
+descriptive-analysis, report, and Power BI dashboard deliverables. Part 2
+contains Python data-cleaning and feature-engineering scripts that prepare the
+hourly traffic and weather data for future machine-learning experiments.
+
+## Repository structure
+
+```text
+.
+├── Metro_Interstate_Traffic_Volume.csv       # Raw source data
+├── Part-1/
+│   ├── Capstone Metro Interstate Traffic DB.db
+│   ├── Capstone Task-1.sql
+│   ├── Data Analytics Insights Report.pdf
+│   ├── Task 2-4 Notes.pdf / .docx
+│   └── Traffic_Dashboard.pbix
+└── Part-2/
+    ├── pipeline.py                           # Raw-to-cleaned pipeline
+    ├── feature_engineering.py                # ML feature preparation
+    ├── data/processed/                       # Generated CSV datasets
+    └── logs/                                 # Pipeline log files
+```
+
+Generated datasets and logs are created when the scripts run and are not
+required to be edited manually.
+
+## Tools and technologies
+
+- Python 3.10 or later
+- pandas and NumPy for CSV processing and feature engineering
+- Python's standard-library `logging` module
+- SQLite-compatible database tools for the Part 1 database and SQL
+- Microsoft Power BI Desktop for the `.pbix` dashboard
+
+The Python scripts have been run with Python 3.12, pandas 3.0.5, and NumPy
+2.5.2.
+
+## Set up and run the Python code
+
+Run commands from the repository root in PowerShell. Create and activate a
+virtual environment, then install the Python dependencies:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install pandas numpy
+```
+
+Run the Task 1 cleaning pipeline first:
+
+```powershell
+python Part-2/pipeline.py
+```
+
+It reads `Metro_Interstate_Traffic_Volume.csv` and writes
+`Part-2/data/processed/Metro_Interstate_Traffic_Volume_cleaned.csv`.
+
+Then create the Task 2 feature dataset:
+
+```powershell
+python Part-2/feature_engineering.py
+```
+
+It reads the cleaned CSV and writes
+`Part-2/data/processed/Metro_Interstate_Traffic_Volume_features.csv`.
+Both scripts accept `--input`, `--output`, `--log-file`, and `--log-level`
+options. Run either command with `--help` to see its defaults.
+
+## Run the mini-application
+
+The project's interactive dashboard is
+`Part-1/Traffic_Dashboard.pbix`. Open that file in Microsoft Power BI Desktop
+to view and interact with the dashboard. If Power BI prompts for a data-source
+connection when refreshing, configure the source for your local environment.
+There is no separate Python web application in this repository.
+
+## Machine-learning models
+
+No predictive model has been trained or evaluated yet. Part 2 prepares
+features and targets for subsequent experiments; its CSV is not a model
+artifact or a prediction service.
+
+The feature dataset includes hour, weekday, weekend, cyclical hour, encoded
+weather, rain/snow indicators, and z-score features for temperature and
+rainfall. The `traffic_category` target is defined as:
+
+- **Low:** traffic volume < 4,500 vehicles/hour
+- **Medium:** 4,500–5,500 vehicles/hour, inclusive
+- **High:** traffic volume > 5,500 vehicles/hour
+
+The `is_congested` target is 1 above 5,500 vehicles/hour and 0 otherwise.
+These cutoffs reuse the established project definitions; they are not fitted
+model thresholds.
+
+## Logging
+
+Each Python script configures logging in its command-line entry point. Messages
+are written to the console and to a file using timestamp, severity level,
+module name, and message. The default level is INFO; intermediate values such
+as normalization statistics are only shown in DEBUG mode.
+
+- Cleaning pipeline: `Part-2/logs/pipeline.log`
+- Feature engineering: `Part-2/logs/feature_engineering.log`
+
+For example:
+
+```powershell
+python Part-2/feature_engineering.py --log-level DEBUG
+```
+
+Errors are logged at ERROR and cause a nonzero exit status. Logs are appended
+on subsequent runs.
+
+## Reproduce or review the analysis
+
+1. Start with the included raw CSV and run the cleaning and feature-engineering
+   commands above, in that order.
+2. The cleaning pipeline keeps the first row for each timestamp and applies
+   month-specific median imputation to invalid temperature and rainfall values.
+   The feature script preserves its input and creates a separate feature CSV.
+3. Review the Part 1 results in `Part-1/Data Analytics Insights Report.pdf`
+   and its editable `.docx`; review the SQL in `Part-1/Capstone Task-1.sql`
+   and the included SQLite database.
+4. Open `Part-1/Traffic_Dashboard.pbix` in Power BI Desktop to review the
+   dashboard. The Power BI file may require a local data-source connection
+   before refreshing.
+
+The generated cleaned and feature datasets each contain 40,575 hourly rows.
+Run the scripts to reproduce those CSVs and their log records; Part 1's
+historical report and dashboard are supplied as reviewable deliverables, not
+automatically regenerated by the Python scripts.
+
+## Assumptions and limitations
+
+- The source has 48,204 records and day-first `date_time` values. Collection
+  coverage is uneven across years, so raw yearly totals can be misleading.
+- Multiple source rows can have the same timestamp. The pipeline removes exact
+  duplicate rows and keeps the first row for each remaining duplicate
+  timestamp; the chosen weather label may therefore depend on source order.
+- Zero-Kelvin temperatures and rainfall above 9,000 mm are treated as invalid
+  and imputed using the median for the corresponding calendar month. The known
+  low-traffic outage on 23–24 July 2016 is preserved and logged as a warning.
+- Weather categories with very few examples are represented in the encoded
+  features but provide limited evidence for general conclusions.
+- Observed weather/traffic relationships are associations, not causal effects.
+- The prepared features and target definitions do not imply that a model has
+  been trained, validated, or deployed.
