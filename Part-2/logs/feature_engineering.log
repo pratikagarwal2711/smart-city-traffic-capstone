@@ -1,0 +1,9 @@
+2026-11-10 20:45:37,002 INFO __main__: Starting feature engineering.
+2026-11-10 20:45:37,067 INFO __main__: Dataset before feature engineering: 40575 rows, 9 columns.
+2026-11-10 20:45:37,137 DEBUG __main__: Parsed date_time range: 2012-10-02 09:00:00 to 2018-09-30 23:00:00.
+2026-11-10 20:45:37,144 DEBUG __main__: Normalization statistics for temp: mean=281.38225422057917, population_std=13.093717424474347.
+2026-11-10 20:45:37,145 DEBUG __main__: Normalization statistics for rain_1h: mean=0.0763324707332101, population_std=0.7696164240527719.
+2026-11-10 20:45:37,156 DEBUG __main__: Traffic target thresholds: Low < 4500; Medium 4500-5500 inclusive; High > 5500; congested > 5500.
+2026-11-10 20:45:37,171 INFO __main__: Feature engineering complete: 40575 rows, 63 columns.
+2026-11-10 20:45:37,583 INFO __main__: Dataset after feature engineering: 40575 rows, 63 columns.
+2026-11-10 20:45:37,583 INFO __main__: Saved feature-engineered dataset to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_features.csv.
