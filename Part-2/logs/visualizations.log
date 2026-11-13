@@ -1,0 +1,32 @@
+2026-11-13 16:25:59,362 INFO __main__: Starting traffic visualization generation.
+2026-11-13 16:25:59,567 INFO __main__: Loaded 40575 cleaned hourly records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-13 16:25:59,933 INFO __main__: Weather chart includes 7 categories with at least 500 observations; lower-count categories are excluded.
+2026-11-13 16:26:00,354 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_hour.png.
+2026-11-13 16:26:00,518 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\weekday_vs_weekend_by_hour.png.
+2026-11-13 16:26:00,666 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_weather.png.
+2026-11-13 16:26:00,906 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\monthly_congestion_rate.png.
+2026-11-13 16:26:00,906 INFO __main__: Created 4 traffic visualizations in C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations.
+2026-11-13 16:26:51,488 INFO __main__: Starting traffic visualization generation.
+2026-11-13 16:26:51,647 INFO __main__: Loaded 40575 cleaned hourly records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-13 16:26:51,898 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_hour.png.
+2026-11-13 16:26:52,133 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\weekday_vs_weekend_by_hour.png.
+2026-11-13 16:26:52,213 INFO __main__: Weather chart includes 7 categories with at least 500 observations; lower-count categories are excluded.
+2026-11-13 16:26:52,378 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_weather.png.
+2026-11-13 16:26:52,844 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\monthly_congestion_rate.png.
+2026-11-13 16:26:52,844 INFO __main__: Created 4 traffic visualizations in C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations.
+2026-11-13 16:45:57,531 INFO __main__: Starting traffic visualization generation.
+2026-11-13 16:45:57,708 INFO __main__: Loaded 40575 cleaned hourly records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-13 16:45:57,922 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_hour.png.
+2026-11-13 16:45:58,165 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\weekday_vs_weekend_by_hour.png.
+2026-11-13 16:45:58,236 INFO __main__: Weather chart includes all 11 observed categories with sample counts.
+2026-11-13 16:45:58,462 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_weather.png.
+2026-11-13 16:45:58,855 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\monthly_congestion_rate.png.
+2026-11-13 16:45:58,855 INFO __main__: Created 4 traffic visualizations in C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations.
+2026-11-13 16:46:28,358 INFO __main__: Starting traffic visualization generation.
+2026-11-13 16:46:28,514 INFO __main__: Loaded 40575 cleaned hourly records from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv.
+2026-11-13 16:46:28,723 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_hour.png.
+2026-11-13 16:46:28,948 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\weekday_vs_weekend_by_hour.png.
+2026-11-13 16:46:29,037 INFO __main__: Weather chart includes all 11 observed categories with sample counts.
+2026-11-13 16:46:29,269 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\traffic_by_weather.png.
+2026-11-13 16:46:29,669 INFO __main__: Saved figure to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations\monthly_congestion_rate.png.
+2026-11-13 16:46:29,670 INFO __main__: Created 4 traffic visualizations in C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\outputs\visualizations.

@@ -3,8 +3,9 @@
 Further analysis of the Metro Interstate Traffic Volume dataset for a
 smart-city mobility audience. Part 1 contains the completed database,
 descriptive-analysis, report, and Power BI dashboard deliverables. Part 2
-contains Python data-cleaning and feature-engineering scripts that prepare the
-hourly traffic and weather data for future machine-learning experiments.
+contains Python data-cleaning, feature-engineering, visualization, and
+command-line analytics tools for hourly traffic and weather analysis, as well
+as future machine-learning experiments.
 
 ## Repository structure
 
@@ -20,7 +21,10 @@ hourly traffic and weather data for future machine-learning experiments.
 └── Part-2/
     ├── pipeline.py                           # Raw-to-cleaned pipeline
     ├── feature_engineering.py                # ML feature preparation
+    ├── visualize.py                          # Task 3 traffic visualizations
+    ├── traffic_app.py                        # Command-line traffic analytics
     ├── data/processed/                       # Generated CSV datasets
+    ├── outputs/visualizations/               # Generated Task 3 figures
     └── logs/                                 # Pipeline log files
 ```
 
@@ -31,6 +35,7 @@ required to be edited manually.
 
 - Python 3.10 or later
 - pandas and NumPy for CSV processing and feature engineering
+- Matplotlib for traffic visualizations
 - Python's standard-library `logging` module
 - SQLite-compatible database tools for the Part 1 database and SQL
 - Microsoft Power BI Desktop for the `.pbix` dashboard
@@ -46,7 +51,7 @@ virtual environment, then install the Python dependencies:
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install pandas numpy
+python -m pip install pandas numpy matplotlib
 ```
 
 Run the Task 1 cleaning pipeline first:
@@ -69,13 +74,36 @@ It reads the cleaned CSV and writes
 Both scripts accept `--input`, `--output`, `--log-file`, and `--log-level`
 options. Run either command with `--help` to see its defaults.
 
+Generate the Task 3 traffic visualizations from the cleaned dataset:
+
+```powershell
+python Part-2/visualize.py
+```
+
+The script saves four PNG figures in `Part-2/outputs/visualizations/` and
+logs to `Part-2/logs/visualizations.log`. It accepts `--input`,
+`--output-dir`, `--log-file`, and `--log-level` options. See
+[`Part-2/README.md`](Part-2/README.md) for the figures and their
+interpretations.
+
+Run the Task 4 command-line analytics app after the cleaning pipeline:
+
+```powershell
+python Part-2/traffic_app.py --help
+```
+
+The app reads the cleaned CSV once per run and supports date, peak, compare,
+recommendation, and weather queries. See [`Part-2/README.md`](Part-2/README.md)
+for command examples, sample output, validation behavior, and test commands.
+
 ## Run the mini-application
 
 The project's interactive dashboard is
 `Part-1/Traffic_Dashboard.pbix`. Open that file in Microsoft Power BI Desktop
 to view and interact with the dashboard. If Power BI prompts for a data-source
 connection when refreshing, configure the source for your local environment.
-There is no separate Python web application in this repository.
+The Python traffic analytics app is a separate command-line tool, not a web
+application.
 
 ## Machine-learning models
 
@@ -98,12 +126,20 @@ model thresholds.
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
-are written to the console and to a file using timestamp, severity level,
-module name, and message. The default level is INFO; intermediate values such
-as normalization statistics are only shown in DEBUG mode.
+are written to the console and to a file. The data pipeline, feature, and
+visualization scripts include timestamp, severity, module name, and message.
+The traffic CLI uses timestamp, severity, and message as required for its
+user-facing command log. The default level is INFO.
 
 - Cleaning pipeline: `Part-2/logs/pipeline.log`
 - Feature engineering: `Part-2/logs/feature_engineering.log`
+- Visualizations: `Part-2/logs/visualizations.log`
+- Traffic CLI: `Part-2/logs/traffic_app.log`
+
+Log levels are used as follows: DEBUG records fine-grained troubleshooting
+values; INFO records expected milestones, including saved file paths; WARNING
+records unexpected but recoverable events; ERROR records failures that prevent
+a step from completing as planned.
 
 For example:
 

@@ -1,0 +1,32 @@
+2026-11-13 17:36:54,478 - INFO - Command 'date' invoked with args: date=2017-07-10, hour=8, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:36:54,660 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:36:55,419 - INFO - Command 'peak' invoked with args: top=3, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:36:55,635 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:36:56,421 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:36:56,627 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:36:57,377 - INFO - Command 'recommend' invoked with args: input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:36:57,563 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:36:58,317 - INFO - Command 'weather' invoked with args: date=2017-07-10, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:36:58,492 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:37:44,732 - INFO - Command 'date' invoked with args: date=14-05-2023, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:44,733 - ERROR - Invalid date '14-05-2023'. Expected format: YYYY-MM-DD
+2026-11-13 17:37:45,899 - INFO - Command 'date' invoked with args: date=2017-07-10, hour=25, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:45,899 - ERROR - Invalid hour '25'. Expected an integer from 0 to 23.
+2026-11-13 17:37:46,707 - ERROR - Invalid command arguments: argument --hour: invalid int value: 'eight'.
+2026-11-13 17:37:47,723 - INFO - Command 'date' invoked with args: date=2023-05-14, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:47,940 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:37:47,947 - ERROR - Date '2023-05-14' is outside dataset range 2012-10-02 to 2018-09-30.
+2026-11-13 17:37:48,972 - ERROR - Invalid command arguments: the following arguments are required: date.
+2026-11-13 17:37:49,872 - ERROR - Invalid command arguments: argument command: invalid choice: 'unknown' (choose from date, peak, compare, recommend, weather).
+2026-11-13 17:37:50,810 - INFO - Command 'compare' invoked with args: input=Part-2\missing.csv
+2026-11-13 17:37:50,811 - ERROR - Unable to load data file 'Part-2\missing.csv': [Errno 2] No such file or directory: 'Part-2\\missing.csv'
+2026-11-13 17:37:51,614 - INFO - Command 'date' invoked with args: date=2014-12-01, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:51,774 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:37:52,690 - INFO - Command 'peak' invoked with args: top=0, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:52,690 - ERROR - Invalid top value '0'. Expected an integer greater than 0.
+2026-11-13 17:37:53,648 - INFO - Command 'recommend' invoked with args: input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:37:53,837 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-13 17:43:36,243 - INFO - Command 'date' invoked with args: the following arguments are required: date
+2026-11-13 17:43:36,243 - ERROR - Invalid command arguments: the following arguments are required: date.
+2026-11-13 17:43:36,927 - INFO - Command 'recommend' invoked with args: input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-13 17:43:37,094 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
