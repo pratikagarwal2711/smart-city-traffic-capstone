@@ -23,6 +23,7 @@ as future machine-learning experiments.
     ├── feature_engineering.py                # ML feature preparation
     ├── visualize.py                          # Task 3 traffic visualizations
     ├── traffic_app.py                        # Command-line traffic analytics
+    ├── Methodology_and_Findings_Report.pdf   # Part 2 methodology/results report
     ├── data/processed/                       # Generated CSV datasets
     ├── outputs/visualizations/               # Generated Task 3 figures
     └── logs/                                 # Pipeline log files
@@ -95,6 +96,8 @@ python Part-2/traffic_app.py --help
 The app reads the cleaned CSV once per run and supports date, peak, compare,
 recommendation, and weather queries. See [`Part-2/README.md`](Part-2/README.md)
 for command examples, sample output, validation behavior, and test commands.
+The [Part 2 methodology and findings report](Part-2/Methodology_and_Findings_Report.pdf)
+summarizes the workflow, measured patterns, and limitations.
 
 ## Run the mini-application
 

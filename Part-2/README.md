@@ -181,3 +181,9 @@ python Part-2/traffic_app.py unknown
 python Part-2/traffic_app.py --input Part-2/missing.csv compare
 python Part-2/traffic_app.py date 2014-12-01
 ```
+
+## Part 2 methodology and findings report
+
+The concise two-page [Methodology and Findings report](Methodology_and_Findings_Report.pdf)
+summarizes the cleaning, feature engineering, visualizations, and CLI methods;
+key descriptive results; and the dataset and modelling limitations.
