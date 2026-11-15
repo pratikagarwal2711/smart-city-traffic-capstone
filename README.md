@@ -23,7 +23,7 @@ as future machine-learning experiments.
 │   └── Task 4 - powerbi/
 │       ├── Traffic_Dashboard.pbix
 │       └── Task 4 Notes.pdf / .docx
-└── Part-2/
+├── Part-2/
     ├── pipeline.py                           # Raw-to-cleaned pipeline
     ├── feature_engineering.py                # ML feature preparation
     ├── visualize.py                          # Task 3 traffic visualizations
@@ -32,6 +32,11 @@ as future machine-learning experiments.
     ├── data/processed/                       # Generated CSV datasets
     ├── outputs/visualizations/               # Generated Task 3 figures
     └── logs/                                 # Pipeline log files
+└── Part-3/
+    ├── prepare_labels.py                     # Proxy congestion/high-risk labels
+    ├── README.md                             # Part 3 guide
+    ├── data/processed/                       # Generated labelled CSV
+    └── logs/                                 # Part 3 log files
 ```
 
 Generated datasets and logs are created when the scripts run and are not
@@ -122,6 +127,16 @@ See [`Part-2/README.md`](Part-2/README.md) for sample output, validation
 behavior, and test commands. The [Part 2 methodology and findings report](Part-2/Methodology_and_Findings_Report.pdf)
 summarizes the workflow, measured patterns, and limitations.
 
+Create the Part 3 proxy labels after feature engineering:
+
+```powershell
+python Part-3/prepare_labels.py
+```
+
+It writes `Part-3/data/processed/Metro_Interstate_Traffic_Volume_ml.csv` and
+logs to `Part-3/logs/prepare_labels.log`. See [`Part-3/README.md`](Part-3/README.md)
+for the label definitions and cautions.
+
 ## Run the mini-application
 
 The project's interactive dashboard is
@@ -149,6 +164,12 @@ The `is_congested` target is 1 above 5,500 vehicles/hour and 0 otherwise.
 These cutoffs reuse the established project definitions; they are not fitted
 model thresholds.
 
+Part 3 adds two further labels in `Part-3/prepare_labels.py`: a four-class
+`congestion_category` based on quartiles of `traffic_volume`, and a **proxy**
+`high_risk` label (High/Severe congestion with severe or low-visibility
+weather). No accident data exists, so `high_risk` is not an accident
+prediction. No model has been trained yet.
+
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
@@ -161,6 +182,7 @@ user-facing command log. The default level is INFO.
 - Feature engineering: `Part-2/logs/feature_engineering.log`
 - Visualizations: `Part-2/logs/visualizations.log`
 - Traffic CLI: `Part-2/logs/traffic_app.log`
+- Part 3 proxy labels: `Part-3/logs/prepare_labels.log`
 
 Log levels are used as follows: DEBUG records fine-grained troubleshooting
 values; INFO records expected milestones, including saved file paths; WARNING

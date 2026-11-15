@@ -1,0 +1,6 @@
+2026-11-15 15:29:22,503 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_features.csv.
+2026-11-15 15:29:22,663 INFO __main__: Loaded 40575 rows, 63 columns.
+2026-11-15 15:29:22,760 INFO __main__: Traffic volume quartiles: q1=1248.5, q2=3427.0, q3=4952.0.
+2026-11-15 15:29:22,775 INFO __main__: congestion_category counts: {'Low': 10144, 'Medium': 10144, 'High': 10145, 'Severe': 10142}.
+2026-11-15 15:29:22,775 INFO __main__: high_risk: 2964 of 40575 rows (7.30%) are positive.
+2026-11-15 15:29:23,250 INFO __main__: Saved labelled dataset (40575 rows, 68 columns) to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
