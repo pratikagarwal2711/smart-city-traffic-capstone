@@ -1,0 +1,7 @@
+task,model,MAE,R2,Accuracy,Precision,Recall,F1,ROC_AUC,PR_AUC
+regression,Baseline: train mean,1723.9769,-0.0001,,,,,,
+regression,Baseline: mean by hour,622.042,0.7834,,,,,,
+regression,Linear Regression,801.4739,0.7348,,,,,,
+regression,Random Forest,238.8709,0.9588,,,,,,
+classification,Logistic Regression,,,0.9574,0.6894,0.9934,0.814,0.9945,0.9225
+classification,Random Forest,,,0.9861,0.8804,0.9856,0.93,0.9966,0.9545

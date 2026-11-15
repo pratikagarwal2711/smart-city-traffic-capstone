@@ -1,0 +1,134 @@
+2026-11-15 15:47:47,681 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 15:47:47,943 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 15:47:48,013 INFO __main__: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-15 15:47:48,024 INFO __main__: Shared feature set: 28 features (11 weather one-hot).
+2026-11-15 15:47:48,025 INFO __main__: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-15 15:47:48,027 INFO __main__: high_risk positives: train 2202 (6.78%), test 762 (9.39%).
+2026-11-15 15:47:48,121 INFO __main__: Regression Linear Regression: MAE=801.5, R2=0.735.
+2026-11-15 15:47:50,535 INFO __main__: Regression Random Forest: MAE=238.9, R2=0.959.
+2026-11-15 15:47:50,676 INFO __main__: Classification Logistic Regression: acc=0.957, precision=0.689, recall=0.993, F1=0.814, ROC AUC=0.994.
+2026-11-15 15:47:51,763 INFO __main__: Classification Random Forest: acc=0.986, precision=0.880, recall=0.986, F1=0.930, ROC AUC=0.997.
+2026-11-15 15:47:51,805 INFO __main__: Saved model metrics to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_metrics.csv.
+2026-11-15 15:47:51,805 INFO __main__: Saved feature importances to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\feature_importance.csv.
+2026-11-15 15:47:51,806 INFO __main__: Saved run information to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\run_info.json.
+2026-11-15 15:59:33,217 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 15:59:33,475 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 15:59:33,536 INFO __main__: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-15 15:59:33,545 INFO __main__: Shared feature set: 28 features (11 weather one-hot).
+2026-11-15 15:59:33,545 INFO __main__: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-15 15:59:33,546 INFO __main__: high_risk positives: train 2202 (6.78%), test 762 (9.39%).
+2026-11-15 15:59:33,623 INFO __main__: Regression Linear Regression: MAE=801.5, R2=0.735.
+2026-11-15 15:59:36,118 INFO __main__: Regression Random Forest: MAE=238.9, R2=0.959.
+2026-11-15 15:59:36,257 INFO __main__: Classification Logistic Regression: acc=0.957, precision=0.689, recall=0.993, F1=0.814, ROC AUC=0.994.
+2026-11-15 15:59:37,497 INFO __main__: Classification Random Forest: acc=0.986, precision=0.880, recall=0.986, F1=0.930, ROC AUC=0.997.
+2026-11-15 15:59:37,541 INFO __main__: Saved model metrics to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_metrics.csv.
+2026-11-15 15:59:37,542 INFO __main__: Saved feature importances to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\feature_importance.csv.
+2026-11-15 15:59:37,542 INFO __main__: Saved run information to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\run_info.json.
+2026-11-15 15:59:37,595 ERROR __main__: Model training failed.
+Traceback (most recent call last):
+  File "C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\train_models.py", line 410, in main
+    log_to_mlflow(
+  File "C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\train_models.py", line 299, in log_to_mlflow
+    mlflow.set_experiment(experiment)
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\fluent.py", line 202, in set_experiment
+    client = TrackingServiceClient(_resolve_tracking_uri())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 98, in __init__
+    self.store
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 102, in store
+    return utils._get_store(self.tracking_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\utils.py", line 267, in _get_store
+    return _tracking_store_registry.get_store(store_uri, artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\registry.py", line 45, in get_store
+    return self._get_store_with_resolved_uri(resolved_store_uri, artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\registry.py", line 56, in _get_store_with_resolved_uri
+    return builder(store_uri=resolved_store_uri, artifact_uri=artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\tracking\_tracking_service\utils.py", line 181, in _get_file_store
+    return FileStore(store_uri, store_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\store\tracking\file_store.py", line 225, in __init__
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The filesystem tracking backend (e.g., './mlruns') is in maintenance mode and will not receive further updates. Please migrate to a database backend (e.g., 'sqlite:///mlflow.db') to access the latest MLflow features. The `mlflow migrate-filestore` tool migrates your existing data losslessly. See https://mlflow.org/docs/latest/self-hosting/migrate-from-file-store for migration guidance. If the filesystem backend is required for your workflow, set `MLFLOW_ALLOW_FILE_STORE=true` to opt out of this exception.
+2026-11-15 16:00:28,836 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:00:29,009 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:00:29,063 INFO __main__: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-15 16:00:29,069 INFO __main__: Shared feature set: 28 features (11 weather one-hot).
+2026-11-15 16:00:29,070 INFO __main__: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-15 16:00:29,070 INFO __main__: high_risk positives: train 2202 (6.78%), test 762 (9.39%).
+2026-11-15 16:00:29,127 INFO __main__: Regression Linear Regression: MAE=801.5, R2=0.735.
+2026-11-15 16:00:31,439 INFO __main__: Regression Random Forest: MAE=238.9, R2=0.959.
+2026-11-15 16:00:31,579 INFO __main__: Classification Logistic Regression: acc=0.957, precision=0.689, recall=0.993, F1=0.814, ROC AUC=0.994.
+2026-11-15 16:00:32,718 INFO __main__: Classification Random Forest: acc=0.986, precision=0.880, recall=0.986, F1=0.930, ROC AUC=0.997.
+2026-11-15 16:00:32,753 INFO __main__: Saved model metrics to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_metrics.csv.
+2026-11-15 16:00:32,755 INFO __main__: Saved feature importances to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\feature_importance.csv.
+2026-11-15 16:00:32,756 INFO __main__: Saved run information to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\run_info.json.
+2026-11-15 16:00:59,749 ERROR __main__: Model training failed.
+Traceback (most recent call last):
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\sklearn\__init__.py", line 709, in _save_model
+    skops.io.load(output_path, trusted=skops_trusted_types)
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\skops\io\_persist.py", line 152, in load
+    audit_tree(tree, trusted=trusted)
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\skops\io\_audit.py", line 63, in audit_tree
+    raise UntrustedTypesFoundException(unsafe)
+skops.io.exceptions.UntrustedTypesFoundException: Untrusted types found in the file: ['sklearn.tree._tree.Tree'].
+
+- sklearn.tree._tree.Tree: sklearn.tree._tree.Tree (the shared node storage for DecisionTree*, RandomForest*, ExtraTrees*, and GradientBoosting* models) stores raw node indices (left_child, right_child, feature) that scikit-learn indexes into without bounds checking. A malicious file can set these to out-of-range values: skops loads the object successfully, but calling .predict() on it can then crash the process (segfault) or read out-of-bounds memory. If you created the file yourself or otherwise fully trust its source, you can load it with trusted=["sklearn.tree._tree.Tree"].
+
+Only add the specific types you have reviewed and trust to the `trusted` argument; avoid passing everything reported by get_untrusted_types() just to make a file load.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\train_models.py", line 421, in main
+    log_to_mlflow(
+  File "C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\train_models.py", line 335, in log_to_mlflow
+    mlflow.sklearn.log_model(model, name="model")
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\sklearn\__init__.py", line 497, in log_model
+    return Model.log(
+           ^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\telemetry\track.py", line 30, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\models\model.py", line 1228, in log
+    flavor.save_model(path=local_path, mlflow_model=mlflow_model, **kwargs)
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\sklearn\__init__.py", line 315, in save_model
+    _save_model(
+  File "C:\Users\prati\AppData\Local\Programs\Python\Python312\Lib\site-packages\mlflow\sklearn\__init__.py", line 712, in _save_model
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The saved sklearn model references untrusted types. If you are sure loading these types is safe, set the 'skops_trusted_types' parameter when calling 'log_model' or 'save_model' to the list of trusted types. Root error: Untrusted types found in the file: ['sklearn.tree._tree.Tree'].
+
+- sklearn.tree._tree.Tree: sklearn.tree._tree.Tree (the shared node storage for DecisionTree*, RandomForest*, ExtraTrees*, and GradientBoosting* models) stores raw node indices (left_child, right_child, feature) that scikit-learn indexes into without bounds checking. A malicious file can set these to out-of-range values: skops loads the object successfully, but calling .predict() on it can then crash the process (segfault) or read out-of-bounds memory. If you created the file yourself or otherwise fully trust its source, you can load it with trusted=["sklearn.tree._tree.Tree"].
+
+Only add the specific types you have reviewed and trust to the `trusted` argument; avoid passing everything reported by get_untrusted_types() just to make a file load.
+2026-11-15 16:01:34,491 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:01:34,690 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:01:34,747 INFO __main__: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-15 16:01:34,756 INFO __main__: Shared feature set: 28 features (11 weather one-hot).
+2026-11-15 16:01:34,756 INFO __main__: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-15 16:01:34,757 INFO __main__: high_risk positives: train 2202 (6.78%), test 762 (9.39%).
+2026-11-15 16:01:34,823 INFO __main__: Regression Linear Regression: MAE=801.5, R2=0.735.
+2026-11-15 16:01:37,196 INFO __main__: Regression Random Forest: MAE=238.9, R2=0.959.
+2026-11-15 16:01:37,334 INFO __main__: Classification Logistic Regression: acc=0.957, precision=0.689, recall=0.993, F1=0.814, ROC AUC=0.994.
+2026-11-15 16:01:38,514 INFO __main__: Classification Random Forest: acc=0.986, precision=0.880, recall=0.986, F1=0.930, ROC AUC=0.997.
+2026-11-15 16:01:38,561 INFO __main__: Saved model metrics to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_metrics.csv.
+2026-11-15 16:01:38,562 INFO __main__: Saved feature importances to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\feature_importance.csv.
+2026-11-15 16:01:38,562 INFO __main__: Saved run information to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\run_info.json.
+2026-11-15 16:01:55,466 INFO __main__: Logged 6 MLflow runs to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task1-supervised-models').
+2026-11-15 16:08:54,851 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:08:55,047 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:08:55,107 INFO __main__: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-15 16:08:55,115 INFO __main__: Shared feature set: 28 features.
+2026-11-15 16:08:55,115 INFO __main__: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-15 16:08:55,116 INFO __main__: high_risk positives: train 2202 (6.78%), test 762 (9.39%).
+2026-11-15 16:08:55,182 INFO __main__: Regression Linear Regression: MAE=801.474, R2=0.735.
+2026-11-15 16:08:57,799 INFO __main__: Regression Random Forest: MAE=238.871, R2=0.959.
+2026-11-15 16:08:57,901 INFO __main__: Classification Logistic Regression: Accuracy=0.957, Precision=0.689, Recall=0.993, F1=0.814, ROC_AUC=0.994, PR_AUC=0.922.
+2026-11-15 16:08:59,140 INFO __main__: Classification Random Forest: Accuracy=0.986, Precision=0.880, Recall=0.986, F1=0.930, ROC_AUC=0.997, PR_AUC=0.955.
+2026-11-15 16:08:59,226 INFO __main__: Saved model metrics to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_metrics.csv.
+2026-11-15 16:08:59,227 INFO __main__: Saved feature importances to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\feature_importance.csv.
+2026-11-15 16:08:59,227 INFO __main__: Saved run information to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\run_info.json.
+2026-11-15 16:09:16,700 INFO __main__: Logged 6 MLflow runs to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task1-supervised-models').

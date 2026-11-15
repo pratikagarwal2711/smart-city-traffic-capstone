@@ -33,10 +33,89 @@ The weather groupings are assumptions defined as constants in
 [`prepare_labels.py`](prepare_labels.py); change them there if the definition
 should differ.
 
+## Task 1: supervised models
+
+```powershell
+python -m pip install scikit-learn mlflow
+python Part-3/train_models.py
+```
+
+It reads the labelled CSV above, logs to `Part-3/logs/train_models.log`, and
+writes `Part-3/outputs/model_metrics.csv`, `feature_importance.csv` and
+`run_info.json`. Options: `--input`, `--output-dir`, `--log-file`,
+`--log-level`, `--mlflow-uri`, `--mlflow-artifact-root`, `--experiment`,
+`--no-mlflow`.
+
+**MLflow:** each model and baseline is logged as a run in the experiment
+`task1-supervised-models` (parameters, split details, metrics, the fitted model
+and the output CSVs). Tracking data is in the SQLite database
+`Part-3/mlflow.db` and model artifacts in `Part-3/mlartifacts/` (about 145 MB,
+git-ignored, recreated by the script). Each script run adds six new runs.
+View them with:
+
+```powershell
+python -m pip install mlflow
+mlflow ui --backend-store-uri sqlite:///Part-3/mlflow.db
+```
+
+Models are stored in cloudpickle format (they are produced by this script);
+only load models you trust. The older MLflow file store (`mlruns`) is not used
+because MLflow 3.x disables it by default.
+
+**Notebook:** [`notebooks/Task1_supervised_models.ipynb`](notebooks/Task1_supervised_models.ipynb)
+reuses `train_models.py` and adds exploration, actual-vs-predicted, error by
+hour, ROC/PR curves, confusion matrices, feature importances and the MLflow run
+table. It is saved with outputs. To re-run it:
+
+```powershell
+python -m pip install jupyter matplotlib
+python -m jupyter nbconvert --to notebook --execute --inplace Part-3/notebooks/Task1_supervised_models.ipynb
+```
+
+**Shared features (28):** hour, day of week, month, weekend flag; cyclical
+sin/cos of hour, day of week and month; a holiday flag spread over the whole
+date; temperature (°C), rain, snow, cloud cover, rain/snow indicators; and
+one-hot `weather_main`.
+
+**Split:** time-based, first 80% of hours train (2012-10-02 to 2017-10-26 17:00,
+32,460 rows), last 20% test (2017-10-26 18:00 to 2018-09-30, 8,115 rows). The
+test period includes partially covered 2018. Fixed `random_state` of 42; the
+classification threshold is fixed at 0.5.
+
+**Models:** regression predicts `traffic_volume` (Linear Regression vs Random
+Forest, plus reference baselines: train mean and mean by hour). Classification
+predicts `high_risk` (Logistic Regression vs Random Forest, both with class
+weights).
+
+| Task | Model | Results on test set |
+|---|---|---|
+| Regression | Baseline: train mean | MAE 1,724; R² −0.000 |
+| Regression | Baseline: mean by hour | MAE 622; R² 0.783 |
+| Regression | Linear Regression | MAE 801; R² 0.735 |
+| Regression | Random Forest | MAE 239; R² 0.959 |
+| Classification | Logistic Regression | Acc 0.957; Prec 0.689; Rec 0.993; F1 0.814; ROC AUC 0.995 |
+| Classification | Random Forest | Acc 0.986; Prec 0.880; Rec 0.986; F1 0.930; ROC AUC 0.997 |
+
+Interpretation: Random Forest is best on both tasks. The linear regression
+does not beat the mean-by-hour baseline because traffic is non-linear in hour
+(bimodal), which supports the project finding that time of day dominates.
+Random Forest regression importance is concentrated in the hour features.
+
+**Classification scores are inflated by design.** `high_risk` is defined from
+`traffic_volume` and `weather_main`, and the shared feature set includes the
+`weather_main` one-hot columns (as requested). The models are largely
+re-learning the label rule (high-volume hours combined with listed weather),
+so the near-perfect ROC AUC does not show real accident-prediction skill. The
+test positive rate (9.4%) also differs from train (6.8%), and the label
+quartiles were computed on all rows (see Cautions). Results are associations,
+single time split, no hyperparameter tuning or cross-validation.
+
 ## Cautions
 
 - **Leakage:** both labels are derived from `traffic_volume` and `weather_main`.
-  Do not use `traffic_volume`, `traffic_category`, `is_congested`,
+  `train_models.py` deliberately includes `weather_main` one-hot features, as
+  the task requires weather encodings, and excludes the other columns below.
+  Otherwise, do not use `traffic_volume`, `traffic_category`, `is_congested`,
   `congestion_category`, `weather_main*`, or `is_low_visibility` as features
   when predicting `high_risk`; predicting from them would be circular.
 - **Not the Part 2 target:** `congestion_category` (quartiles, four classes) is
