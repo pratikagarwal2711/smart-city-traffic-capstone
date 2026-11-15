@@ -48,3 +48,40 @@
 2026-11-14 15:34:29,566 - ERROR - Date '2217-07-10' is outside dataset range 2012-10-02 to 2018-09-30.
 2026-11-14 15:34:54,366 - INFO - Command 'weather' invoked with args: date=2017-08-12, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
 2026-11-14 15:34:54,536 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-14 15:51:11,086 - INFO - Command 'date' invoked with args: date=2017-02-30, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:11,087 - ERROR - Invalid date '2017-02-30'. Expected format: YYYY-MM-DD
+2026-11-14 15:51:11,690 - INFO - Command 'date' invoked with args: date=2017-7-10, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:11,691 - ERROR - Invalid date '2017-7-10'. Expected format: YYYY-MM-DD
+2026-11-14 15:51:12,199 - INFO - Command 'date' invoked with args: date= 2017-07-10, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:12,199 - ERROR - Invalid date ' 2017-07-10'. Expected format: YYYY-MM-DD
+2026-11-14 15:51:12,696 - INFO - Command 'date' invoked with args: date=٢٠١٧-07-10, hour=None, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:12,697 - ERROR - Invalid date '٢٠١٧-07-10'. Expected format: YYYY-MM-DD
+2026-11-14 15:51:13,188 - INFO - Command 'date' invoked with args: date=2017-07-10, hour=-1, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:13,188 - ERROR - Invalid hour '-1'. Expected an integer from 0 to 23.
+2026-11-14 15:51:13,685 - INFO - Command 'date' invoked with args: argument --hour: invalid int value: '8.5'
+2026-11-14 15:51:13,685 - ERROR - Invalid command arguments: argument --hour: invalid int value: '8.5'.
+2026-11-14 15:51:14,181 - INFO - Command 'peak' invoked with args: top=999999999, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-14 15:51:14,315 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-14 15:51:15,985 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge
+2026-11-14 15:51:15,986 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge': [Errno 13] Permission denied: 'C:\\Users\\prati\\AppData\\Local\\Temp\\traffic_edge'
+2026-11-14 15:51:16,483 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge\empty.csv
+2026-11-14 15:51:16,483 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge\empty.csv': No columns to parse from file
+2026-11-14 15:51:16,996 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge\badcols.csv
+2026-11-14 15:51:17,001 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge\badcols.csv': Missing required columns: date_time, traffic_volume, weather_main, weather_description
+2026-11-14 15:51:17,530 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge\headeronly.csv
+2026-11-14 15:51:17,533 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge\headeronly.csv': The data file contains no traffic records.
+2026-11-14 15:51:18,045 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge\baddate.csv
+2026-11-14 15:51:18,050 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge\baddate.csv': time data "not-a-date" doesn't match format "%d/%m/%Y %H:%M". You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-11-14 15:51:18,640 - INFO - Command 'compare' invoked with args: input=C:\Users\prati\AppData\Local\Temp\traffic_edge\negative.csv
+2026-11-14 15:51:18,647 - ERROR - Unable to load data file 'C:\Users\prati\AppData\Local\Temp\traffic_edge\negative.csv': traffic_volume contains negative values.
+2026-11-14 15:51:19,208 - ERROR - Invalid command arguments: the following arguments are required: command.
+2026-11-15 15:21:04,613 - INFO - Command 'peak' invoked with args: top=2, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-15 15:21:04,764 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-15 15:21:05,241 - INFO - Command 'date' invoked with args: date=2017-07-10, hour=8, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-15 15:21:05,381 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-15 15:21:05,873 - INFO - Command 'date' invoked with args: date=2023-05-14, hour=8, input=C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv
+2026-11-15 15:21:06,003 - INFO - Loaded 40,575 hourly records from 'C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-2\data\processed\Metro_Interstate_Traffic_Volume_cleaned.csv'.
+2026-11-15 15:21:06,006 - ERROR - Date '2023-05-14' is outside dataset range 2012-10-02 to 2018-09-30.

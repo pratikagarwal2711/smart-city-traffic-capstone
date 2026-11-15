@@ -13,11 +13,16 @@ as future machine-learning experiments.
 .
 ├── Metro_Interstate_Traffic_Volume.csv       # Raw source data
 ├── Part-1/
-│   ├── Capstone Metro Interstate Traffic DB.db
-│   ├── Capstone Task-1.sql
-│   ├── Data Analytics Insights Report.pdf
-│   ├── Task 2-4 Notes.pdf / .docx
-│   └── Traffic_Dashboard.pbix
+│   ├── Data Analytics Insights Report.pdf / .docx
+│   ├── Task 1 - sql/
+│   │   ├── Capstone Metro Interstate Traffic DB.db / .sqbpro
+│   │   └── Capstone Task-1.sql
+│   ├── Task 2 and 3 - statistics, probability and correlation/
+│   │   ├── Task 2 and 3 - Descriptive Statistics and Correlation.pbix
+│   │   └── Task 2 Notes / Task 3 Notes (.pdf / .docx)
+│   └── Task 4 - powerbi/
+│       ├── Traffic_Dashboard.pbix
+│       └── Task 4 Notes.pdf / .docx
 └── Part-2/
     ├── pipeline.py                           # Raw-to-cleaned pipeline
     ├── feature_engineering.py                # ML feature preparation
@@ -93,16 +98,34 @@ Run the Task 4 command-line analytics app after the cleaning pipeline:
 python Part-2/traffic_app.py --help
 ```
 
-The app reads the cleaned CSV once per run and supports date, peak, compare,
-recommendation, and weather queries. See [`Part-2/README.md`](Part-2/README.md)
-for command examples, sample output, validation behavior, and test commands.
-The [Part 2 methodology and findings report](Part-2/Methodology_and_Findings_Report.pdf)
+The app reads the cleaned CSV once per run and supports five commands:
+
+1. `date` - Show traffic for a specific date, and optionally a specific hour.
+   Example: `python Part-2/traffic_app.py date 2017-07-10 --hour 8`
+2. `peak` - Identify the top N high-traffic periods (default N=5).
+   Example: `python Part-2/traffic_app.py peak --top 5`
+3. `compare` - Compare average weekday vs weekend traffic, printed as a small
+   table. Example: `python Part-2/traffic_app.py compare`
+4. `recommend` - Recommend the lowest-traffic periods to travel (the 5
+   quietest hours of the day).
+   Example: `python Part-2/traffic_app.py recommend`
+5. `weather` - Show weather and traffic info for a given date.
+   Example: `python Part-2/traffic_app.py weather 2017-07-10`
+
+Dates must be written as `YYYY-MM-DD` and fall within the dataset's range,
+2012-10-02 to 2018-09-30; hours must be integers from 0 to 23. For example,
+`date 2023-05-14 --hour 8` is correctly formatted but outside the range, so the
+app logs an error and exits with a nonzero status. If you run the commands from
+inside the `Part-2/` folder, use `python traffic_app.py ...` instead.
+
+See [`Part-2/README.md`](Part-2/README.md) for sample output, validation
+behavior, and test commands. The [Part 2 methodology and findings report](Part-2/Methodology_and_Findings_Report.pdf)
 summarizes the workflow, measured patterns, and limitations.
 
 ## Run the mini-application
 
 The project's interactive dashboard is
-`Part-1/Traffic_Dashboard.pbix`. Open that file in Microsoft Power BI Desktop
+`Part-1/Task 4 - powerbi/Traffic_Dashboard.pbix`. Open that file in Microsoft Power BI Desktop
 to view and interact with the dashboard. If Power BI prompts for a data-source
 connection when refreshing, configure the source for your local environment.
 The Python traffic analytics app is a separate command-line tool, not a web
@@ -161,11 +184,12 @@ on subsequent runs.
    month-specific median imputation to invalid temperature and rainfall values.
    The feature script preserves its input and creates a separate feature CSV.
 3. Review the Part 1 results in `Part-1/Data Analytics Insights Report.pdf`
-   and its editable `.docx`; review the SQL in `Part-1/Capstone Task-1.sql`
-   and the included SQLite database.
-4. Open `Part-1/Traffic_Dashboard.pbix` in Power BI Desktop to review the
-   dashboard. The Power BI file may require a local data-source connection
-   before refreshing.
+   and its editable `.docx`; review the SQL in
+   `Part-1/Task 1 - sql/Capstone Task-1.sql` and the included SQLite database
+   in the same folder.
+4. Open `Part-1/Task 4 - powerbi/Traffic_Dashboard.pbix` in Power BI Desktop
+   to review the dashboard. The Power BI file may require a local data-source
+   connection before refreshing.
 
 The generated cleaned and feature datasets each contain 40,575 hourly rows.
 Run the scripts to reproduce those CSVs and their log records; Part 1's
