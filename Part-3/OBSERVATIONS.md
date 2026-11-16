@@ -61,10 +61,58 @@ accident prediction.
 - The proxy label encodes assumptions about which weather is risky; subgroup
   metrics (weekday/weekend, holiday, weather, year) have not been computed yet.
 
+## Task 2: unsupervised models (`unsupervised_models.py`)
+
+**Method**
+- K-means on standardised hour (sin/cos), weekend flag, weather severity (0 other,
+  1 low visibility, 2 severe; Part 3 groups) and traffic_volume; k = 2..10 scored by
+  inertia and silhouette (10,000-hour sample). Seed 42, n_init 10.
+- Association rules: items = time of day (4 bins), Weekday/Weekend, weather group
+  (5); consequent = quartile `congestion_category`; support >= 0.01, confidence
+  >= 0.5, ranked by lift; exact counting of 1-3 item antecedents (pandas, no
+  mlxtend). Redundancy flag `adds_information` = confidence at least 0.02 above
+  every simpler rule (my addition, not in the brief; all rules still saved).
+- User-confirmed choices: Part 3 weather groups, quartile congestion levels, 6-hour
+  time bins, thresholds, pandas-only.
+
+**K-means observations**
+- Silhouette: k=2 0.314, 4 0.379, 5 0.392, 6 0.393, 7 0.412, 9 0.434 (max), 10 0.431.
+  k = 6 chosen for interpretability (judgement), inertia 61,294.
+- Clusters (hours, mean volume): 0 weekend night 5,120, 1,227; 1 weekday night
+  10,260, 1,267; 2 severe weather any time 2,753, 2,998 (44.6% proxy high_risk,
+  mixed congestion); 3 weekend daytime 5,738, 3,914 (68% High); 4 weekday
+  afternoon/evening 8,907, 4,848 (53% Severe); 5 weekday morning-midday 7,797,
+  5,174 (59% Severe).
+- Only severe weather forms its own cluster; low-visibility hours (4-16% of each
+  time-based cluster) are spread across clusters.
+- Smaller k merges weekend with weekday traffic or hides the weather cluster.
+
+**Rule observations (44 rules; 14 informative)**
+- Top informative: Night & Weekend -> Low (conf 0.896, lift 3.59, 2,611 h); Night
+  -> Low (0.853, 3.41); Afternoon & Weekend -> High (0.835, 3.34); Afternoon &
+  Weekday -> Severe (0.749, 3.00); Morning & Weekday -> Severe (0.593, 2.37);
+  Evening -> Medium (0.658, 2.63).
+- Weather adds little: weather-specific informative rules gain 2-3 points, except
+  Morning & Weekday & Low visibility -> Severe (0.694 vs 0.593, 740 h).
+  Evening & Severe weather -> Medium (0.679 vs 0.658, 461 h).
+- Rules by consequent: Low 15, Severe 14, Medium 12, High 3.
+- Highest-lift raw rules are redundant refinements of "Night -> Low".
+
+**Caveats / bias notes**
+- Congestion level derives from volume, which is also a K-means feature (partly
+  circular). Quartiles use all rows, so levels are relative to this dataset.
+- k = 6 and the 2-point redundancy threshold are judgement calls. K-means is scale
+  and k dependent.
+- Rare weather (Squall 1 h, Smoke 15, Fog 201) cannot form rules at 1% support.
+- Uneven year coverage means patterns are dominated by 2013, 2016, 2017.
+- MLflow: one run `kmeans k=6 + association rules` in `task2-unsupervised-models`
+  (silhouette 0.393, 44 rules).
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
 - [x] Notebook for Task 1 (`notebooks/Task1_supervised_models.ipynb`, executed)
+- [x] Task 2 unsupervised models: script, notebook, MLflow run, observations above
 - [ ] Deployment simulation
 - [ ] Recommendation engine
 - [ ] Bias and fairness report (subgroup metrics)

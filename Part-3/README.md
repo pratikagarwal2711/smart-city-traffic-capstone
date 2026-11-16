@@ -110,6 +110,59 @@ test positive rate (9.4%) also differs from train (6.8%), and the label
 quartiles were computed on all rows (see Cautions). Results are associations,
 single time split, no hyperparameter tuning or cross-validation.
 
+## Task 2: unsupervised models
+
+```powershell
+python Part-3/unsupervised_models.py
+```
+
+It reads the labelled CSV, logs to `Part-3/logs/unsupervised_models.log`, writes
+to `Part-3/outputs/` (`kmeans_k_selection.csv`, `kmeans_cluster_profile.csv`,
+`kmeans_cluster_assignments.csv`, `association_rules.csv`,
+`unsupervised_run_info.json`) and logs one MLflow run in the experiment
+`task2-unsupervised-models`. Options: `--k`, `--min-support`,
+`--min-confidence`, plus the same `--input`, `--output-dir`, `--log-file`,
+`--log-level` and MLflow options as Task 1. No new dependency; the rule mining
+uses pandas. Notebook:
+[`notebooks/Task2_unsupervised_models.ipynb`](notebooks/Task2_unsupervised_models.ipynb).
+
+No accident data exists, so both methods describe **traffic conditions**, not
+accidents.
+
+**K-means:** features are hour (sine/cosine), weekend flag, weather severity
+(0 other, 1 low visibility = Fog/Mist/Haze/Smoke, 2 severe =
+Thunderstorm/Snow/Squall, reusing the Part 3 groups) and `traffic_volume`, all
+standardised. k = 2 to 10 were scored (elbow and silhouette); **k = 6 was chosen
+for interpretability** (a judgement: silhouette keeps rising to k = 9, but is
+flat from k = 5 to 6). Clusters are numbered by ascending mean volume:
+
+| Cluster | Meaning | Mean volume |
+|---|---|---|
+| 0 | Weekend night | 1,227 |
+| 1 | Weekday night | 1,267 |
+| 2 | Severe-weather hours (any time of day) | 2,998 |
+| 3 | Weekend daytime | 3,914 |
+| 4 | Weekday afternoon / evening | 4,848 |
+| 5 | Weekday morning to midday | 5,174 |
+
+**Association rules:** items are time of day (Night 00-05, Morning 06-11,
+Afternoon 12-17, Evening 18-23), Weekday/Weekend and weather group (Clear,
+Clouds, Rain/Drizzle, Low visibility, Severe weather); the consequent is the
+Part 3 quartile `congestion_category`. Thresholds: support >= 0.01, confidence
+>= 0.5, ranked by lift. Every combination of one to three items is counted
+exactly (equivalent to Apriori for single-consequent rules). 44 rules pass; 14
+are flagged `adds_information` (at least 2 percentage points more confident than
+every simpler rule, `MIN_CONFIDENCE_GAIN`). Top informative rules: Night &
+Weekend -> Low (90% confidence, lift 3.6); Night -> Low (85%, 3.4); Afternoon &
+Weekend -> High (84%, 3.3); Afternoon & Weekday -> Severe (75%, 3.0). Time of
+day and day type drive congestion; weather adds little.
+
+Caveats: congestion levels derive from `traffic_volume`, which is also a K-means
+feature, so clusters partly reflect congestion by construction. K-means depends
+on scaling and k; rare weather types (Squall, Smoke, Fog) fall below the rule
+support threshold. Cluster 2 groups by weather, not traffic level. Findings are
+associations.
+
 ## Cautions
 
 - **Leakage:** both labels are derived from `traffic_volume` and `weather_main`.

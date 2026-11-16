@@ -35,7 +35,8 @@ as future machine-learning experiments.
 └── Part-3/
     ├── prepare_labels.py                     # Proxy congestion/high-risk labels
     ├── train_models.py                       # Task 1 regression/classification models + MLflow logging
-    ├── notebooks/                            # Task 1 notebook (with saved outputs)
+    ├── unsupervised_models.py                # Task 2 K-means clustering + association rules
+    ├── notebooks/                            # Task 1 and Task 2 notebooks (with saved outputs)
     ├── README.md                             # Part 3 guide
     ├── OBSERVATIONS.md                       # Running findings log for the final reports
     ├── mlflow.db                             # MLflow tracking database
@@ -187,6 +188,12 @@ Classification scores are inflated because `high_risk` is defined from
 for the full metrics and caveats. Runs are tracked with MLflow
 (`Part-3/mlflow.db`) and reviewed in `Part-3/notebooks/`. No model is deployed.
 
+Part 3 Task 2 (`Part-3/unsupervised_models.py`) clusters hours with K-means
+(k = 6: weekend/weekday night, weekend daytime, weekday afternoon/evening,
+weekday morning-midday, and a severe-weather group) and mines association rules
+for the quartile congestion level. Time of day and day type drive congestion;
+weather adds little. It describes traffic conditions, not accidents.
+
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
@@ -201,6 +208,7 @@ user-facing command log. The default level is INFO.
 - Traffic CLI: `Part-2/logs/traffic_app.log`
 - Part 3 proxy labels: `Part-3/logs/prepare_labels.log`
 - Part 3 model training: `Part-3/logs/train_models.log`
+- Part 3 unsupervised analysis: `Part-3/logs/unsupervised_models.log`
 
 Log levels are used as follows: DEBUG records fine-grained troubleshooting
 values; INFO records expected milestones, including saved file paths; WARNING

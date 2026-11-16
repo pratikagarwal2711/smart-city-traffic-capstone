@@ -1,0 +1,6 @@
+{
+  "k": 6,
+  "min_support": 0.01,
+  "min_confidence": 0.5,
+  "n_rows": 40575
+}

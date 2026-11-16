@@ -1,0 +1,71 @@
+2026-11-15 16:30:10,040 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:30:10,257 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:30:13,968 INFO __main__: k=2: inertia=141341, silhouette=0.314.
+2026-11-15 16:30:15,368 INFO __main__: k=3: inertia=112738, silhouette=0.348.
+2026-11-15 16:30:16,832 INFO __main__: k=4: inertia=89438, silhouette=0.379.
+2026-11-15 16:30:18,226 INFO __main__: k=5: inertia=75767, silhouette=0.392.
+2026-11-15 16:30:19,590 INFO __main__: k=6: inertia=61294, silhouette=0.393.
+2026-11-15 16:30:21,085 INFO __main__: k=7: inertia=51611, silhouette=0.412.
+2026-11-15 16:30:22,516 INFO __main__: k=8: inertia=45685, silhouette=0.427.
+2026-11-15 16:30:24,033 INFO __main__: k=9: inertia=40617, silhouette=0.434.
+2026-11-15 16:30:25,545 INFO __main__: k=10: inertia=36788, silhouette=0.431.
+2026-11-15 16:30:25,549 WARNING __main__: No --k given; using k=9 with the highest silhouette score.
+2026-11-15 16:30:26,016 INFO __main__: 44 rules pass support>=0.010 and confidence>=0.50.
+2026-11-15 16:30:26,022 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_k_selection.csv.
+2026-11-15 16:30:26,023 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_profile.csv.
+2026-11-15 16:30:26,053 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_assignments.csv.
+2026-11-15 16:30:26,056 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\association_rules.csv.
+2026-11-15 16:30:26,057 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\unsupervised_run_info.json.
+2026-11-15 16:31:14,581 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:31:14,780 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:31:17,819 INFO __main__: k=2: inertia=141341, silhouette=0.314.
+2026-11-15 16:31:19,260 INFO __main__: k=3: inertia=112738, silhouette=0.348.
+2026-11-15 16:31:20,795 INFO __main__: k=4: inertia=89438, silhouette=0.379.
+2026-11-15 16:31:22,292 INFO __main__: k=5: inertia=75767, silhouette=0.392.
+2026-11-15 16:31:23,836 INFO __main__: k=6: inertia=61294, silhouette=0.393.
+2026-11-15 16:31:25,285 INFO __main__: k=7: inertia=51611, silhouette=0.412.
+2026-11-15 16:31:26,772 INFO __main__: k=8: inertia=45685, silhouette=0.427.
+2026-11-15 16:31:28,331 INFO __main__: k=9: inertia=40617, silhouette=0.434.
+2026-11-15 16:31:29,886 INFO __main__: k=10: inertia=36788, silhouette=0.431.
+2026-11-15 16:31:30,281 INFO __main__: 44 rules pass support>=0.010 and confidence>=0.50.
+2026-11-15 16:31:30,285 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_k_selection.csv.
+2026-11-15 16:31:30,285 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_profile.csv.
+2026-11-15 16:31:30,311 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_assignments.csv.
+2026-11-15 16:31:30,312 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\association_rules.csv.
+2026-11-15 16:31:30,312 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\unsupervised_run_info.json.
+2026-11-15 16:31:37,408 INFO __main__: Logged MLflow run to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task2-unsupervised-models').
+2026-11-15 16:42:59,298 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:42:59,546 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:43:03,005 INFO __main__: k=2: inertia=141341, silhouette=0.314.
+2026-11-15 16:43:04,685 INFO __main__: k=3: inertia=112738, silhouette=0.348.
+2026-11-15 16:43:06,282 INFO __main__: k=4: inertia=89438, silhouette=0.379.
+2026-11-15 16:43:08,064 INFO __main__: k=5: inertia=75767, silhouette=0.392.
+2026-11-15 16:43:09,688 INFO __main__: k=6: inertia=61294, silhouette=0.393.
+2026-11-15 16:43:11,405 INFO __main__: k=7: inertia=51611, silhouette=0.412.
+2026-11-15 16:43:12,939 INFO __main__: k=8: inertia=45685, silhouette=0.427.
+2026-11-15 16:43:14,718 INFO __main__: k=9: inertia=40617, silhouette=0.434.
+2026-11-15 16:43:16,325 INFO __main__: k=10: inertia=36788, silhouette=0.431.
+2026-11-15 16:43:16,728 INFO __main__: 44 rules pass support>=0.010 and confidence>=0.50; 14 add information over simpler rules.
+2026-11-15 16:43:16,732 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_k_selection.csv.
+2026-11-15 16:43:16,733 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_profile.csv.
+2026-11-15 16:43:16,762 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_assignments.csv.
+2026-11-15 16:43:16,763 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\association_rules.csv.
+2026-11-15 16:43:16,764 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\unsupervised_run_info.json.
+2026-11-15 16:43:38,108 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-15 16:43:38,447 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-15 16:43:42,223 INFO __main__: k=2: inertia=141341, silhouette=0.314.
+2026-11-15 16:43:43,903 INFO __main__: k=3: inertia=112738, silhouette=0.348.
+2026-11-15 16:43:45,496 INFO __main__: k=4: inertia=89438, silhouette=0.379.
+2026-11-15 16:43:47,272 INFO __main__: k=5: inertia=75767, silhouette=0.392.
+2026-11-15 16:43:48,934 INFO __main__: k=6: inertia=61294, silhouette=0.393.
+2026-11-15 16:43:50,721 INFO __main__: k=7: inertia=51611, silhouette=0.412.
+2026-11-15 16:43:52,369 INFO __main__: k=8: inertia=45685, silhouette=0.427.
+2026-11-15 16:43:54,227 INFO __main__: k=9: inertia=40617, silhouette=0.434.
+2026-11-15 16:43:55,972 INFO __main__: k=10: inertia=36788, silhouette=0.431.
+2026-11-15 16:43:56,388 INFO __main__: 44 rules pass support>=0.010 and confidence>=0.50; 14 add information over simpler rules.
+2026-11-15 16:43:56,392 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_k_selection.csv.
+2026-11-15 16:43:56,393 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_profile.csv.
+2026-11-15 16:43:56,426 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\kmeans_cluster_assignments.csv.
+2026-11-15 16:43:56,428 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\association_rules.csv.
+2026-11-15 16:43:56,428 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\unsupervised_run_info.json.
+2026-11-15 16:44:09,885 INFO __main__: Logged MLflow run to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task2-unsupervised-models').
