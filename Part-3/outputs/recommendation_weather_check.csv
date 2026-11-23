@@ -1,0 +1,7 @@
+weather_group,test_hours,mae_without_weather,mae_with_weather
+All,8115,306.2,303.2
+Clear,2849,296.6,295.7
+Clouds,2543,298.9,297.1
+Low visibility,864,240.2,240.5
+Rain/Drizzle,1003,238.7,235.5
+Severe weather,856,505.1,489.3

@@ -1,0 +1,21 @@
+{
+  "rows": 40575,
+  "first_timestamp": "2012-10-02 09:00:00",
+  "last_timestamp": "2018-09-30 23:00:00",
+  "congestion_thresholds": [
+    1248.5,
+    3427.0,
+    4952.0
+  ],
+  "shrinkage_hours": 10,
+  "daytime_range": [
+    6,
+    19
+  ],
+  "evening_range": [
+    19,
+    22
+  ],
+  "scenarios": 54,
+  "scenarios_with_limited_weather_evidence": 9
+}

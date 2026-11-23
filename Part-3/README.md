@@ -328,6 +328,96 @@ needs no new infrastructure. The brief also recommends it for the MLOps componen
   code, so only load them from a trusted store. The LSTM model needs the same
   TensorFlow/Keras versions it was saved with.
 
+## Task 5: travel-timing recommendation system
+
+```powershell
+python Part-3/recommendation_engine.py                 # writes tables, chart and backtest
+python Part-3/recommendation_engine.py --day-type weekday --weather "rain/drizzle" --duration 2
+```
+
+The data is a single corridor, so the system recommends **when** to travel, not
+which route. It uses only the labelled CSV (no MLflow needed) and logs to
+`Part-3/logs/recommendation_engine.log`. Without `--day-type` it writes to
+`Part-3/outputs/`: `recommendation_profile.csv` (expected volume per day type,
+weather and hour), `recommendation_windows.csv` (one recommendation with plain
+text for each day type x weather x 1-3 hour journey), `recommendation_backtest.csv`,
+`recommendation_weather_check.csv`, `recommendation_profile.png` and
+`recommendation_run_info.json`. With `--day-type` it prints one recommendation.
+Options: `--weather`, `--duration`, `--earliest`, `--latest`, `--top-n`, `--input`,
+`--output-dir`, `--log-file`, `--log-level`. Tests from `Part-3/`:
+`python -m unittest test_recommendation_engine`. Notebook:
+[`notebooks/Task5_recommendation_system.ipynb`](notebooks/Task5_recommendation_system.ipynb)
+reads the script's saved chart and tables without overwriting them; run the
+script first to refresh those outputs. It includes four worked recommendations
+and an editable example for trying another journey. Open it and run all cells
+in order, or refresh its saved cell outputs from the repository root with:
+
+```powershell
+python -m jupyter nbconvert --to notebook --execute --inplace Part-3/notebooks/Task5_recommendation_system.ipynb
+```
+
+**How it works.**
+1. *Day type:* Weekday, Weekend or Holiday (the source's holiday/event flag is
+   spread over the whole date; Holiday takes precedence). The source includes
+   State Fair, so Holiday does not mean public holidays only. *Weather:* the Task 2
+   groups (Clear, Clouds, Rain/Drizzle, Low visibility, Severe weather) or `Any`.
+2. *Expected volume* is calculated from the historical hourly means for each day
+   type and weather group. Weather-specific means are shrunk towards the same
+   day type and hour's all-weather mean (`SHRINKAGE_HOURS` = 10, so a 10-hour
+   cell is weighted 50/50). Ten is a heuristic, not a learned or validated
+   threshold; shrinkage reduces the influence of sparse cells but does not
+   guarantee reliability. `limited_evidence` flags windows with fewer than 10
+   hours of the chosen weather per hour.
+3. *Window search:* the lowest-mean window of the requested length that starts at or
+   after 06:00 and ends by 19:00 (`DAYTIME`; change with `--earliest/--latest`),
+   plus the next-best non-overlapping windows and the busiest window to avoid. A
+   quieter evening window outside the requested range (up to 22:00) is added when
+   it is at least 10% lower. The default excludes overnight, but a custom range
+   can include it.
+4. *Text:* a plain-language sentence with the window, volume, the corridor's
+   four-level congestion scale (Part 3 quartiles), the saving versus the peak, a
+   weather note and a not-a-forecast statement.
+
+Example (`--day-type weekday`): "For a weekday journey, consider travelling between
+10:00 AM and 11:00 AM, when historical traffic volumes are typically lower (about
+4,453 vehicles per hour, 'High' on this corridor's four-level congestion scale).
+This is the quietest option in the travel range, but volumes are still relatively
+high. That is about 30% less than the busiest period, 4:00 PM to 5:00 PM ..."
+
+**Backtest** (profile fitted on the first 80% of hours, checked on fully observed
+days after 2017-10-26): the recommended 1-hour window carried 4,473 vehicles/h on
+weekdays against 6,415 in the peak window and 5,288 for the average daytime hour,
+and was below the daytime average on 228 of 229 days (99.6%). Weekend (97 days):
+1,123 vs 4,452 peak; holiday (10 days): 2,476 vs 4,172 and below the daytime
+average on 7 of 10. Adding weather to the hourly profile lowered test error only
+slightly (MAE 306 to 303), largest in severe weather (505 to 489), which agrees
+with the earlier finding that time of day and day type dominate.
+The hourly comparison uses observed test-hour weather, not a weather forecast.
+The final recommendations use the full history, including the backtest period.
+
+**Limitations.**
+- Descriptive averages from 2012-2018 for one corridor, not a live forecast; no
+  incidents, roadworks, events or current weather feed. Weather is chosen by the
+  user, not predicted.
+- Volume is not safety: with no accident data (see the proxy statement above) a
+  low-volume window is not shown to be safer, and low-visibility and severe-weather
+  advice says so.
+- The daytime range (06:00-19:00) is an assumption. A weekday's quietest daytime
+  window is still in the "High" band, and the weekend answer (06:00-07:00) sits at
+  the edge of the range.
+- The 10-hour shrinkage and evidence cutoffs, 10% evening threshold and 5%
+  weather-note threshold are chosen heuristics, not established travel or
+  weather-effect thresholds. Weather comparisons are associations, not causal
+  effects; shrinkage also pulls the comparison toward the all-weather average.
+- Holiday cells combine very different holidays and have about 10 test days; the
+  source also includes State Fair. Some Holiday x weather estimates have few
+  observations and are flagged `limited_evidence`.
+  A holiday that fell on a date without a 00:00 row is not detected.
+- Windows are the lowest mean of hourly averages; day-to-day variation is not shown.
+- The recommender uses the prepared traffic data and existing Task 2 weather groups,
+  but does not load or predict with the trained or registered models. Its profile
+  is an interpretable historical baseline, not an evaluation of those models.
+
 ## Cautions
 
 - **Leakage:** both labels are derived from `traffic_volume` and `weather_main`.

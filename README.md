@@ -6,7 +6,7 @@ descriptive-analysis, report, and Power BI dashboard deliverables. Part 2
 contains Python data-cleaning, feature-engineering, visualization, and
 command-line analytics tools for hourly traffic and weather analysis. Part 3
 contains supervised, unsupervised, and sequence models, explainability analysis,
-and MLflow experiment tracking and model registration.
+MLflow experiment tracking and model registration, and travel-timing recommendations.
 
 ## Repository structure
 
@@ -39,7 +39,8 @@ and MLflow experiment tracking and model registration.
     ├── unsupervised_models.py                # Task 2 K-means clustering + association rules
     ├── lstm_model.py                         # Task 3 next-hour LSTM forecasting + SHAP comparison
     ├── mlflow_registry.py                    # Task 4 MLflow run audit, model registry, promotion gate
-    ├── notebooks/                            # Task 1-4 notebooks (Task 4 reviews saved registry outputs)
+    ├── recommendation_engine.py              # Task 5 historical travel-timing recommendations
+    ├── notebooks/                            # Task 1-5 notebooks
     ├── README.md                             # Part 3 guide
     ├── OBSERVATIONS.md                       # Running findings log for the final reports
     ├── mlflow.db                             # MLflow tracking database
@@ -212,6 +213,19 @@ audits all Task 1-3 runs, registers the best models in the MLflow Model Registry
 and sets `champion`/`challenger` aliases only after each registered model
 reproduces its logged test metric. See [Part-3/README.md](Part-3/README.md).
 
+Part 3 Task 5 uses the prepared historical traffic data to suggest travel
+windows by day type and weather on the single corridor. It does not choose routes,
+provide a live forecast, or load the registered models. After creating the Part 3
+labelled CSV, run:
+
+```powershell
+python Part-3/recommendation_engine.py
+python Part-3/recommendation_engine.py --day-type weekday --weather "rain/drizzle" --duration 2
+```
+
+See [Part-3/README.md](Part-3/README.md) for outputs, backtesting, assumptions,
+and the [Task 5 notebook](Part-3/notebooks/Task5_recommendation_system.ipynb).
+
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
@@ -228,6 +242,7 @@ user-facing command log. The default level is INFO.
 - Part 3 model training: `Part-3/logs/train_models.log`
 - Part 3 unsupervised analysis: `Part-3/logs/unsupervised_models.log`
 - Part 3 MLflow registry (Task 4): `Part-3/logs/mlflow_registry.log`
+- Part 3 recommendations (Task 5): `Part-3/logs/recommendation_engine.log`
 
 Log levels are used as follows: DEBUG records fine-grained troubleshooting
 values; INFO records expected milestones, including saved file paths; WARNING

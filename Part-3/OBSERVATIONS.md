@@ -215,6 +215,59 @@ accident prediction.
   circular; aliases are script-driven, not an approval process; pickled models only
   from trusted stores; no monitoring or retraining.
 
+## Task 5: travel-timing recommendation system (`recommendation_engine.py`)
+
+**Design (for the report)**
+- One corridor, so the system recommends *when* to travel, not which route.
+- Expected volume = historical mean per day type (Weekday/Weekend/Holiday) x weather
+  group (Task 2 groups or Any) x hour, with sparse cells shrunk to the all-weather
+  mean (10 pseudo-hours, a heuristic). Best window = lowest mean inside 06:00-19:00
+  (assumption, configurable), plus next-best windows, the peak to avoid, and an
+  evening option outside the requested range (up to 22:00) when at least 10% lower.
+  Output includes plain-language text per scenario (54 scenarios).
+
+**Observations**
+- Weekday: 10:00-11:00 AM, about 4,453 vehicles/h, 30% below the 4-5 PM peak
+  (6,325); evening 9-10 PM is lighter still (2,720). This is "High" on the Part 3
+  quartile scale: the quietest daytime option is still busy. Weekend: 6-7 AM (1,103)
+  at the edge of the range; midday is the busiest. Holiday: 6-7 AM (2,758).
+- For the one-hour scenarios, weather rarely changes the best window: for Weekday and Weekend all weather
+  groups give the same window except Weekday + Severe weather (6-7 PM, 4,213, a
+  near tie with 10 AM). Weather-adjusted estimates differ from all-weather means by under 8% on those day types;
+  Holiday x weather estimates move by about 9-12% (Rain/Drizzle, Low visibility and
+  Severe weather rest on 1-8 hours and are flagged `limited_evidence`).
+- Backtest (fit on first 80%, test after 2017-10-26, fully observed days): weekday
+  1-hour recommended window 4,473 vs peak 6,415 and daytime average 5,288, below
+  the daytime average on 228/229 days; weekend 1,123 vs 4,452 peak (97 days, 100%);
+  holiday 2,476 vs 4,172 (10 days, 70% below average).
+- Adding observed weather to the hourly profile cuts test MAE only from 306.2 to 303.2
+  (severe weather 505.1 to 489.3). Consistent with Tasks 1-3: time of day and day
+  type dominate; weather adds little.
+- Outputs: `outputs/recommendation_profile.csv/.png`, `recommendation_windows.csv`,
+  `recommendation_backtest.csv`, `recommendation_weather_check.csv`,
+  `recommendation_run_info.json`; log `logs/recommendation_engine.log`; notebook
+  `notebooks/Task5_recommendation_system.ipynb`; tests `test_recommendation_engine.py`.
+
+**Limitations (for the report)**
+- Historical averages, not a live forecast; no incidents, events or weather feed;
+  user supplies the weather. Volume is not safety (no accident data), so bad-weather
+  advice says allow extra time.
+- 06:00-19:00 range is an assumption; the weekend answer sits on its edge.
+- Holiday cells mix different holidays, ~10 test days, thin weather samples; holiday
+  dates missing a 00:00 row are not detected, and the source also flags State Fair.
+  Window variability across days is not reported. The recommender uses historical
+  data and Task 2 weather group definitions; it does not load the registered models.
+  The Task 1 random forest achieved test MAE 238.9 versus 622.0 for its mean-by-hour
+  baseline; this does not establish that the models and recommendation profile
+  produce equivalent predictions.
+- The 10 pseudo-hours and thresholds for sparse evidence (10 hours), evening
+  alternatives (10%) and weather notes (5%) are heuristics, not model-derived.
+  A post-hoc sensitivity check on the same held-out split gave hourly MAE 305.4
+  without shrinkage (using the all-weather mean for missing cells), 303.2 at 10,
+  and 302.9 at 20. This does not independently validate or tune the choice.
+  Weather comparisons are observational, not causal. Final recommendations use
+  all data, including the backtest period.
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
@@ -224,7 +277,7 @@ accident prediction.
 - [x] Task 4 advanced technique: MLflow audit, model registry and promotion gate (`mlflow_registry.py`)
 - [x] Task 4 notebook: read-only run and registry review (`notebooks/Task4_mlflow_registry.ipynb`)
 - [ ] Deployment simulation
-- [ ] Recommendation engine
+- [x] Recommendation engine (`recommendation_engine.py`, notebook, backtest, tests)
 - [ ] Bias and fairness report (subgroup metrics)
 - [ ] Final capstone report covering Parts 1-3
 - [ ] README: project structure, run steps, proxy statement (proxy statement present)

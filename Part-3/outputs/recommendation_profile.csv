@@ -1,0 +1,433 @@
+day_type,weather_group,hour,n_hours,mean_volume,expected_volume
+Holiday,Any,0,53,864.0,864.0
+Holiday,Any,1,50,575.8,575.8
+Holiday,Any,2,49,397.9,397.9
+Holiday,Any,3,51,350.6,350.6
+Holiday,Any,4,52,542.3,542.3
+Holiday,Any,5,50,1481.9,1481.9
+Holiday,Any,6,50,2757.5,2757.5
+Holiday,Any,7,48,3143.1,3143.1
+Holiday,Any,8,53,2905.1,2905.1
+Holiday,Any,9,49,3026.1,3026.1
+Holiday,Any,10,50,3176.7,3176.7
+Holiday,Any,11,48,3632.4,3632.4
+Holiday,Any,12,51,3823.3,3823.3
+Holiday,Any,13,50,3886.4,3886.4
+Holiday,Any,14,52,4128.3,4128.3
+Holiday,Any,15,48,4190.2,4190.2
+Holiday,Any,16,52,4345.1,4345.1
+Holiday,Any,17,47,4107.7,4107.7
+Holiday,Any,18,50,3559.8,3559.8
+Holiday,Any,19,49,2936.7,2936.7
+Holiday,Any,20,50,2550.7,2550.7
+Holiday,Any,21,49,2272.7,2272.7
+Holiday,Any,22,50,1785.8,1785.8
+Holiday,Any,23,52,1260.2,1260.2
+Holiday,Clear,0,19,879.1,873.8
+Holiday,Clear,1,18,549.7,559.0
+Holiday,Clear,2,17,389.8,392.8
+Holiday,Clear,3,18,358.4,355.7
+Holiday,Clear,4,19,581.3,567.8
+Holiday,Clear,5,24,1767.9,1683.8
+Holiday,Clear,6,17,3355.7,3134.1
+Holiday,Clear,7,17,2948.9,3020.8
+Holiday,Clear,8,16,2881.9,2890.8
+Holiday,Clear,9,11,3292.0,3165.4
+Holiday,Clear,10,11,3334.1,3259.1
+Holiday,Clear,11,11,3952.9,3800.3
+Holiday,Clear,12,14,4221.4,4055.5
+Holiday,Clear,13,14,4122.2,4024.0
+Holiday,Clear,14,9,4114.6,4121.8
+Holiday,Clear,15,11,4443.9,4323.1
+Holiday,Clear,16,12,4409.2,4380.1
+Holiday,Clear,17,7,3863.7,4007.2
+Holiday,Clear,18,11,3449.3,3501.9
+Holiday,Clear,19,11,2990.4,2964.8
+Holiday,Clear,20,12,2448.3,2494.8
+Holiday,Clear,21,14,2241.9,2254.7
+Holiday,Clear,22,15,1820.9,1806.9
+Holiday,Clear,23,20,1207.6,1225.1
+Holiday,Clouds,0,18,836.4,846.2
+Holiday,Clouds,1,17,584.5,581.3
+Holiday,Clouds,2,18,371.4,380.9
+Holiday,Clouds,3,14,329.0,338.0
+Holiday,Clouds,4,21,527.1,532.0
+Holiday,Clouds,5,15,1074.2,1237.3
+Holiday,Clouds,6,20,2268.4,2431.5
+Holiday,Clouds,7,21,3399.7,3316.9
+Holiday,Clouds,8,21,3136.0,3061.5
+Holiday,Clouds,9,23,3301.8,3218.3
+Holiday,Clouds,10,25,3264.3,3239.3
+Holiday,Clouds,11,19,3415.3,3490.2
+Holiday,Clouds,12,20,3714.2,3750.5
+Holiday,Clouds,13,20,3822.0,3843.5
+Holiday,Clouds,14,25,4238.1,4206.7
+Holiday,Clouds,15,23,4240.3,4225.1
+Holiday,Clouds,16,24,4228.2,4262.6
+Holiday,Clouds,17,24,4161.0,4145.3
+Holiday,Clouds,18,20,3572.0,3567.9
+Holiday,Clouds,19,22,2935.9,2936.2
+Holiday,Clouds,20,21,2660.3,2625.0
+Holiday,Clouds,21,16,2408.6,2356.3
+Holiday,Clouds,22,18,1777.8,1780.7
+Holiday,Clouds,23,11,1334.6,1299.2
+Holiday,Low visibility,0,8,951.8,903.0
+Holiday,Low visibility,1,6,548.3,565.5
+Holiday,Low visibility,2,6,421.3,406.7
+Holiday,Low visibility,3,6,389.0,365.0
+Holiday,Low visibility,4,5,513.8,532.8
+Holiday,Low visibility,5,4,1479.5,1481.2
+Holiday,Low visibility,6,6,3951.8,3205.4
+Holiday,Low visibility,7,4,4336.0,3483.9
+Holiday,Low visibility,8,9,3226.7,3057.4
+Holiday,Low visibility,9,8,2395.4,2745.8
+Holiday,Low visibility,10,7,2959.1,3087.1
+Holiday,Low visibility,11,7,3954.6,3765.1
+Holiday,Low visibility,12,6,3529.8,3713.2
+Holiday,Low visibility,13,5,3709.8,3827.6
+Holiday,Low visibility,14,5,4197.2,4151.3
+Holiday,Low visibility,15,6,3725.5,4015.9
+Holiday,Low visibility,16,4,4422.0,4367.1
+Holiday,Low visibility,17,3,3765.7,4028.8
+Holiday,Low visibility,18,5,3231.4,3450.4
+Holiday,Low visibility,19,6,2712.8,2852.8
+Holiday,Low visibility,20,3,1968.3,2416.3
+Holiday,Low visibility,21,6,1929.5,2144.0
+Holiday,Low visibility,22,6,1678.5,1745.6
+Holiday,Low visibility,23,7,1238.0,1251.1
+Holiday,Rain/Drizzle,0,5,825.4,851.1
+Holiday,Rain/Drizzle,1,5,579.0,576.9
+Holiday,Rain/Drizzle,2,4,377.5,392.1
+Holiday,Rain/Drizzle,3,5,330.8,344.0
+Holiday,Rain/Drizzle,4,4,459.5,518.7
+Holiday,Rain/Drizzle,5,3,1464.0,1477.8
+Holiday,Rain/Drizzle,6,2,1095.5,2480.5
+Holiday,Rain/Drizzle,7,2,1296.0,2835.2
+Holiday,Rain/Drizzle,8,1,1995.0,2822.3
+Holiday,Rain/Drizzle,9,3,2272.0,2852.0
+Holiday,Rain/Drizzle,10,3,3489.0,3248.8
+Holiday,Rain/Drizzle,11,5,3937.6,3734.1
+Holiday,Rain/Drizzle,12,4,3619.8,3765.1
+Holiday,Rain/Drizzle,13,4,4134.2,3957.2
+Holiday,Rain/Drizzle,14,6,4250.5,4174.1
+Holiday,Rain/Drizzle,15,5,4187.2,4189.2
+Holiday,Rain/Drizzle,16,8,4831.1,4561.1
+Holiday,Rain/Drizzle,17,9,4436.2,4263.3
+Holiday,Rain/Drizzle,18,10,3834.9,3697.4
+Holiday,Rain/Drizzle,19,8,3098.6,3008.7
+Holiday,Rain/Drizzle,20,9,2672.1,2608.2
+Holiday,Rain/Drizzle,21,8,2338.5,2301.9
+Holiday,Rain/Drizzle,22,6,1883.7,1822.5
+Holiday,Rain/Drizzle,23,7,1083.9,1187.6
+Holiday,Severe weather,0,3,764.0,840.9
+Holiday,Severe weather,1,4,693.2,609.3
+Holiday,Severe weather,2,4,536.5,437.5
+Holiday,Severe weather,3,8,354.6,352.4
+Holiday,Severe weather,4,3,560.3,546.5
+Holiday,Severe weather,5,4,1310.5,1432.9
+Holiday,Severe weather,6,5,1911.4,2475.5
+Holiday,Severe weather,7,4,2351.8,2917.0
+Holiday,Severe weather,8,6,1827.8,2501.1
+Holiday,Severe weather,9,4,2536.0,2886.0
+Holiday,Severe weather,10,4,2342.5,2938.3
+Holiday,Severe weather,11,6,3102.2,3433.6
+Holiday,Severe weather,12,7,3706.9,3775.3
+Holiday,Severe weather,13,7,3583.6,3761.7
+Holiday,Severe weather,14,7,3599.7,3910.6
+Holiday,Severe weather,15,3,3810.0,4102.5
+Holiday,Severe weather,16,4,3804.8,4190.7
+Holiday,Severe weather,17,4,3732.2,4000.4
+Holiday,Severe weather,18,4,3526.2,3550.2
+Holiday,Severe weather,19,2,2675.0,2893.1
+Holiday,Severe weather,20,5,2466.4,2522.6
+Holiday,Severe weather,21,5,2230.6,2258.7
+Holiday,Severe weather,22,5,1721.0,1764.2
+Holiday,Severe weather,23,7,1492.3,1355.8
+Weekday,Any,0,1181,645.8,645.8
+Weekday,Any,1,1164,392.6,392.6
+Weekday,Any,2,1169,299.1,299.1
+Weekday,Any,3,1146,363.4,363.4
+Weekday,Any,4,1162,843.0,843.0
+Weekday,Any,5,1147,2752.3,2752.3
+Weekday,Any,6,1159,5488.2,5488.2
+Weekday,Any,7,1140,6184.0,6184.0
+Weekday,Any,8,1146,5629.3,5629.3
+Weekday,Any,9,1121,4982.5,4982.5
+Weekday,Any,10,1166,4453.0,4453.0
+Weekday,Any,11,1146,4706.6,4706.6
+Weekday,Any,12,1157,4920.2,4920.2
+Weekday,Any,13,1134,4923.3,4923.3
+Weekday,Any,14,1161,5229.3,5229.3
+Weekday,Any,15,1142,5689.7,5689.7
+Weekday,Any,16,1168,6325.3,6325.3
+Weekday,Any,17,1137,5893.8,5893.8
+Weekday,Any,18,1157,4525.0,4525.0
+Weekday,Any,19,1158,3348.8,3348.8
+Weekday,Any,20,1173,2891.1,2891.1
+Weekday,Any,21,1173,2719.7,2719.7
+Weekday,Any,22,1176,2164.7,2164.7
+Weekday,Any,23,1193,1410.7,1410.7
+Weekday,Clear,0,486,658.6,658.3
+Weekday,Clear,1,447,403.3,403.0
+Weekday,Clear,2,439,303.9,303.8
+Weekday,Clear,3,414,365.7,365.7
+Weekday,Clear,4,414,849.0,848.9
+Weekday,Clear,5,394,2790.5,2789.6
+Weekday,Clear,6,395,5531.6,5530.5
+Weekday,Clear,7,311,6170.2,6170.7
+Weekday,Clear,8,291,5663.9,5662.8
+Weekday,Clear,9,335,5019.5,5018.4
+Weekday,Clear,10,346,4504.3,4502.9
+Weekday,Clear,11,338,4760.1,4758.5
+Weekday,Clear,12,334,4980.1,4978.3
+Weekday,Clear,13,318,4986.8,4984.8
+Weekday,Clear,14,303,5295.5,5293.4
+Weekday,Clear,15,308,5717.5,5716.6
+Weekday,Clear,16,310,6363.4,6362.2
+Weekday,Clear,17,288,5945.3,5943.5
+Weekday,Clear,18,323,4580.6,4579.0
+Weekday,Clear,19,346,3425.0,3422.9
+Weekday,Clear,20,382,2940.3,2939.1
+Weekday,Clear,21,410,2760.8,2759.8
+Weekday,Clear,22,471,2235.3,2233.8
+Weekday,Clear,23,504,1441.3,1440.7
+Weekday,Clouds,0,338,636.6,636.8
+Weekday,Clouds,1,333,387.5,387.6
+Weekday,Clouds,2,323,296.1,296.2
+Weekday,Clouds,3,305,360.2,360.3
+Weekday,Clouds,4,317,825.0,825.6
+Weekday,Clouds,5,309,2708.5,2709.8
+Weekday,Clouds,6,303,5479.0,5479.3
+Weekday,Clouds,7,376,6245.9,6244.3
+Weekday,Clouds,8,425,5631.6,5631.6
+Weekday,Clouds,9,402,4975.0,4975.2
+Weekday,Clouds,10,447,4461.3,4461.1
+Weekday,Clouds,11,476,4722.2,4721.9
+Weekday,Clouds,12,496,4945.9,4945.4
+Weekday,Clouds,13,527,4927.0,4927.0
+Weekday,Clouds,14,578,5231.2,5231.2
+Weekday,Clouds,15,548,5712.6,5712.2
+Weekday,Clouds,16,579,6367.4,6366.7
+Weekday,Clouds,17,566,5939.7,5938.9
+Weekday,Clouds,18,538,4570.6,4569.8
+Weekday,Clouds,19,519,3372.4,3372.0
+Weekday,Clouds,20,509,2919.9,2919.3
+Weekday,Clouds,21,457,2742.2,2741.8
+Weekday,Clouds,22,393,2163.3,2163.4
+Weekday,Clouds,23,346,1437.8,1437.0
+Weekday,Low visibility,0,125,651.4,651.0
+Weekday,Low visibility,1,145,381.4,382.1
+Weekday,Low visibility,2,154,294.0,294.3
+Weekday,Low visibility,3,187,362.6,362.6
+Weekday,Low visibility,4,195,855.1,854.5
+Weekday,Low visibility,5,216,2760.2,2759.9
+Weekday,Low visibility,6,215,5499.2,5498.7
+Weekday,Low visibility,7,231,6239.4,6237.1
+Weekday,Low visibility,8,196,5736.3,5731.1
+Weekday,Low visibility,9,152,5023.8,5021.3
+Weekday,Low visibility,10,134,4434.8,4436.1
+Weekday,Low visibility,11,97,4709.7,4709.4
+Weekday,Low visibility,12,85,4878.2,4882.6
+Weekday,Low visibility,13,64,4890.0,4894.5
+Weekday,Low visibility,14,68,5255.7,5252.3
+Weekday,Low visibility,15,50,5699.6,5698.0
+Weekday,Low visibility,16,43,6414.5,6397.6
+Weekday,Low visibility,17,47,5897.7,5897.0
+Weekday,Low visibility,18,44,4504.0,4507.9
+Weekday,Low visibility,19,46,3251.2,3268.6
+Weekday,Low visibility,20,47,2818.6,2831.4
+Weekday,Low visibility,21,66,2682.2,2687.1
+Weekday,Low visibility,22,79,2078.0,2087.8
+Weekday,Low visibility,23,108,1320.8,1328.5
+Weekday,Rain/Drizzle,0,150,631.6,632.5
+Weekday,Rain/Drizzle,1,156,390.9,391.0
+Weekday,Rain/Drizzle,2,166,297.4,297.5
+Weekday,Rain/Drizzle,3,160,366.0,365.9
+Weekday,Rain/Drizzle,4,156,854.4,853.7
+Weekday,Rain/Drizzle,5,146,2811.4,2807.6
+Weekday,Rain/Drizzle,6,170,5536.8,5534.1
+Weekday,Rain/Drizzle,7,148,6189.3,6189.0
+Weekday,Rain/Drizzle,8,160,5668.2,5666.0
+Weekday,Rain/Drizzle,9,159,5035.8,5032.7
+Weekday,Rain/Drizzle,10,152,4446.1,4446.5
+Weekday,Rain/Drizzle,11,153,4670.7,4672.9
+Weekday,Rain/Drizzle,12,159,4872.3,4875.1
+Weekday,Rain/Drizzle,13,151,4887.9,4890.1
+Weekday,Rain/Drizzle,14,144,5218.5,5219.2
+Weekday,Rain/Drizzle,15,150,5709.6,5708.4
+Weekday,Rain/Drizzle,16,161,6280.2,6282.9
+Weekday,Rain/Drizzle,17,169,5883.5,5884.1
+Weekday,Rain/Drizzle,18,173,4445.5,4449.8
+Weekday,Rain/Drizzle,19,168,3283.9,3287.5
+Weekday,Rain/Drizzle,20,154,2802.3,2807.7
+Weekday,Rain/Drizzle,21,160,2630.3,2635.6
+Weekday,Rain/Drizzle,22,156,2017.7,2026.6
+Weekday,Rain/Drizzle,23,146,1353.1,1356.8
+Weekday,Severe weather,0,82,626.0,628.2
+Weekday,Severe weather,1,83,379.0,380.5
+Weekday,Severe weather,2,87,298.3,298.4
+Weekday,Severe weather,3,80,360.4,360.8
+Weekday,Severe weather,4,80,831.4,832.6
+Weekday,Severe weather,5,82,2608.0,2623.7
+Weekday,Severe weather,6,76,5159.8,5198.0
+Weekday,Severe weather,7,74,5744.4,5796.7
+Weekday,Severe weather,8,74,5112.6,5174.1
+Weekday,Severe weather,9,73,4652.4,4692.2
+Weekday,Severe weather,10,87,4246.1,4267.5
+Weekday,Severe weather,11,82,4459.4,4486.3
+Weekday,Severe weather,12,83,4661.1,4689.0
+Weekday,Severe weather,13,74,4724.8,4748.4
+Weekday,Severe weather,14,68,4915.5,4955.7
+Weekday,Severe weather,15,86,5403.5,5433.3
+Weekday,Severe weather,16,75,5888.1,5939.5
+Weekday,Severe weather,17,67,5307.4,5383.6
+Weekday,Severe weather,18,79,4173.0,4212.6
+Weekday,Severe weather,19,79,3054.6,3087.6
+Weekday,Severe weather,20,81,2689.6,2711.8
+Weekday,Severe weather,21,80,2589.8,2604.2
+Weekday,Severe weather,22,77,2126.7,2131.0
+Weekday,Severe weather,23,89,1335.2,1342.8
+Weekend,Any,0,489,1323.4,1323.4
+Weekend,Any,1,496,817.8,817.8
+Weekend,Any,2,479,620.3,620.3
+Weekend,Any,3,472,399.4,399.4
+Weekend,Any,4,489,381.6,381.6
+Weekend,Any,5,488,642.8,642.8
+Weekend,Any,6,474,1103.1,1103.1
+Weekend,Any,7,484,1600.2,1600.2
+Weekend,Any,8,490,2353.9,2353.9
+Weekend,Any,9,469,3132.9,3132.9
+Weekend,Any,10,489,3718.4,3718.4
+Weekend,Any,11,473,4082.0,4082.0
+Weekend,Any,12,484,4402.6,4402.6
+Weekend,Any,13,489,4407.6,4407.6
+Weekend,Any,14,484,4392.8,4392.8
+Weekend,Any,15,473,4372.4,4372.4
+Weekend,Any,16,487,4375.2,4375.2
+Weekend,Any,17,480,4186.4,4186.4
+Weekend,Any,18,475,3852.8,3852.8
+Weekend,Any,19,476,3257.6,3257.6
+Weekend,Any,20,486,2850.8,2850.8
+Weekend,Any,21,482,2693.3,2693.3
+Weekend,Any,22,493,2411.3,2411.3
+Weekend,Any,23,495,1707.9,1707.9
+Weekend,Clear,0,218,1371.9,1369.8
+Weekend,Clear,1,223,834.4,833.7
+Weekend,Clear,2,202,633.9,633.2
+Weekend,Clear,3,190,404.4,404.1
+Weekend,Clear,4,198,384.4,384.3
+Weekend,Clear,5,194,642.1,642.1
+Weekend,Clear,6,171,1116.6,1115.9
+Weekend,Clear,7,147,1632.1,1630.0
+Weekend,Clear,8,166,2413.9,2410.5
+Weekend,Clear,9,158,3129.7,3129.9
+Weekend,Clear,10,183,3779.1,3776.0
+Weekend,Clear,11,150,4083.0,4082.9
+Weekend,Clear,12,150,4440.6,4438.2
+Weekend,Clear,13,133,4388.1,4389.4
+Weekend,Clear,14,128,4397.2,4396.9
+Weekend,Clear,15,136,4403.7,4401.5
+Weekend,Clear,16,139,4442.4,4437.9
+Weekend,Clear,17,137,4257.6,4252.8
+Weekend,Clear,18,153,3903.4,3900.3
+Weekend,Clear,19,167,3332.4,3328.2
+Weekend,Clear,20,174,2938.1,2933.4
+Weekend,Clear,21,182,2745.7,2743.0
+Weekend,Clear,22,199,2474.4,2471.3
+Weekend,Clear,23,213,1794.3,1790.5
+Weekend,Clouds,0,128,1288.0,1290.6
+Weekend,Clouds,1,124,809.8,810.4
+Weekend,Clouds,2,116,621.9,621.7
+Weekend,Clouds,3,119,403.9,403.6
+Weekend,Clouds,4,126,384.6,384.3
+Weekend,Clouds,5,136,648.9,648.5
+Weekend,Clouds,6,133,1100.5,1100.7
+Weekend,Clouds,7,166,1618.1,1617.1
+Weekend,Clouds,8,159,2376.9,2375.6
+Weekend,Clouds,9,166,3181.2,3178.5
+Weekend,Clouds,10,173,3741.1,3739.8
+Weekend,Clouds,11,196,4140.9,4138.0
+Weekend,Clouds,12,219,4440.5,4438.9
+Weekend,Clouds,13,240,4444.0,4442.5
+Weekend,Clouds,14,241,4417.0,4416.0
+Weekend,Clouds,15,227,4401.9,4400.7
+Weekend,Clouds,16,225,4413.7,4412.1
+Weekend,Clouds,17,227,4225.9,4224.2
+Weekend,Clouds,18,209,3921.8,3918.7
+Weekend,Clouds,19,194,3292.5,3290.8
+Weekend,Clouds,20,200,2840.9,2841.4
+Weekend,Clouds,21,183,2722.5,2721.0
+Weekend,Clouds,22,175,2413.7,2413.6
+Weekend,Clouds,23,155,1634.2,1638.7
+Weekend,Low visibility,0,49,1297.8,1302.1
+Weekend,Low visibility,1,55,844.4,840.3
+Weekend,Low visibility,2,69,615.5,616.1
+Weekend,Low visibility,3,65,395.7,396.2
+Weekend,Low visibility,4,74,400.0,397.8
+Weekend,Low visibility,5,81,670.4,667.3
+Weekend,Low visibility,6,80,1148.4,1143.4
+Weekend,Low visibility,7,86,1588.1,1589.3
+Weekend,Low visibility,8,79,2268.3,2277.9
+Weekend,Low visibility,9,59,3089.4,3095.7
+Weekend,Low visibility,10,51,3619.3,3635.6
+Weekend,Low visibility,11,39,3971.3,3993.9
+Weekend,Low visibility,12,36,4319.9,4337.9
+Weekend,Low visibility,13,29,4350.8,4365.3
+Weekend,Low visibility,14,26,4332.5,4349.3
+Weekend,Low visibility,15,23,4262.3,4295.7
+Weekend,Low visibility,16,25,4156.5,4219.0
+Weekend,Low visibility,17,25,3966.2,4029.2
+Weekend,Low visibility,18,21,3656.0,3719.5
+Weekend,Low visibility,19,26,2980.4,3057.4
+Weekend,Low visibility,20,21,2681.5,2736.1
+Weekend,Low visibility,21,26,2323.7,2426.3
+Weekend,Low visibility,22,31,2208.6,2258.1
+Weekend,Low visibility,23,43,1630.8,1645.4
+Weekend,Rain/Drizzle,0,63,1339.3,1337.1
+Weekend,Rain/Drizzle,1,55,817.1,817.2
+Weekend,Rain/Drizzle,2,51,625.4,624.6
+Weekend,Rain/Drizzle,3,61,395.8,396.3
+Weekend,Rain/Drizzle,4,54,358.0,361.7
+Weekend,Rain/Drizzle,5,50,618.8,622.8
+Weekend,Rain/Drizzle,6,60,1066.1,1071.4
+Weekend,Rain/Drizzle,7,53,1547.6,1556.0
+Weekend,Rain/Drizzle,8,51,2354.4,2354.3
+Weekend,Rain/Drizzle,9,51,3155.5,3151.8
+Weekend,Rain/Drizzle,10,50,3756.6,3750.2
+Weekend,Rain/Drizzle,11,58,4120.8,4115.1
+Weekend,Rain/Drizzle,12,53,4293.0,4310.4
+Weekend,Rain/Drizzle,13,63,4453.3,4447.1
+Weekend,Rain/Drizzle,14,63,4455.1,4446.6
+Weekend,Rain/Drizzle,15,59,4359.1,4361.0
+Weekend,Rain/Drizzle,16,67,4365.5,4366.8
+Weekend,Rain/Drizzle,17,60,4166.2,4169.1
+Weekend,Rain/Drizzle,18,62,3776.4,3787.0
+Weekend,Rain/Drizzle,19,62,3263.5,3262.7
+Weekend,Rain/Drizzle,20,63,2843.4,2844.4
+Weekend,Rain/Drizzle,21,63,2725.2,2720.8
+Weekend,Rain/Drizzle,22,61,2367.5,2373.6
+Weekend,Rain/Drizzle,23,58,1788.4,1776.6
+Weekend,Severe weather,0,31,1136.9,1182.4
+Weekend,Severe weather,1,39,712.0,733.6
+Weekend,Severe weather,2,41,550.9,564.5
+Weekend,Severe weather,3,37,372.2,378.0
+Weekend,Severe weather,4,37,353.9,359.8
+Weekend,Severe weather,5,27,578.4,595.8
+Weekend,Severe weather,6,30,990.6,1018.7
+Weekend,Severe weather,7,32,1480.6,1509.1
+Weekend,Severe weather,8,35,2157.9,2201.4
+Weekend,Severe weather,9,35,2958.5,2997.2
+Weekend,Severe weather,10,32,3346.6,3435.1
+Weekend,Severe weather,11,30,3761.0,3841.2
+Weekend,Severe weather,12,26,4202.6,4258.1
+Weekend,Severe weather,13,24,4101.0,4191.2
+Weekend,Severe weather,14,26,4056.8,4150.1
+Weekend,Severe weather,15,28,4099.5,4171.3
+Weekend,Severe weather,16,31,3992.0,4085.4
+Weekend,Severe weather,17,31,3799.8,3894.1
+Weekend,Severe weather,18,30,3408.8,3519.8
+Weekend,Severe weather,19,27,2797.8,2922.1
+Weekend,Severe weather,20,28,2522.4,2608.8
+Weekend,Severe weather,21,28,2432.9,2501.4
+Weekend,Severe weather,22,27,2262.7,2302.8
+Weekend,Severe weather,23,26,1386.4,1475.7

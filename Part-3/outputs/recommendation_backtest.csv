@@ -1,0 +1,10 @@
+day_type,duration_hours,recommended_window,peak_window,test_days,recommended_actual_mean,peak_actual_mean,daytime_actual_mean,reduction_vs_peak_pct,reduction_vs_daytime_pct,days_below_daytime_average_pct,days_below_peak_pct
+Weekday,1,10:00 AM to 11:00 AM,4:00 PM to 5:00 PM,229,4473,6415,5288,30.3,15.4,99.6,99.1
+Weekday,2,10:00 AM to 12:00 PM,4:00 PM to 6:00 PM,229,4586,6131,5288,25.2,13.3,99.6,99.1
+Weekday,3,10:00 AM to 1:00 PM,3:00 PM to 6:00 PM,229,4693,5990,5288,21.7,11.3,97.4,99.1
+Weekend,1,6:00 AM to 7:00 AM,1:00 PM to 2:00 PM,97,1123,4452,3582,74.8,68.7,100.0,100.0
+Weekend,2,6:00 AM to 8:00 AM,12:00 PM to 2:00 PM,97,1369,4450,3582,69.2,61.8,100.0,100.0
+Weekend,3,6:00 AM to 9:00 AM,12:00 PM to 3:00 PM,97,1711,4447,3582,61.5,52.2,100.0,100.0
+Holiday,1,6:00 AM to 7:00 AM,4:00 PM to 5:00 PM,10,2476,4172,3409,40.7,27.4,70.0,90.0
+Holiday,2,8:00 AM to 10:00 AM,3:00 PM to 5:00 PM,10,2768,4090,3409,32.3,18.8,80.0,90.0
+Holiday,3,6:00 AM to 9:00 AM,2:00 PM to 5:00 PM,10,2651,4038,3409,34.3,22.2,70.0,70.0
