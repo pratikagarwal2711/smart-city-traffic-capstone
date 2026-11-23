@@ -1,0 +1,37 @@
+{
+  "window_hours": 24,
+  "n_windows": 28871,
+  "n_train": 19067,
+  "n_validation": 2118,
+  "n_test": 7686,
+  "n_forest_train": 21185,
+  "n_test_rows": 8115,
+  "n_train_period_rows": 32460,
+  "train_end_exclusive": "2017-07-27 07:00:00",
+  "usable_runs": 173,
+  "test_start": "2017-10-26 18:00:00",
+  "epochs_run": 60,
+  "lstm_params": {
+    "units": 64,
+    "dropout": 0.2,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "max_epochs": 80,
+    "patience": 5
+  },
+  "rf_trees": 200,
+  "shap_sample": 500,
+  "shap_family_share": {
+    "volume lag 1 (previous hour)": 0.6069,
+    "calendar": 0.2152,
+    "volume lags 7-24": 0.1042,
+    "volume lags 2-6": 0.0707,
+    "weather": 0.0029
+  },
+  "imputed_counts": {
+    "temp": 10,
+    "rain_1h": 1
+  },
+  "snow_lag_1_nonzero_train": 0,
+  "snow_lag_1_nonzero_test": 0
+}

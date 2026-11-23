@@ -108,11 +108,78 @@ accident prediction.
 - MLflow: one run `kmeans k=6 + association rules` in `task2-unsupervised-models`
   (silhouette 0.393, 44 rules).
 
+## Task 3: deep learning with explainability (`lstm_model.py`)
+
+**Choice and rationale (for the report)**
+- Chose option 2 (LSTM) because the data is an hourly sequence and the brief
+  recommends it. A plain NN would add little over the Task 1 Random Forest; no
+  image data exists for a CNN.
+- LSTM is hard to explain, so SHAP `TreeExplainer` is applied to a Random Forest
+  trained on the same targets (allowed by the brief). SHAP describes the
+  Random Forest, not the LSTM; similar accuracy does not establish that the
+  models use the same signals.
+
+**Method**
+- Task: predict next-hour `traffic_volume` from the previous 24 hours of volume,
+  temperature, rain, snow, clouds, plus the calendar of the target hour (hour and
+  day of week sine/cosine, weekend, holiday). Real volume target, not `high_risk`.
+- Data has 2,588 gaps over 1 h; windows are built only inside consecutive hourly
+  runs: 28,871 windows from 173 runs (11,704 rows lack 24 h of history).
+  Split by target time as in Task 1 (test from 2017-10-26 18:00): 19,067 train,
+  2,118 validation (last 10% of pre-test windows, early stopping), 7,686 test.
+  The remaining 429 test rows are excluded because they lack a full history.
+  The forest trains on all 21,185 pre-test windows.
+- Restore the original weather readings before fitting monthly imputation and
+  standardization on rows strictly before the first validation target. This
+  avoids the full-dataset imputation performed upstream. Ten temperature and one
+  rainfall outliers were re-imputed.
+- LSTM(64) -> dropout 0.2 -> concat target-hour calendar -> Dense(32) -> 1.
+  Adam 1e-3, batch 128, patience 5; stopped after 60 epochs (best validation
+  loss 0.0129); inverse-scale and clip predictions to zero.
+- RF twin: 200 trees, min_samples_leaf 2, features volume_lag_1..24, last-hour
+  weather, hour, day_of_week, is_weekend, holiday_flag. The LSTM uses 24 hours
+  of weather, not just the last hour. SHAP on 500 random test windows. Extra RF
+  without volume lags to show calendar/weather effects.
+
+**Results (test, next hour)**
+
+| Model | MAE | RMSE | R2 |
+|---|---|---|---|
+| Persistence (previous hour) | 585.3 | 811.8 | 0.830 |
+| Same hour yesterday | 571.6 | 1030.8 | 0.726 |
+| Random Forest (lag features) | 147.3 | 234.1 | 0.986 |
+| Random Forest (calendar + weather) | 271.3 | 448.0 | 0.948 |
+| LSTM | 155.2 | 235.2 | 0.986 |
+
+**Observations**
+- LSTM reduces MAE about 73% vs persistence; the RF is slightly better in this
+  single evaluation. The models use different inputs and training-window counts.
+- SHAP feature and family shares describe this fitted RF on the sampled test
+  windows. They are not causal effects, and cannot be transferred to the LSTM.
+- Mean absolute SHAP shares: previous-hour volume 60.7%, calendar 21.5%,
+  older volume lags 17.5%, numerical weather 0.3%. In the separate no-volume-lag
+  RF, hour contributes 71.3% of total absolute SHAP.
+- `snow_1h_lag_1` does not vary in the forest's training windows, and
+  `weather_main=Snow` is not a forest feature. A zero attribution does not show
+  that snow has no effect on traffic.
+
+**Caveats / bias notes**
+- The forest uses last-hour weather; the LSTM uses all 24 observed weather
+  hours. Neither uses weather forecasts. Both need recent traffic readings.
+- Gaps reduce usable data; uneven year coverage as in Task 2. Single split,
+  no hyperparameter tuning, one random seed; no evaluation immediately after
+  outages. Target-hour holiday data must be available at prediction time.
+- MLflow: five runs in `task3-deep-learning` (LSTM run holds plots, CSVs and
+  `lstm_model.keras`; forest runs hold fitted models). Saved preprocessing metadata
+  provides scalers, feature order and imputation medians. Logs:
+  `logs/lstm_model.log`. The notebook reads saved artifacts without overwriting.
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
 - [x] Notebook for Task 1 (`notebooks/Task1_supervised_models.ipynb`, executed)
 - [x] Task 2 unsupervised models: script, notebook, MLflow run, observations above
+- [x] Task 3 LSTM + SHAP: script, notebook, MLflow runs, plots, observations above
 - [ ] Deployment simulation
 - [ ] Recommendation engine
 - [ ] Bias and fairness report (subgroup metrics)

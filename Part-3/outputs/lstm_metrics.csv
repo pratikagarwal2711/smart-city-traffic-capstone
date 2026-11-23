@@ -1,0 +1,6 @@
+model,MAE,RMSE,R2
+Baseline: persistence (previous hour),585.3328,811.8314,0.8302
+Baseline: same hour yesterday,571.5787,1030.8269,0.7262
+"Random Forest (lag features, SHAP twin)",147.3198,234.1326,0.9859
+Random Forest (calendar + weather only),271.2587,448.0297,0.9483
+LSTM,155.1574,235.2174,0.9857

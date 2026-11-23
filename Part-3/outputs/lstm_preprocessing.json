@@ -1,0 +1,98 @@
+{
+  "window_hours": 24,
+  "sequence_features": [
+    "traffic_volume",
+    "temp_c",
+    "rain_1h",
+    "snow_1h",
+    "clouds_all"
+  ],
+  "calendar_features": [
+    "hour_sin",
+    "hour_cos",
+    "dow_sin",
+    "dow_cos",
+    "is_weekend",
+    "holiday_flag"
+  ],
+  "forest_features": [
+    "volume_lag_1",
+    "volume_lag_2",
+    "volume_lag_3",
+    "volume_lag_4",
+    "volume_lag_5",
+    "volume_lag_6",
+    "volume_lag_7",
+    "volume_lag_8",
+    "volume_lag_9",
+    "volume_lag_10",
+    "volume_lag_11",
+    "volume_lag_12",
+    "volume_lag_13",
+    "volume_lag_14",
+    "volume_lag_15",
+    "volume_lag_16",
+    "volume_lag_17",
+    "volume_lag_18",
+    "volume_lag_19",
+    "volume_lag_20",
+    "volume_lag_21",
+    "volume_lag_22",
+    "volume_lag_23",
+    "volume_lag_24",
+    "temp_c_lag_1",
+    "rain_1h_lag_1",
+    "snow_1h_lag_1",
+    "clouds_all_lag_1",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "holiday_flag"
+  ],
+  "scaler_mean": [
+    3270.968913115296,
+    7.858528444003986,
+    0.08815526924347539,
+    0.00015725140403039312,
+    45.02160555004956
+  ],
+  "scaler_scale": [
+    1984.4817582645962,
+    12.978118144775431,
+    0.8699080713127126,
+    0.006571131173031663,
+    38.634656277422785
+  ],
+  "imputation_monthly_medians": {
+    "temp": {
+      "1": 265.54,
+      "2": 266.72,
+      "3": 272.45,
+      "4": 278.95,
+      "5": 287.48,
+      "6": 292.96500000000003,
+      "7": 295.49,
+      "8": 294.31,
+      "9": 291.37,
+      "10": 282.6,
+      "11": 276.13,
+      "12": 267.33
+    },
+    "rain_1h": {
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0,
+      "5": 0.0,
+      "6": 0.0,
+      "7": 0.0,
+      "8": 0.0,
+      "9": 0.0,
+      "10": 0.0,
+      "11": 0.0,
+      "12": 0.0
+    }
+  },
+  "scaler_and_imputation_fit_end_exclusive": "2017-07-27 07:00:00",
+  "prediction_policy": "inverse-scale then clip to zero"
+}

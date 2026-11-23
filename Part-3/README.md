@@ -163,6 +163,75 @@ on scaling and k; rare weather types (Squall, Smoke, Fog) fall below the rule
 support threshold. Cluster 2 groups by weather, not traffic level. Findings are
 associations.
 
+## Task 3: deep learning with explainability (LSTM + SHAP)
+
+```powershell
+python -m pip install shap tensorflow
+python Part-3/lstm_model.py
+```
+
+An **LSTM** predicts the next hour's real `traffic_volume` from the previous 24
+hourly readings (volume, temperature, rain, snow, clouds) plus the calendar of
+the hour being predicted. Windows are built only from consecutive hourly rows
+(the raw data has many gaps), giving 28,871 windows (19,067 train, 2,118
+validation for early stopping, 7,686 test) with the same chronological 80/20
+split as Task 1. The target is real volume, so the proxy-label caveat does not
+apply. Only 7,686 of the 8,115 test hours have complete 24-hour histories;
+performance immediately after gaps is not evaluated.
+
+The script uses the original `Metro_Interstate_Traffic_Volume.csv` to restore raw
+weather, checks it against the processed input, and fits monthly imputation and
+standardization strictly before the first validation target. Supply both
+`--input` and `--raw-input` when using a different matching dataset. The
+target-hour holiday flag assumes a holiday calendar is available at prediction
+time.
+
+An LSTM is hard to explain directly, so **SHAP `TreeExplainer` is applied to a
+Random Forest "twin"** trained on the same windows flattened into lag features
+(`volume_lag_1` ... `volume_lag_24`, last-hour weather, hour, day of week,
+weekend, holiday). The SHAP results describe the Random Forest, not the LSTM.
+SHAP uses a random sample of 500 test windows. The forest receives only the
+most recent weather values; the LSTM receives the entire weather history. Similar
+model accuracy does not establish that the models use the same signals. SHAP
+shares are model- and sample-specific, not causal evidence. In this dataset,
+`snow_1h_lag_1` does not vary in the forest's training windows, and the forest
+does not use the Snow weather category, so snow's effects cannot be inferred.
+
+| Model | MAE | RMSE | R2 |
+|---|---|---|---|
+| Baseline: persistence (previous hour) | 585 | 812 | 0.830 |
+| Baseline: same hour yesterday | 572 | 1,031 | 0.726 |
+| Random Forest (lag features, SHAP twin) | 147 | 234 | 0.986 |
+| Random Forest (calendar + weather only) | 271 | 448 | 0.948 |
+| LSTM | 155 | 235 | 0.986 |
+
+The evaluation is a one-hour-ahead forecast that needs fresh hourly readings.
+The latest metrics and SHAP values are in the output CSVs and notebook.
+
+It writes to `Part-3/outputs/`: `lstm_metrics.csv`, `lstm_test_predictions.csv`,
+`lstm_run_info.json`, `lstm_model.keras`, `lstm_preprocessing.json`,
+`lstm_forest.joblib`, `lstm_forest_nolag.joblib`, `shap_importance.csv`,
+`shap_importance_no_lags.csv`, `shap_family_importance.csv` and the plots
+(`lstm_training_curve.png`, `lstm_test_week.png`, `shap_summary_bar.png`,
+`shap_beeswarm.png`, `shap_bar_no_lags.png`, `shap_local_*.png`). Logs go to
+`Part-3/logs/lstm_model.log`; five MLflow runs (one per model and baseline) are
+logged in the experiment `task3-deep-learning`. Options: the same `--input`,
+`--output-dir`, `--log-file`, `--log-level` and MLflow options as Task 1, plus
+`--raw-input`.
+Training plus SHAP takes about 7 minutes on CPU. Notebook:
+[`notebooks/Task3_deep_learning.ipynb`](notebooks/Task3_deep_learning.ipynb).
+The notebook reads existing artifacts without overwriting them; run the script
+first to refresh them.
+
+For inference, load the Keras model and `lstm_preprocessing.json` together.
+`predict_from_saved(model, sequence, calendar, metadata)` in `lstm_model.py`
+standardizes inputs and inverse-scales and clips predictions to zero. `sequence`
+must contain imputed, unscaled values in `sequence_features` order (temperature
+in Celsius), shape `(n, 24, 5)`; `calendar` has shape `(n, 6)` in
+`calendar_features` order. The JSON includes training-period monthly imputation
+medians: temperature medians are in Kelvin, so convert to Celsius after
+imputation. Load the joblib forest files only from trusted sources.
+
 ## Cautions
 
 - **Leakage:** both labels are derived from `traffic_volume` and `weather_main`.

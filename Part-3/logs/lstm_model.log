@@ -1,0 +1,146 @@
+2026-11-18 20:55:14,885 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-18 20:55:15,140 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-18 20:55:15,222 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-18 20:55:15,234 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-18 20:55:15,297 INFO __main__: Windows: 28871 total (19067 train, 2118 validation, 7686 test) from 173 usable runs; 11704 rows have no full 24h history.
+2026-11-18 20:55:18,199 WARNING tensorflow: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-11-18 20:56:28,074 INFO __main__: LSTM trained for 40 epochs (best val loss 0.0135).
+2026-11-18 20:56:36,401 INFO __main__: Test metrics:
+                                  model     MAE     RMSE    R2
+  Baseline: persistence (previous hour) 585.333  811.831 0.830
+          Baseline: same hour yesterday 571.579 1030.827 0.726
+Random Forest (lag features, SHAP twin) 147.330  234.142 0.986
+Random Forest (calendar + weather only) 271.238  448.025 0.948
+                                   LSTM 158.376  242.269 0.985
+2026-11-18 21:00:25,002 INFO __main__: SHAP top features:
+      feature  mean_abs_shap  share
+ volume_lag_1       1413.592  0.607
+         hour        472.821  0.203
+volume_lag_24         71.618  0.031
+ volume_lag_2         68.598  0.029
+ volume_lag_5         39.715  0.017
+ volume_lag_3         38.966  0.017
+ volume_lag_8         21.692  0.009
+volume_lag_23         20.089  0.009
+2026-11-18 21:00:25,003 INFO __main__: SHAP by family:
+                       group  mean_abs_shap  share
+volume lag 1 (previous hour)       1413.592  0.607
+                    calendar        501.314  0.215
+            volume lags 7-24        242.858  0.104
+             volume lags 2-6        164.697  0.071
+                     weather          6.801  0.003
+2026-11-18 21:00:25,004 INFO __main__: SHAP without lags:
+         feature  mean_abs_shap  share
+            hour       1504.616  0.713
+     day_of_week        228.595  0.108
+      is_weekend        196.176  0.093
+    temp_c_lag_1         90.031  0.043
+    holiday_flag         46.645  0.022
+clouds_all_lag_1         36.878  0.017
+2026-11-18 21:00:25,141 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_training_curve.png.
+2026-11-18 21:00:25,282 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_test_week.png.
+2026-11-18 21:00:25,418 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_summary_bar.png.
+2026-11-18 21:00:25,638 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_beeswarm.png.
+2026-11-18 21:00:25,768 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_bar_no_lags.png.
+2026-11-18 21:00:26,094 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_weekday_rush_hour.png.
+2026-11-18 21:00:26,345 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_night.png.
+2026-11-18 21:00:26,411 INFO __main__: Saved 14 output files to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs.
+2026-11-18 21:00:58,382 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-18 21:00:58,578 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-18 21:00:58,632 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-18 21:00:58,639 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-18 21:00:58,684 INFO __main__: Windows: 28871 total (19067 train, 2118 validation, 7686 test) from 173 usable runs; 11704 rows have no full 24h history.
+2026-11-18 21:01:00,633 WARNING tensorflow: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-11-18 21:02:34,516 INFO __main__: LSTM trained for 45 epochs (best val loss 0.0135).
+2026-11-18 21:02:43,134 INFO __main__: Test metrics:
+                                  model     MAE     RMSE    R2
+  Baseline: persistence (previous hour) 585.333  811.831 0.830
+          Baseline: same hour yesterday 571.579 1030.827 0.726
+Random Forest (lag features, SHAP twin) 147.330  234.142 0.986
+Random Forest (calendar + weather only) 271.238  448.025 0.948
+                                   LSTM 158.376  242.269 0.985
+2026-11-18 21:06:54,910 INFO __main__: SHAP top features:
+      feature  mean_abs_shap  share
+ volume_lag_1       1413.592  0.607
+         hour        472.821  0.203
+volume_lag_24         71.618  0.031
+ volume_lag_2         68.598  0.029
+ volume_lag_5         39.715  0.017
+ volume_lag_3         38.966  0.017
+ volume_lag_8         21.692  0.009
+volume_lag_23         20.089  0.009
+2026-11-18 21:06:54,911 INFO __main__: SHAP by family:
+                       group  mean_abs_shap  share
+volume lag 1 (previous hour)       1413.592  0.607
+                    calendar        501.314  0.215
+            volume lags 7-24        242.858  0.104
+             volume lags 2-6        164.697  0.071
+                     weather          6.801  0.003
+2026-11-18 21:06:54,912 INFO __main__: SHAP without lags:
+         feature  mean_abs_shap  share
+            hour       1504.616  0.713
+     day_of_week        228.595  0.108
+      is_weekend        196.176  0.093
+    temp_c_lag_1         90.031  0.043
+    holiday_flag         46.645  0.022
+clouds_all_lag_1         36.878  0.017
+2026-11-18 21:06:55,055 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_training_curve.png.
+2026-11-18 21:06:55,231 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_test_week.png.
+2026-11-18 21:06:55,394 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_summary_bar.png.
+2026-11-18 21:06:55,639 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_beeswarm.png.
+2026-11-18 21:06:55,767 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_bar_no_lags.png.
+2026-11-18 21:06:56,122 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_weekday_rush_hour.png.
+2026-11-18 21:06:56,403 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_night.png.
+2026-11-18 21:06:56,475 INFO __main__: Saved 14 output files to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs.
+2026-11-18 21:06:58,626 INFO __main__: Logged 5 MLflow runs to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task3-deep-learning').
+2026-11-23 12:05:29,242 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-23 12:05:29,421 INFO __main__: Loaded 40575 rows, 68 columns.
+2026-11-23 12:05:29,421 INFO __main__: Reading raw weather from C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Metro_Interstate_Traffic_Volume.csv.
+2026-11-23 12:05:29,508 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-23 12:05:29,605 WARNING __main__: Re-imputed 10 temp values using training-period monthly medians.
+2026-11-23 12:05:29,609 WARNING __main__: Re-imputed 1 rain_1h values using training-period monthly medians.
+2026-11-23 12:05:29,642 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-23 12:05:29,695 INFO __main__: Windows: 28871 total (19067 train, 2118 validation, 7686 test) from 173 usable runs; 11704 rows have no full 24h history.
+2026-11-23 12:05:32,441 WARNING tensorflow: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-11-23 12:07:38,221 INFO __main__: LSTM trained for 60 epochs (best val loss 0.0129).
+2026-11-23 12:07:48,250 INFO __main__: Test metrics:
+                                  model     MAE     RMSE    R2
+  Baseline: persistence (previous hour) 585.333  811.831 0.830
+          Baseline: same hour yesterday 571.579 1030.827 0.726
+Random Forest (lag features, SHAP twin) 147.320  234.133 0.986
+Random Forest (calendar + weather only) 271.259  448.030 0.948
+                                   LSTM 155.157  235.217 0.986
+2026-11-23 12:12:02,940 INFO __main__: SHAP top features:
+      feature  mean_abs_shap  share
+ volume_lag_1       1413.619  0.607
+         hour        472.873  0.203
+volume_lag_24         71.626  0.031
+ volume_lag_2         68.589  0.029
+ volume_lag_5         39.703  0.017
+ volume_lag_3         38.971  0.017
+ volume_lag_8         21.695  0.009
+volume_lag_23         20.087  0.009
+2026-11-23 12:12:02,942 INFO __main__: SHAP by family:
+                       group  mean_abs_shap  share
+volume lag 1 (previous hour)       1413.619  0.607
+                    calendar        501.314  0.215
+            volume lags 7-24        242.798  0.104
+             volume lags 2-6        164.680  0.071
+                     weather          6.801  0.003
+2026-11-23 12:12:02,943 INFO __main__: SHAP without lags:
+         feature  mean_abs_shap  share
+            hour       1504.620  0.713
+     day_of_week        228.539  0.108
+      is_weekend        196.286  0.093
+    temp_c_lag_1         90.050  0.043
+    holiday_flag         46.646  0.022
+clouds_all_lag_1         36.879  0.017
+2026-11-23 12:12:03,422 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_training_curve.png.
+2026-11-23 12:12:03,589 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\lstm_test_week.png.
+2026-11-23 12:12:03,754 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_summary_bar.png.
+2026-11-23 12:12:04,054 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_beeswarm.png.
+2026-11-23 12:12:04,187 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_bar_no_lags.png.
+2026-11-23 12:12:04,569 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_weekday_rush_hour.png.
+2026-11-23 12:12:04,888 INFO __main__: Saved C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\shap_local_night.png.
+2026-11-23 12:12:10,325 INFO __main__: Saved 17 output files to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs.
+2026-11-23 12:12:14,338 INFO __main__: Logged 5 MLflow runs to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task3-deep-learning').

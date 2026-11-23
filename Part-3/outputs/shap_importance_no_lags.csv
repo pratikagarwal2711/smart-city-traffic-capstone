@@ -1,0 +1,9 @@
+feature,mean_abs_shap,share
+hour,1504.62008,0.71345
+day_of_week,228.53912,0.10837
+is_weekend,196.28603,0.09307
+temp_c_lag_1,90.05021,0.0427
+holiday_flag,46.64646,0.02212
+clouds_all_lag_1,36.87908,0.01749
+rain_1h_lag_1,5.92683,0.00281
+snow_1h_lag_1,0.0,0.0

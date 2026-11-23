@@ -1,0 +1,6 @@
+group,mean_abs_shap,share
+volume lag 1 (previous hour),1413.619,0.60691
+calendar,501.31372,0.21523
+volume lags 7-24,242.79765,0.10424
+volume lags 2-6,164.68032,0.0707
+weather,6.80071,0.00292
