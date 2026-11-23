@@ -174,12 +174,55 @@ accident prediction.
   provides scalers, feature order and imputation medians. Logs:
   `logs/lstm_model.log`. The notebook reads saved artifacts without overwriting.
 
+## Task 4: advanced technique, MLflow audit and model registry (`mlflow_registry.py`)
+
+**Choice and rationale (for the report)**
+- Chose MLflow (recommended in the brief): already used in Tasks 1-3, links to the
+  MLOps/deployment tasks, no new infrastructure. Quantisation, a GAN and
+  self-supervised anomaly detection were not needed to meet the brief.
+- Went beyond tracking: audit of all runs, Model Registry, promotion gate.
+
+**Method**
+- 17 runs from 3 experiments (12 distinct models) collected; latest run per model
+  ranked on test MAE (regression) or PR AUC (classifier); baselines and the
+  calendar-only forest excluded.
+- Registered `traffic-volume-regressor`, `high-risk-classifier`,
+  `next-hour-forecaster-rf` and `next-hour-forecaster-lstm` (each version v1).
+  Task 3 models were plain artifacts, so the forest was re-logged as a sklearn
+  model and the LSTM as a pyfunc model (`LstmForecaster` in `lstm_model.py`) with
+  tensor signature (sequence 24x5, calendar 6).
+- Gate: load from the registry, recompute the test metric, compare with the logged
+  value. All four matched to 4 decimals (MAE 238.87, PR AUC 0.9545, MAE 147.32,
+  MAE 155.16). Aliases: champions for the Task 1 models and Task 3 forest,
+  challenger for the LSTM. A rerun created no new versions.
+
+**Observations**
+- Task 3 LSTM reruns differ by 2.1% MAE (155.16 vs 158.38; 60 vs 40 epochs). The
+  forests differ by under 0.01%. Both runs share a git commit, but the weather
+  imputation changed between them, so the difference is confounded with the data
+  preparation change; one seed is not enough to rank LSTM vs forest.
+- Forest (147.3) beats LSTM (155.2) by 8 vehicles/h; the LSTM's own spread across
+  runs is about 3 vehicles/h.
+- Outputs: `outputs/mlflow_run_comparison.csv/.png`, `mlflow_rerun_variability.csv`,
+  `mlflow_registry_summary.csv`; logs in `logs/mlflow_registry.log`; run in the
+  experiment `task4-mlflow-registry`.
+
+**Limitations (for the report)**
+- Local SQLite store, no authentication or shared server; `mlartifacts/` is
+  git-ignored, so registered models need Tasks 1-3 re-run on a fresh checkout.
+- No data versioning; selection and gate use the test set (optimistic scores; the gate
+  checks reproducibility, not quality); the proxy-label classifier is still
+  circular; aliases are script-driven, not an approval process; pickled models only
+  from trusted stores; no monitoring or retraining.
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
 - [x] Notebook for Task 1 (`notebooks/Task1_supervised_models.ipynb`, executed)
 - [x] Task 2 unsupervised models: script, notebook, MLflow run, observations above
 - [x] Task 3 LSTM + SHAP: script, notebook, MLflow runs, plots, observations above
+- [x] Task 4 advanced technique: MLflow audit, model registry and promotion gate (`mlflow_registry.py`)
+- [x] Task 4 notebook: read-only run and registry review (`notebooks/Task4_mlflow_registry.ipynb`)
 - [ ] Deployment simulation
 - [ ] Recommendation engine
 - [ ] Bias and fairness report (subgroup metrics)

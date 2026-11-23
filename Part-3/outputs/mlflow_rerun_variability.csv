@@ -1,0 +1,6 @@
+experiment,run_name,n_runs,n_git_commits,metric,min,max,spread,spread_share
+task3-deep-learning,Baseline: persistence (previous hour),2,1,MAE,585.33281,585.33281,0.0,0.0
+task3-deep-learning,Baseline: same hour yesterday,2,1,MAE,571.57871,571.57871,0.0,0.0
+task3-deep-learning,LSTM,2,1,MAE,155.15738,158.37572,3.21834,0.02053
+task3-deep-learning,Random Forest (calendar + weather only),2,1,MAE,271.23795,271.2587,0.02075,8e-05
+task3-deep-learning,"Random Forest (lag features, SHAP twin)",2,1,MAE,147.31975,147.3303,0.01055,7e-05

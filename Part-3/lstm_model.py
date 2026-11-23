@@ -29,6 +29,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import joblib
 import mlflow
+import mlflow.pyfunc
 import numpy as np
 import pandas as pd
 import shap
@@ -235,6 +236,21 @@ def predict_from_saved(model, sequence, calendar, preprocessing: dict) -> np.nda
     scaled = ((sequence - mean) / scale).astype("float32")
     raw = model.predict([scaled, calendar.astype("float32")], verbose=0).ravel()
     return np.maximum(0, raw * scale[0] + mean[0])
+
+
+class LstmForecaster(mlflow.pyfunc.PythonModel):
+    """MLflow wrapper so the saved Keras LSTM and its preprocessing load as one model."""
+
+    def load_context(self, context):
+        import keras
+
+        self.model = keras.saving.load_model(context.artifacts["model"])
+        self.preprocessing = json.loads(Path(context.artifacts["preprocessing"]).read_text(encoding="utf-8"))
+
+    def predict(self, context, model_input, params=None):
+        return predict_from_saved(
+            self.model, model_input["sequence"], model_input["calendar"], self.preprocessing
+        )
 
 
 def fit_forest(x_train: pd.DataFrame, y_train) -> RandomForestRegressor:

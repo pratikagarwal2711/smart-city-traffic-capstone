@@ -4,8 +4,9 @@ Further analysis of the Metro Interstate Traffic Volume dataset for a
 smart-city mobility audience. Part 1 contains the completed database,
 descriptive-analysis, report, and Power BI dashboard deliverables. Part 2
 contains Python data-cleaning, feature-engineering, visualization, and
-command-line analytics tools for hourly traffic and weather analysis, as well
-as future machine-learning experiments.
+command-line analytics tools for hourly traffic and weather analysis. Part 3
+contains supervised, unsupervised, and sequence models, explainability analysis,
+and MLflow experiment tracking and model registration.
 
 ## Repository structure
 
@@ -24,25 +25,27 @@ as future machine-learning experiments.
 │       ├── Traffic_Dashboard.pbix
 │       └── Task 4 Notes.pdf / .docx
 ├── Part-2/
-    ├── pipeline.py                           # Raw-to-cleaned pipeline
-    ├── feature_engineering.py                # ML feature preparation
-    ├── visualize.py                          # Task 3 traffic visualizations
-    ├── traffic_app.py                        # Command-line traffic analytics
-    ├── Methodology_and_Findings_Report.pdf   # Part 2 methodology/results report
-    ├── data/processed/                       # Generated CSV datasets
-    ├── outputs/visualizations/               # Generated Task 3 figures
-    └── logs/                                 # Pipeline log files
+│   ├── pipeline.py                           # Raw-to-cleaned pipeline
+│   ├── feature_engineering.py                # ML feature preparation
+│   ├── visualize.py                          # Task 3 traffic visualizations
+│   ├── traffic_app.py                        # Command-line traffic analytics
+│   ├── Methodology_and_Findings_Report.pdf   # Part 2 methodology/results report
+│   ├── data/processed/                       # Generated CSV datasets
+│   ├── outputs/visualizations/               # Generated Task 3 figures
+│   └── logs/                                 # Pipeline log files
 └── Part-3/
     ├── prepare_labels.py                     # Proxy congestion/high-risk labels
     ├── train_models.py                       # Task 1 regression/classification models + MLflow logging
     ├── unsupervised_models.py                # Task 2 K-means clustering + association rules
-    ├── notebooks/                            # Task 1 and Task 2 notebooks (with saved outputs)
+    ├── lstm_model.py                         # Task 3 next-hour LSTM forecasting + SHAP comparison
+    ├── mlflow_registry.py                    # Task 4 MLflow run audit, model registry, promotion gate
+    ├── notebooks/                            # Task 1-4 notebooks (Task 4 reviews saved registry outputs)
     ├── README.md                             # Part 3 guide
     ├── OBSERVATIONS.md                       # Running findings log for the final reports
     ├── mlflow.db                             # MLflow tracking database
     ├── mlartifacts/                          # MLflow model artifacts (git-ignored)
     ├── data/processed/                       # Generated labelled CSV
-    ├── outputs/                              # Model metrics and feature importances
+    ├── outputs/                              # Generated metrics, predictions, and plots
     └── logs/                                 # Part 3 log files
 ```
 
@@ -56,6 +59,8 @@ required to be edited manually.
 - Matplotlib for traffic visualizations
 - scikit-learn for the Part 3 supervised models (`pip install scikit-learn`)
 - MLflow for Part 3 experiment tracking (`pip install mlflow`); Jupyter for the notebook
+- SHAP and TensorFlow for the Part 3 Task 3 LSTM and explainability workflow
+  (`python -m pip install shap tensorflow`; see `Part-3/README.md`)
 - Python's standard-library `logging` module
 - SQLite-compatible database tools for the Part 1 database and SQL
 - Microsoft Power BI Desktop for the `.pbix` dashboard
@@ -194,6 +199,19 @@ weekday morning-midday, and a severe-weather group) and mines association rules
 for the quartile congestion level. Time of day and day type drive congestion;
 weather adds little. It describes traffic conditions, not accidents.
 
+Part 3 Task 3 (`Part-3/lstm_model.py`) forecasts next-hour traffic volume from
+24 hours of recent readings. On the time-based test set the LSTM has MAE 155
+(R² 0.986); the Random Forest comparison model has MAE 147. The LSTM uses
+consecutive hourly histories, so hours without a full 24-hour history are not
+evaluated. SHAP explains the Random Forest comparison, not the LSTM itself.
+See [Part-3/README.md](Part-3/README.md) and
+[`Part-3/notebooks/Task3_deep_learning.ipynb`](Part-3/notebooks/Task3_deep_learning.ipynb).
+
+Part 3 Task 4 (`Part-3/mlflow_registry.py`) applies MLflow beyond tracking: it
+audits all Task 1-3 runs, registers the best models in the MLflow Model Registry
+and sets `champion`/`challenger` aliases only after each registered model
+reproduces its logged test metric. See [Part-3/README.md](Part-3/README.md).
+
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
@@ -209,6 +227,7 @@ user-facing command log. The default level is INFO.
 - Part 3 proxy labels: `Part-3/logs/prepare_labels.log`
 - Part 3 model training: `Part-3/logs/train_models.log`
 - Part 3 unsupervised analysis: `Part-3/logs/unsupervised_models.log`
+- Part 3 MLflow registry (Task 4): `Part-3/logs/mlflow_registry.log`
 
 Log levels are used as follows: DEBUG records fine-grained troubleshooting
 values; INFO records expected milestones, including saved file paths; WARNING

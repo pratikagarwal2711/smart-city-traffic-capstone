@@ -1,0 +1,5 @@
+registered_model,version,alias,source_run_id,metric,logged_value,registry_value,abs_difference,gate_passed,selection_rule
+traffic-volume-regressor,1,champion,d6f25cbab87248bab73283482a2c0d12,MAE,238.87088,238.87088,0.0,True,lowest test MAE among latest non-baseline runs
+high-risk-classifier,1,champion,c678035c7b844a49b0bb525a845e34c5,PR_AUC,0.95452,0.95452,0.0,True,"highest test PR AUC among latest non-baseline runs (proxy label, inflated by design)"
+next-hour-forecaster-rf,1,champion,d9540c598291499fa4d07afbf93e7c36,MAE,147.31975,147.31975,0.0,True,lowest test MAE among latest Task 3 forecasting models; the other model is the challenger
+next-hour-forecaster-lstm,1,challenger,f9317d5be44742b2bc097434f7d38201,MAE,155.15738,155.15738,0.0,True,lowest test MAE among latest Task 3 forecasting models; the other model is the challenger

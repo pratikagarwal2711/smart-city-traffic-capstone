@@ -1,0 +1,52 @@
+2026-11-23 12:42:01,146 INFO __main__: Collected 17 runs from 3 experiments (12 distinct models).
+2026-11-23 12:42:01,155 WARNING __main__: task3-deep-learning / LSTM: MAE differs by 2.1% across 2 runs (155.157 to 158.376); a single run is not a stable estimate.
+2026-11-23 12:42:01,162 INFO __main__: Saved run comparison to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_run_comparison.csv.
+2026-11-23 12:42:01,164 INFO __main__: Saved rerun variability to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_rerun_variability.csv.
+2026-11-23 12:42:01,164 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-23 12:42:01,529 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-23 12:42:01,538 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-23 12:42:01,581 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-23 12:42:01,686 WARNING lstm_model: Re-imputed 10 temp values using training-period monthly medians.
+2026-11-23 12:42:01,689 WARNING lstm_model: Re-imputed 1 rain_1h values using training-period monthly medians.
+2026-11-23 12:42:01,719 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-23 12:42:02,307 INFO __main__: Registered traffic-volume-regressor version 1 from run d6f25cbab87248bab73283482a2c0d12.
+2026-11-23 12:42:02,354 INFO __main__: Registered high-risk-classifier version 1 from run c678035c7b844a49b0bb525a845e34c5.
+2026-11-23 12:42:14,971 INFO __main__: Registered next-hour-forecaster-rf version 1 from run d9540c598291499fa4d07afbf93e7c36.
+2026-11-23 12:42:26,633 WARNING tensorflow: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-11-23 12:42:26,937 INFO __main__: Registered next-hour-forecaster-lstm version 1 from run f9317d5be44742b2bc097434f7d38201.
+2026-11-23 12:42:27,247 INFO __main__: traffic-volume-regressor v1 passed the gate (MAE 238.8709 vs logged 238.8709); alias 'champion' set.
+2026-11-23 12:42:27,373 INFO __main__: high-risk-classifier v1 passed the gate (PR_AUC 0.9545 vs logged 0.9545); alias 'champion' set.
+2026-11-23 12:42:27,699 INFO __main__: next-hour-forecaster-rf v1 passed the gate (MAE 147.3198 vs logged 147.3198); alias 'champion' set.
+2026-11-23 12:42:28,772 INFO __main__: next-hour-forecaster-lstm v1 passed the gate (MAE 155.1574 vs logged 155.1574); alias 'challenger' set.
+2026-11-23 12:42:28,781 INFO __main__: Saved registry summary to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_registry_summary.csv.
+2026-11-23 12:42:29,093 INFO __main__: Saved run comparison chart to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_run_comparison.png.
+2026-11-23 12:42:29,152 INFO __main__: Registry summary:
+         registered_model  version      alias metric  logged_value  registry_value  gate_passed
+ traffic-volume-regressor        1   champion    MAE      238.8709        238.8709         True
+     high-risk-classifier        1   champion PR_AUC        0.9545          0.9545         True
+  next-hour-forecaster-rf        1   champion    MAE      147.3198        147.3198         True
+next-hour-forecaster-lstm        1 challenger    MAE      155.1574        155.1574         True
+2026-11-23 12:47:59,899 INFO __main__: Collected 17 runs from 3 experiments (12 distinct models).
+2026-11-23 12:47:59,907 WARNING __main__: task3-deep-learning / LSTM: MAE differs by 2.1% across 2 runs (155.157 to 158.376); a single run is not a stable estimate.
+2026-11-23 12:47:59,914 INFO __main__: Saved run comparison to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_run_comparison.csv.
+2026-11-23 12:47:59,915 INFO __main__: Saved rerun variability to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_rerun_variability.csv.
+2026-11-23 12:47:59,916 INFO __main__: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-23 12:48:00,263 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-23 12:48:00,272 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-23 12:48:00,315 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-23 12:48:00,428 WARNING lstm_model: Re-imputed 10 temp values using training-period monthly medians.
+2026-11-23 12:48:00,431 WARNING lstm_model: Re-imputed 1 rain_1h values using training-period monthly medians.
+2026-11-23 12:48:00,458 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-23 12:48:01,149 INFO __main__: traffic-volume-regressor v1 passed the gate (MAE 238.8709 vs logged 238.8709); alias 'champion' set.
+2026-11-23 12:48:01,281 INFO __main__: high-risk-classifier v1 passed the gate (PR_AUC 0.9545 vs logged 0.9545); alias 'champion' set.
+2026-11-23 12:48:07,553 INFO __main__: next-hour-forecaster-rf v1 passed the gate (MAE 147.3198 vs logged 147.3198); alias 'champion' set.
+2026-11-23 12:48:10,720 WARNING tensorflow: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-11-23 12:48:11,612 INFO __main__: next-hour-forecaster-lstm v1 passed the gate (MAE 155.1574 vs logged 155.1574); alias 'challenger' set.
+2026-11-23 12:48:11,620 INFO __main__: Saved registry summary to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_registry_summary.csv.
+2026-11-23 12:48:11,901 INFO __main__: Saved run comparison chart to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\mlflow_run_comparison.png.
+2026-11-23 12:48:12,021 INFO __main__: Registry summary:
+         registered_model  version      alias metric  logged_value  registry_value  gate_passed
+ traffic-volume-regressor        1   champion    MAE      238.8709        238.8709         True
+     high-risk-classifier        1   champion PR_AUC        0.9545          0.9545         True
+  next-hour-forecaster-rf        1   champion    MAE      147.3198        147.3198         True
+next-hour-forecaster-lstm        1 challenger    MAE      155.1574        155.1574         True
