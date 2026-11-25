@@ -38,6 +38,9 @@ one-hot encodes `weather_main` and `weather_description`; adds rain/snow
 indicators and z-score features for temperature and rainfall. The
 `traffic_category` target uses the established thresholds: Low < 4,500,
 Medium 4,500–5,500 inclusive, and High > 5,500 vehicles/hour.
+`congestion_quartile` is a data-driven category based on the quartiles of
+`traffic_volume` (Low <= q1, Medium <= q2, High <= q3, otherwise Severe). The
+q1/q2/q3 values are logged at DEBUG.
 `is_congested` is 1 when traffic volume is > 5,500, otherwise 0. Original
 columns are retained. Before/after dataset shapes are logged at INFO; derived
 normalization statistics and the target thresholds are logged at DEBUG.

@@ -84,6 +84,17 @@ def engineer_features(data: pd.DataFrame) -> pd.DataFrame:
         ordered=True,
     )
     features["is_congested"] = (traffic_volume > 5500).astype("int8")
+    q1, q2, q3 = (float(v) for v in traffic_volume.quantile([0.25, 0.5, 0.75]))
+    LOG.debug("Quartile thresholds for congestion_quartile: q1=%s, q2=%s, q3=%s.", q1, q2, q3)
+    features["congestion_quartile"] = pd.Categorical(
+        np.select(
+            [traffic_volume <= q1, traffic_volume <= q2, traffic_volume <= q3],
+            ["Low", "Medium", "High"],
+            default="Severe",
+        ),
+        categories=("Low", "Medium", "High", "Severe"),
+        ordered=True,
+    )
     LOG.debug(
         "Traffic target thresholds: Low < 4500; Medium 4500-5500 inclusive; "
         "High > 5500; congested > 5500."
