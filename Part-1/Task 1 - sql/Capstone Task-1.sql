@@ -30,7 +30,7 @@ from raw
 where year in ('2012','2013','2014','2015','2016','2017')
 group by year;
 
-/* average indicates the increase / decrease. 2012 - baseline, 2013 - increase, 2014 - decrease, 2015 - decrease, 2016 - increase, 2017 - increase
+/* average indicates the increase / decrease. 2012 - baseline, 2013 - increase, 2014 - decrease, 2015 - decrease, 2016 - decrease, 2017 - increase
 
 OBSERVATIONS:
 1. The large swings in total volume come mostly from missing data, not demand. While total volume shows a large swing over the year, its mostly due to number of data points made available
