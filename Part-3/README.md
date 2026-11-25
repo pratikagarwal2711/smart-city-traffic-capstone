@@ -562,6 +562,14 @@ Prediction error stayed within the limit in 9 of 12 months.
   (Squall, Smoke, Fog) contribute noise to the `weather_main` PSI.
 - Only the models and data from Tasks 1-4 are used; one corridor, uneven 2012-2018 coverage.
 
+## Task 7: responsible and sustainable AI
+
+The [bias and fairness report](BIAS_AND_FAIRNESS_REPORT.md) summarizes project
+coverage, the proxy label, observed differences in errors, governance safeguards
+and resource trade-offs. It identifies evidence gaps rather than treating the
+deployment simulation or proxy classification as real-world validation. A
+[PDF version](BIAS_AND_FAIRNESS_REPORT.pdf) is also available.
+
 ## Cautions
 
 - **Leakage:** both labels are derived from `traffic_volume` and `weather_main`.

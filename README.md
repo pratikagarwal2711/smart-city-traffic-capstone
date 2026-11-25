@@ -50,6 +50,7 @@ with a PASS/ALERT dashboard).
     ├── notebooks/                            # Task 1-6 notebooks
     ├── README.md                             # Part 3 guide
     ├── OBSERVATIONS.md                       # Running findings log for the final reports
+    ├── BIAS_AND_FAIRNESS_REPORT.md / .pdf     # Task 7 responsible and sustainable AI report
     ├── mlflow.db                             # MLflow tracking database
     ├── mlartifacts/                          # MLflow model artifacts (git-ignored)
     ├── data/processed/                       # Generated labelled CSV
@@ -253,6 +254,11 @@ of the test period reports **ALERT / Requires investigation** (every month
 breaches a heuristic drift threshold, largely in weather features). Monitoring is
 a replay of historical data, not a live system. See [Part-3/README.md](Part-3/README.md)
 and the [Task 6 notebook](Part-3/notebooks/Task6_mlops_deployment.ipynb).
+
+Part 3 Task 7 documents bias, fairness, governance and sustainability in the
+[bias and fairness report](Part-3/BIAS_AND_FAIRNESS_REPORT.md), using the
+project's observed results and noting where evidence is missing. A
+[PDF version](Part-3/BIAS_AND_FAIRNESS_REPORT.pdf) is also available.
 
 ## Logging
 

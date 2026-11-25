@@ -314,6 +314,20 @@ accident prediction.
 - Re-running `mlflow_registry.py` (Task 4) resets `champion` to v1; run Task 6 afterwards. `mlartifacts/` is
   git-ignored, so v2/v3 need `model_versions.py` on a fresh checkout. Task 4 ignores `task6-*` experiments.
 
+## Task 7: responsible and sustainable AI
+
+- Report: [BIAS_AND_FAIRNESS_REPORT.md](BIAS_AND_FAIRNESS_REPORT.md), drawing on
+  Parts 1-3 and the saved outputs. It distinguishes condition/time comparisons
+  from demographic fairness, which the available data cannot establish.
+  A [PDF version](BIAS_AND_FAIRNESS_REPORT.pdf) is also available.
+- Recorded evidence includes differing monthly model MAE, higher severe-weather
+  recommendation-profile MAE, and limited holiday backtest coverage. A
+  comprehensive subgroup error audit has not been completed.
+- The proxy is not an accident outcome; governance recommendations are future
+  safeguards, not claims that the simulation is approved for deployment.
+  Training time and artifact storage are documented, but energy and emissions
+  have not been measured.
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
@@ -324,6 +338,6 @@ accident prediction.
 - [x] Task 4 notebook: read-only run and registry review (`notebooks/Task4_mlflow_registry.ipynb`)
 - [x] Deployment simulation (Task 6: model versions, FastAPI service, drift monitoring and PASS/ALERT dashboard, notebook, tests)
 - [x] Recommendation engine (`recommendation_engine.py`, notebook, backtest, tests)
-- [ ] Bias and fairness report (subgroup metrics)
+- [x] Bias and fairness report (existing subgroup evidence and audit gaps)
 - [ ] Final capstone report covering Parts 1-3
 - [ ] README: project structure, run steps, proxy statement (proxy statement present)
