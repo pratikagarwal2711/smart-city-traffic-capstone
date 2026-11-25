@@ -30,7 +30,7 @@ from raw
 where year in ('2012','2013','2014','2015','2016','2017')
 group by year;
 
-/* average indicates the increase / decrease. 2012 - baseline, 2013 - increase, 2014 - decrease, 2015 - decrease, 2016 - decrease, 2017 - increase
+/* average indicates the increase / decrease. 2012 - baseline, 2013 - increase, 2014 - decrease, 2015 - decrease, 2016 - decrease, 2017 - increase */
 
 /* 1.2 (continued) Year-over-year change in average hourly traffic volume.
    Uses the same raw-table basis as the query above. */
@@ -49,13 +49,15 @@ SELECT year,
 FROM yearly
 ORDER BY year;
 
-/* 
+/*
 OBSERVATIONS:
-1. The large swings in total volume come mostly from missing data, not demand. While total volume shows a large swing across the years, 
+1. The large swings in total volume come mostly from missing data, not demand. While total volume shows a large swing across the years,
 it is mostly due to the number of data points made available (for example 2,559 records in 2012 versus 10,605 in 2017).
-2. Underlying traffic was roughly flat from 2012 to 2016, then grew in 2017. This is evident from the change in the average hourly volume (see the year-over-year query below): 
-2013 +79 (+2.5%), 2014 -36 (-1.1%), 2015 -8 (-0.2%), 2016 -73 (-2.3%), 2017 +171 (+5.4%). 
+2. Underlying traffic was roughly flat from 2012 to 2016, then grew in 2017. This is evident from the change in the average hourly volume (see the year-over-year query above):
+2013 +79 (+2.5%), 2014 -36 (-1.1%), 2015 -8 (-0.2%), 2016 -73 (-2.3%), 2017 +171 (+5.4%).
 Every change up to 2016 is within about 2.5%, while 2017 is the only year with a clear rise.
+*/
+
 /*
 
 
