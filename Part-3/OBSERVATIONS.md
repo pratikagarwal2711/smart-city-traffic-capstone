@@ -328,7 +328,7 @@ accident prediction.
   Training time and artifact storage are documented, but energy and emissions
   have not been measured.
 
-## Outstanding for the Part 3 deliverable
+## Part 3 deliverable checklist
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
 - [x] Notebook for Task 1 (`notebooks/Task1_supervised_models.ipynb`, executed)
@@ -339,5 +339,5 @@ accident prediction.
 - [x] Deployment simulation (Task 6: model versions, FastAPI service, drift monitoring and PASS/ALERT dashboard, notebook, tests)
 - [x] Recommendation engine (`recommendation_engine.py`, notebook, backtest, tests)
 - [x] Bias and fairness report (existing subgroup evidence and audit gaps)
-- [ ] Final capstone report covering Parts 1-3
-- [ ] README: project structure, run steps, proxy statement (proxy statement present)
+- [x] Final capstone report covering Parts 1-3 (`Final_Capstone_Report.md` and `.pdf`)
+- [x] README with project structure, run steps and proxy statement (root and Part 3 guides)

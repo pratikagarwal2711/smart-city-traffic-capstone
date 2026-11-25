@@ -194,71 +194,15 @@ Part 3 adds two further labels in `Part-3/prepare_labels.py`: a four-class
 weather). No accident data exists, so `high_risk` is not an accident
 prediction.
 
-Part 3 Task 1 (`Part-3/train_models.py`) trains Linear Regression and Random
-Forest to predict `traffic_volume`, and Logistic Regression and Random Forest
-to predict `high_risk`, on a shared feature set with a time-based 80/20 split.
-Test results: regression MAE 801 / R² 0.735 (linear) vs MAE 239 / R² 0.959
-(Random Forest); classification F1 0.814 (logistic) vs 0.930 (Random Forest).
-Classification scores are inflated because `high_risk` is defined from
-`weather_main`, which is also a feature. See [Part-3/README.md](Part-3/README.md)
-for the full metrics and caveats. Runs are tracked with MLflow
-(`Part-3/mlflow.db`) and reviewed in `Part-3/notebooks/`. The Task 1 model is registered by Task 4; Task 6 adds a deployment simulation (see below).
+Part 3 covers supervised and unsupervised models, next-hour forecasting and
+explainability, MLflow registration, historical travel recommendations, and
+deployment and monitoring simulations. The recommender is not a live forecast,
+and deployment is not a live service. See [Part-3/README.md](Part-3/README.md)
+for task commands, results, dependencies and limitations.
 
-Part 3 Task 2 (`Part-3/unsupervised_models.py`) clusters hours with K-means
-(k = 6: weekend/weekday night, weekend daytime, weekday afternoon/evening,
-weekday morning-midday, and a severe-weather group) and mines association rules
-for the quartile congestion level. Time of day and day type drive congestion;
-weather adds little. It describes traffic conditions, not accidents.
-
-Part 3 Task 3 (`Part-3/lstm_model.py`) forecasts next-hour traffic volume from
-24 hours of recent readings. On the time-based test set the LSTM has MAE 155
-(R² 0.986); the Random Forest comparison model has MAE 147. The LSTM uses
-consecutive hourly histories, so hours without a full 24-hour history are not
-evaluated. SHAP explains the Random Forest comparison, not the LSTM itself.
-See [Part-3/README.md](Part-3/README.md) and
-[`Part-3/notebooks/Task3_deep_learning.ipynb`](Part-3/notebooks/Task3_deep_learning.ipynb).
-
-Part 3 Task 4 (`Part-3/mlflow_registry.py`) applies MLflow beyond tracking: it
-audits all Task 1-3 runs, registers the best models in the MLflow Model Registry
-and sets `champion`/`challenger` aliases only after each registered model
-reproduces its logged test metric. See [Part-3/README.md](Part-3/README.md).
-
-Part 3 Task 5 uses the prepared historical traffic data to suggest travel
-windows by day type and weather on the single corridor. It does not choose routes,
-provide a live forecast, or load the registered models. After creating the Part 3
-labelled CSV, run:
-
-```powershell
-python Part-3/recommendation_engine.py
-python Part-3/recommendation_engine.py --day-type weekday --weather "rain/drizzle" --duration 2
-```
-
-See [Part-3/README.md](Part-3/README.md) for outputs, backtesting, assumptions,
-and the [Task 5 notebook](Part-3/notebooks/Task5_recommendation_system.ipynb).
-
-Part 3 Task 6 simulates moving the model from experiment to deployment. Run it
-after Tasks 1-4 (`mlflow_registry.py` re-points the `champion` alias to v1, so run
-Task 4 first):
-
-```powershell
-python Part-3/model_versions.py   # versions v2, v3 of traffic-volume-regressor; champion alias
-python Part-3/monitoring.py       # drift checks, outputs/monitoring_status.json and monitoring_dashboard.html
-python Part-3/serve_api.py        # FastAPI service on http://127.0.0.1:8000/docs
-```
-
-`traffic-volume-regressor` now has three versions (Random Forest, Gradient
-Boosting, tuned Random Forest; test MAE 238.9, 239.8, 236.8). The differences are
-under 1%, and the `champion` alias is v3 under the agreed promotion rule. The API
-serves `@champion` and predicts same-hour traffic volume. The monitoring replay
-of the test period reports **ALERT / Requires investigation** (every month
-breaches a heuristic drift threshold, largely in weather features). Monitoring is
-a replay of historical data, not a live system. See [Part-3/README.md](Part-3/README.md)
-and the [Task 6 notebook](Part-3/notebooks/Task6_mlops_deployment.ipynb).
-
-Part 3 Task 7 documents bias, fairness, governance and sustainability in the
-[bias and fairness report](Part-3/BIAS_AND_FAIRNESS_REPORT.md), using the
-project's observed results and noting where evidence is missing. A
-[PDF version](Part-3/BIAS_AND_FAIRNESS_REPORT.pdf) is also available.
+The [bias and fairness report](Part-3/BIAS_AND_FAIRNESS_REPORT.md) and
+[final capstone report](Final_Capstone_Report.md) summarize findings,
+limitations and evidence gaps across the project.
 
 ## Logging
 
