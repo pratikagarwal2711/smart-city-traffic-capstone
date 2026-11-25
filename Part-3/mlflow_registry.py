@@ -60,7 +60,8 @@ def collect_runs(client: mlflow.MlflowClient) -> pd.DataFrame:
     """One row per run in the Task 1-3 experiments, newest first."""
     rows = []
     for exp in client.search_experiments():
-        if exp.name in ("Default", REGISTRY_EXPERIMENT):
+        # Task 6 experiments hold later versions and monitoring runs, not Task 1-3 candidates.
+        if exp.name in ("Default", REGISTRY_EXPERIMENT) or exp.name.startswith("task6-"):
             continue
         for run in client.search_runs([exp.experiment_id], max_results=5000):
             tags, data = run.data.tags, run.data

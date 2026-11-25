@@ -268,6 +268,52 @@ accident prediction.
   Weather comparisons are observational, not causal. Final recommendations use
   all data, including the backtest period.
 
+## Task 6: MLOps and deployment simulation (`model_versions.py`, `serve_api.py`, `monitoring.py`)
+
+**Design (for the report)**
+- Model: `traffic-volume-regressor` (same-hour volume, Task 1 features and 80/20 time split). It is
+  real traffic volume, not the proxy label. Reused the Task 1 feature builder, the MLflow store and the
+  Task 4 promotion gate (reload from registry, recompute test MAE, tolerance 0.05).
+- 6.1/6.2: three versions of one registered model: v1 Random Forest (Task 1), v2 Gradient Boosting
+  (settings chosen, not tuned), v3 Random Forest tuned by a 4x4 grid with 3-fold time-ordered CV on the
+  training period only. Runs logged in `task6-model-versions`. Rule agreed with the user: `champion` moves
+  only to a version that beats v1 test MAE and passes the gate.
+- 6.3: FastAPI serving `@champion` (`/health`, `/model`, `/predict`, `/monitor/status`).
+- 6.4/6.5: monthly replay of the test period against the training period; PSI for temp_c, rain_1h, snow_1h,
+  clouds_all, hour and the weather_main mix against (a) the whole training period and (b) the same calendar
+  month (the user chose "ALERT if either alerts"); error drift = month MAE vs the model's full test MAE.
+  Thresholds are heuristics (PSI warning 0.1, alert 0.2; error alert above 1.25x), logged at each run. No
+  minimum hours per month (user decision). Overall status = latest month. Static HTML dashboard + JSON.
+  Exit code 2 = ALERT (consistent with Task 4), 1 = error.
+
+**Observations**
+- v1 238.87, v2 239.79, v3 236.75 test MAE (RMSE 400.1/399.7/399.2; R2 0.959 for all). All pass the gate;
+  v3 becomes champion by 2.1 vehicles/h (0.9%). It differs from v1 only in `max_features` (0.5 vs 1.0), so
+  this is not evidence of a real improvement (single split, test set used for the choice).
+- Train MAE 184.0 / 211.5 / 193.7: boosting generalises with the smallest train-test gap but not a better
+  test score.
+- Monitoring replay: overall **ALERT**, 12 of 12 months ALERT. Error drift in 3 months (Dec 2017 1.47x,
+  Jan 2018 1.32x, Apr 2018 1.30x of 236.75). Whole-period PSI flags temp_c in all 12 months (seasonality).
+  Same-month PSI still alerts every month: weather_main 9 months, clouds_all 8, rain_1h 7, temp_c 7;
+  hour and snow_1h never. Oct 2017 (126 h) has the largest PSI.
+- `rain_1h` is exactly 0 for all of 2017 and non-zero in about 6% of 2018 hours (about 4-15% in 2013-2016),
+  so the rain PSI reflects a data recording gap, not necessarily weather.
+- API check: Thursday 17:00 cloudy -> 6,098 (High); Saturday 03:00 clear -> 448 (Low). Unknown weather
+  returns 422. The API feature builder matches `train_models.build_features` (unit test).
+- Outputs: `outputs/model_versions.csv/.png`, `model_versions_rf_tuning.csv`, `monitoring_report.csv`,
+  `monitoring_feature_drift.csv`, `monitoring_weather_shares.csv`, `monitoring_status.json`,
+  `monitoring_dashboard.html`; logs `logs/model_versions.log`, `monitoring.log`, `serve_api.log`; notebook
+  `notebooks/Task6_mlops_deployment.ipynb`; tests `test_task6.py`.
+
+**Limitations (for the report)**
+- Simulation only: historical replay, no live data, retraining, paging or approval workflow; API has no
+  authentication or scaling; models are pickles (trusted store only).
+- Thresholds are conventions, not validated; the worse-of-two-references rule is deliberately sensitive, so
+  every month alerts. Single-month PSI (about 700 hours; 126 for the first month) is noisy. The reference MAE
+  comes from the same test period.
+- Re-running `mlflow_registry.py` (Task 4) resets `champion` to v1; run Task 6 afterwards. `mlartifacts/` is
+  git-ignored, so v2/v3 need `model_versions.py` on a fresh checkout. Task 4 ignores `task6-*` experiments.
+
 ## Outstanding for the Part 3 deliverable
 
 - [x] MLflow tracking of the Task 1 runs (`mlflow.db`, experiment `task1-supervised-models`; model artifacts in git-ignored `mlartifacts/`)
@@ -276,7 +322,7 @@ accident prediction.
 - [x] Task 3 LSTM + SHAP: script, notebook, MLflow runs, plots, observations above
 - [x] Task 4 advanced technique: MLflow audit, model registry and promotion gate (`mlflow_registry.py`)
 - [x] Task 4 notebook: read-only run and registry review (`notebooks/Task4_mlflow_registry.ipynb`)
-- [ ] Deployment simulation
+- [x] Deployment simulation (Task 6: model versions, FastAPI service, drift monitoring and PASS/ALERT dashboard, notebook, tests)
 - [x] Recommendation engine (`recommendation_engine.py`, notebook, backtest, tests)
 - [ ] Bias and fairness report (subgroup metrics)
 - [ ] Final capstone report covering Parts 1-3

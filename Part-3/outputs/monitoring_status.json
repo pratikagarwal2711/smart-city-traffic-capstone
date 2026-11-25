@@ -1,0 +1,27 @@
+{
+  "overall_status": "ALERT",
+  "label": "ALERT / Requires investigation",
+  "latest_window": "2018-09",
+  "reasons": [
+    "Feature drift in temp_c: PSI 2.19 vs the whole training period, 0.10 vs the same training month (alert at 0.2; breached vs whole training period).",
+    "Feature drift in rain_1h: PSI 0.51 vs the whole training period, 0.39 vs the same training month (alert at 0.2; breached vs whole training period and same training month).",
+    "Feature drift in clouds_all: PSI 0.21 vs the whole training period, 0.33 vs the same training month (alert at 0.2; breached vs whole training period and same training month).",
+    "Feature drift in weather_main: PSI 0.58 vs the whole training period, 0.24 vs the same training month (alert at 0.2; breached vs whole training period and same training month)."
+  ],
+  "windows_evaluated": 12,
+  "windows_alert": 12,
+  "windows_pass": 0,
+  "model": {
+    "name": "traffic-volume-regressor",
+    "version": "3",
+    "alias": "champion"
+  },
+  "thresholds": {
+    "psi_warning": 0.1,
+    "psi_alert": 0.2,
+    "error_ratio_alert": 1.25,
+    "psi_bins": 10,
+    "note": "heuristic conventions, not derived from this data"
+  },
+  "generated_at": "2026-11-25T03:10:56+00:00"
+}

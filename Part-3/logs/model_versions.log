@@ -1,0 +1,35 @@
+2026-11-25 10:58:29,928 INFO mlops_common: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-25 10:58:30,178 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-25 10:58:30,186 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-25 10:58:45,741 INFO __main__: Trained Gradient Boosting: test MAE 239.79; registered as version 2.
+2026-11-25 10:59:32,937 INFO __main__: Tuned forest best params {'max_features': 0.5, 'min_samples_leaf': 5} (CV MAE 267.92).
+2026-11-25 10:59:33,233 INFO __main__: Saved forest tuning results to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_versions_rf_tuning.csv.
+2026-11-25 10:59:37,271 INFO __main__: Trained Random Forest (tuned): test MAE 236.75; registered as version 3.
+2026-11-25 10:59:37,691 INFO __main__: Version 1 (random-forest-task1): test MAE 238.87, RMSE 400.09, R2 0.9588; gate passed.
+2026-11-25 10:59:37,886 INFO __main__: Version 2 (gradient-boosting): test MAE 239.79, RMSE 399.72, R2 0.9588; gate passed.
+2026-11-25 10:59:38,310 INFO __main__: Version 3 (tuned-random-forest): test MAE 236.75, RMSE 399.25, R2 0.9589; gate passed.
+2026-11-25 10:59:38,353 INFO __main__: Champion is version 3 (was 1): v3 beats v1 (MAE 236.75 vs 238.87) and passed the gate.
+2026-11-25 10:59:38,353 WARNING __main__: Champion alias moved from version 1 to version 3.
+2026-11-25 10:59:38,471 INFO __main__: Saved version comparison to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_versions.csv.
+2026-11-25 10:59:38,803 INFO __main__: Saved version comparison chart to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_versions.png.
+2026-11-25 10:59:38,881 INFO __main__: Version comparison:
+version               label                     model  train_MAE     MAE    RMSE    R2  gate_passed    alias
+      1 random-forest-task1     RandomForestRegressor    183.993 238.871 400.087 0.959         True         
+      2   gradient-boosting GradientBoostingRegressor    211.544 239.792 399.720 0.959         True         
+      3 tuned-random-forest     RandomForestRegressor    193.721 236.752 399.248 0.959         True champion
+2026-11-25 11:05:14,841 INFO mlops_common: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-25 11:05:15,143 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-25 11:05:15,150 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-25 11:05:15,162 INFO __main__: Version 'gradient-boosting' is already registered; not retrained.
+2026-11-25 11:05:15,165 INFO __main__: Version 'tuned-random-forest' is already registered; not retrained.
+2026-11-25 11:05:15,658 INFO __main__: Version 1 (random-forest-task1): test MAE 238.87, RMSE 400.09, R2 0.9588; gate passed.
+2026-11-25 11:05:15,821 INFO __main__: Version 2 (gradient-boosting): test MAE 239.79, RMSE 399.72, R2 0.9588; gate passed.
+2026-11-25 11:05:16,238 INFO __main__: Version 3 (tuned-random-forest): test MAE 236.75, RMSE 399.25, R2 0.9589; gate passed.
+2026-11-25 11:05:16,270 INFO __main__: Champion is version 3 (was 3): v3 beats v1 (MAE 236.75 vs 238.87) and passed the gate.
+2026-11-25 11:05:16,344 INFO __main__: Saved version comparison to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_versions.csv.
+2026-11-25 11:05:16,580 INFO __main__: Saved version comparison chart to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\model_versions.png.
+2026-11-25 11:05:16,998 INFO __main__: Version comparison:
+version               label                     model  train_MAE     MAE    RMSE    R2  gate_passed    alias
+      1 random-forest-task1     RandomForestRegressor    183.993 238.871 400.087 0.959         True         
+      2   gradient-boosting GradientBoostingRegressor    211.544 239.792 399.720 0.959         True         
+      3 tuned-random-forest     RandomForestRegressor    193.721 236.752 399.248 0.959         True champion

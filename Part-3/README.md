@@ -295,6 +295,12 @@ needs no new infrastructure. The brief also recommends it for the MLOps componen
 | `next-hour-forecaster-rf` (volume lags, needs last 24 h) | champion | MAE 147.32 |
 | `next-hour-forecaster-lstm` (needs last 24 h) | challenger | MAE 155.16 |
 
+Task 6 later adds versions 2 and 3 of `traffic-volume-regressor` and moves its
+`champion` alias to v3 (see below). Re-running `mlflow_registry.py` sets that
+alias back to v1, because it only knows the Task 1 run; re-run Task 6
+`model_versions.py` afterwards to restore the Task 6 champion. The Task 4 scripts
+ignore the `task6-*` experiments when auditing runs.
+
 **Value added.**
 - One comparison table and chart of every experiment, with git commit and metrics.
 - It exposed a reproducibility problem: the two logged Task 3 LSTM runs differ by
@@ -324,7 +330,7 @@ needs no new infrastructure. The brief also recommends it for the MLOps componen
   proxy label that is partly circular (see Task 1), so its PR AUC is not
   accident-prediction skill.
 - Aliases are moved by this script, not by an approval workflow; there is no
-  monitoring or automated retraining. Loading the registered models runs pickled
+  automated retraining (monitoring is only simulated, in Task 6). Loading the registered models runs pickled
   code, so only load them from a trusted store. The LSTM model needs the same
   TensorFlow/Keras versions it was saved with.
 
@@ -417,6 +423,144 @@ The final recommendations use the full history, including the backtest period.
 - The recommender uses the prepared traffic data and existing Task 2 weather groups,
   but does not load or predict with the trained or registered models. Its profile
   is an interpretable historical baseline, not an evaluation of those models.
+
+## Task 6: MLOps and deployment simulation
+
+Run after Tasks 1-4, from the repository root (the model is `traffic-volume-regressor`,
+same-hour `traffic_volume`; not accidents, so the proxy-label caveat does not apply):
+
+```powershell
+python Part-3/model_versions.py     # 6.1 / 6.2: versions, MLflow runs, champion alias
+python Part-3/monitoring.py         # 6.4 / 6.5: drift checks, status file, HTML dashboard
+python Part-3/serve_api.py          # 6.3: FastAPI service, http://127.0.0.1:8000/docs
+python -m unittest test_task6       # from Part-3/
+```
+
+New dependencies: `python -m pip install fastapi uvicorn httpx` (httpx is only for the
+tests and notebook's `TestClient`). Options for all three scripts: `--mlflow-uri`,
+`--log-file`, `--log-level`; `model_versions.py` and `monitoring.py` also take `--input`
+and `--output-dir`; `monitoring.py` takes `--model-name`, `--alias`, `--experiment` and
+`--no-mlflow`; `serve_api.py` takes `--host`, `--port`, `--model-name`, `--alias` and
+`--status-file`. Logs: `Part-3/logs/model_versions.log`, `monitoring.log`, `serve_api.log`.
+Exit codes of `model_versions.py` and `monitoring.py`: 0 = fine / PASS, 1 = error,
+2 = a gate failed / system status ALERT. Notebook:
+[`notebooks/Task6_mlops_deployment.ipynb`](notebooks/Task6_mlops_deployment.ipynb)
+is read-only and includes an editable API request and worked monitoring examples.
+Refresh its saved output from the repository root (requires `nbconvert`):
+
+```powershell
+python -m jupyter nbconvert --to notebook --execute --inplace Part-3/notebooks/Task6_mlops_deployment.ipynb
+```
+
+### 6.1 Model versioning and 6.2 experiment tracking
+
+`traffic-volume-regressor` in the MLflow Model Registry has three versions, all with the
+Task 1 features, the same chronological 80/20 split and `random_state` 42. v2 and v3 are
+trained by `model_versions.py` and logged as runs in the experiment `task6-model-versions`
+(parameters, test/train metrics, fit time, the fitted model with a signature and input
+example; a "version comparison" run holds the summary files). Each version carries tags
+(`source_run_id`, `version_label`, test metrics, `gate_passed`). Re-running does not
+retrain or duplicate a version that is already registered.
+
+| Version | Model | Test MAE | Test RMSE | Test R² | Train MAE |
+|---|---|---|---|---|---|
+| v1 | Random Forest (300 trees, `min_samples_leaf` 5; Task 1) | 238.87 | 400.09 | 0.9588 | 183.99 |
+| v2 | Gradient Boosting (300 trees, depth 5, learning rate 0.1, subsample 0.8) | 239.79 | 399.72 | 0.9588 | 211.54 |
+| v3 | Random Forest, tuned (`min_samples_leaf` 5, `max_features` 0.5) | **236.75** | 399.25 | 0.9589 | 193.72 |
+
+Outputs: `outputs/model_versions.csv`, `model_versions.png`, `model_versions_rf_tuning.csv`.
+The v2 settings are my choices, not tuned. v3 is chosen by a 4 x 4 grid over
+`min_samples_leaf` (2, 5, 10, 20) and `max_features` (0.33, 0.5, 0.75, 1.0) with
+3-fold time-ordered cross-validation on the **training period only**; it kept v1's
+`min_samples_leaf` and differs from v1 only in `max_features`.
+
+**Promotion rule (agreed):** every version is reloaded from the registry and scored on the
+test period, and compared with the MAE its training run logged (the Task 4 gate,
+tolerance 0.05 vehicles/h). `champion` moves only to a gate-passing version that beats
+v1's test MAE; otherwise v1 stays champion. All three pass the gate and v3 beats v1, so
+`champion` is now v3.
+
+**Caveats:** v3 beats v1 by about 2 vehicles/h (under 1%) on a single split with no
+repeated runs, which is not evidence of a real improvement. The champion choice uses the
+test set, as in Task 4, so its score is slightly optimistic. `mlartifacts/` is git-ignored,
+so v2 and v3 must be regenerated by `model_versions.py` on a fresh checkout.
+
+### 6.3 Deployment mock-up (FastAPI)
+
+`serve_api.py` loads `models:/traffic-volume-regressor@champion` at start-up. Endpoints:
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /health` | Liveness and whether the model loaded |
+| `GET /model` | Served name, version, alias, weather groups accepted |
+| `POST /predict` | Predicts same-hour volume from `timestamp`, `temp_c`, `rain_1h`, `snow_1h`, `clouds_all`, `weather_main`, `is_holiday` |
+| `GET /monitor/status` | The latest `outputs/monitoring_status.json` (404 until `monitoring.py` has run) |
+
+```powershell
+curl.exe -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" -d '{\"timestamp\":\"2018-06-14T17:00:00\",\"temp_c\":22.5,\"rain_1h\":0,\"snow_1h\":0,\"clouds_all\":40,\"weather_main\":\"Clouds\"}'
+```
+
+The reply has `predicted_traffic_volume` (vehicles/hour, floored at 0), the Part 2
+`traffic_category` (Low < 4,500; Medium 4,500-5,500; High > 5,500, not the Part 3 quartile
+categories), `is_congested` (> 5,500) and the model version. Inputs are validated
+(clouds 0-100, rain/snow >= 0, temperature -60 to 60 C, known `weather_main` group);
+bad input returns 422 and an unloaded model returns 503. The request is turned into the same
+28 features as Task 1; a unit test checks that against `train_models.build_features`.
+The timestamp's time zone is ignored (local time as in the dataset), and `is_holiday` is
+supplied by the caller. It is a local mock-up: no authentication, TLS, rate limiting or
+scaling, and the registered model is a pickle, so serve only models from a trusted store.
+
+### 6.4 Monitoring and 6.5 alerting
+
+`monitoring.py` replays the test period (2017-10-26 to 2018-09-30) as 12 consecutive
+calendar months against the training period, using the champion model:
+
+- **Feature distribution drift:** PSI for `temp_c`, `rain_1h`, `snow_1h`, `clouds_all`, `hour`
+  and the `weather_main` mix (PSI over the group shares). Each month is compared with the
+  **whole training period** and with the **same calendar month in the training period**
+  (removing seasonality); the worse of the two drives the status. Bins come from training
+  quantiles (10), right-closed, so zero-heavy columns split into zero / non-zero.
+- **Prediction error drift:** the month's MAE against the model's full test-period MAE.
+
+**Alert thresholds are heuristics.** They are common rules of thumb chosen for this
+simulation (the brief gives no values), are not derived or validated on this data, and are
+logged at the start of every run: a feature PSI >= 0.2 is an ALERT (0.1 to 0.2 is a warning
+only) and a month MAE above 1.25 x the reference MAE is an ALERT (`PSI_WARNING`, `PSI_ALERT`,
+`ERROR_RATIO_ALERT` in [`monitoring.py`](monitoring.py)). A month is **ALERT** if any check
+alerts, else **PASS**. The **overall status is the latest month's status**. No month is
+excluded for having few hours; the first month (26-31 Oct 2017) has only 126 hours and is
+noisier.
+
+Alerting: the status is written to `outputs/monitoring_status.json`, shown on the
+colour-coded `outputs/monitoring_dashboard.html` (open it in a browser; banner
+**PASS / Normal** or **ALERT / Requires investigation**, status by month, charts, both PSI
+tables) and served by `GET /monitor/status`. Each alerting month and an overall ALERT are
+logged at WARNING. The run is also logged to MLflow in `task6-monitoring`. Other outputs:
+`monitoring_report.csv` (one row per month), `monitoring_feature_drift.csv`,
+`monitoring_weather_shares.csv`.
+
+**Result of the replay: overall ALERT / Requires investigation, with all 12 months
+ALERT.** Prediction error exceeds the limit in 3 months (Dec 2017 1.47x, Jan 2018 1.32x,
+Apr 2018 1.30x of the 236.75 reference). Feature drift alerts every month. The
+whole-period reference alerts for `temp_c` in every month because temperature differs by
+season. The same-month reference reduces this seasonal mismatch but still alerts in every month: for
+`weather_main` in 9 months, `clouds_all` in 8, `rain_1h` in 7 and `temp_c` in 7; `hour` and
+`snow_1h` never reach a threshold. These recorded distribution shifts do not establish a
+cause: `rain_1h` is exactly 0 for all of 2017 in the source data (and non-zero in about 6%
+of 2018 hours), which could reflect a recording gap; a month is one sample of about 700 hours.
+Prediction error stayed within the limit in 9 of 12 months.
+
+**Limitations.**
+- A replay of historical data: there is no live feed, automated retraining, paging or
+  approval workflow, and the model was not changed in response to an alert.
+- The reference MAE is the model's own full test-period MAE, so months are compared with a
+  period that contains them. In production the true volume would arrive later; here it is
+  available immediately.
+- Thresholds are conventions, and the "worse of two references" rule is deliberately
+  sensitive, which is why every month alerts. Distribution change is not a diagnosis.
+- PSI on a single month (about 700 hours, 126 for the first) is noisy; rare weather groups
+  (Squall, Smoke, Fog) contribute noise to the `weather_main` PSI.
+- Only the models and data from Tasks 1-4 are used; one corridor, uneven 2012-2018 coverage.
 
 ## Cautions
 

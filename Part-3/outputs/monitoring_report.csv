@@ -1,0 +1,13 @@
+window,n_hours,MAE,reference_MAE,mae_ratio,error_status,max_psi_whole_period,max_psi_same_month,feature_alerts,feature_warnings,feature_status,status
+2017-10,126,239.2388,236.7518,1.0105,PASS,6.2332,6.5026,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2017-11,716,293.2197,236.7518,1.2385,PASS,3.0738,1.2431,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2017-12,740,347.1372,236.7518,1.4662,ALERT,3.7624,0.3324,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-01,742,311.7017,236.7518,1.3166,ALERT,4.3207,1.3086,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-02,672,235.2554,236.7518,0.9937,PASS,4.507,0.3281,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-03,733,216.6298,236.7518,0.915,PASS,4.2621,0.5363,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-04,720,308.6062,236.7518,1.3035,ALERT,0.9484,0.7015,"temp_c, rain_1h, weather_main",clouds_all,ALERT,ALERT
+2018-05,743,180.2402,236.7518,0.7613,PASS,2.6835,0.5376,"temp_c, rain_1h, weather_main",clouds_all,ALERT,ALERT
+2018-06,719,162.8497,236.7518,0.6878,PASS,3.9236,1.8191,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-07,744,195.1938,236.7518,0.8245,PASS,4.2089,0.3607,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-08,740,172.2234,236.7518,0.7274,PASS,4.0539,1.3705,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT
+2018-09,720,180.8781,236.7518,0.764,PASS,2.1866,0.3897,"temp_c, rain_1h, clouds_all, weather_main",,ALERT,ALERT

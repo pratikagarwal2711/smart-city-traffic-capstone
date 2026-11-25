@@ -6,7 +6,9 @@ descriptive-analysis, report, and Power BI dashboard deliverables. Part 2
 contains Python data-cleaning, feature-engineering, visualization, and
 command-line analytics tools for hourly traffic and weather analysis. Part 3
 contains supervised, unsupervised, and sequence models, explainability analysis,
-MLflow experiment tracking and model registration, and travel-timing recommendations.
+MLflow experiment tracking and model registration, travel-timing recommendations,
+and an MLOps simulation (model versions, a FastAPI service and drift monitoring
+with a PASS/ALERT dashboard).
 
 ## Repository structure
 
@@ -40,7 +42,12 @@ MLflow experiment tracking and model registration, and travel-timing recommendat
     ├── lstm_model.py                         # Task 3 next-hour LSTM forecasting + SHAP comparison
     ├── mlflow_registry.py                    # Task 4 MLflow run audit, model registry, promotion gate
     ├── recommendation_engine.py              # Task 5 historical travel-timing recommendations
-    ├── notebooks/                            # Task 1-5 notebooks
+    ├── model_versions.py                     # Task 6 model versions (v2, v3), comparison, champion alias
+    ├── serve_api.py                          # Task 6 FastAPI deployment mock-up
+    ├── monitoring.py                         # Task 6 drift monitoring + PASS/ALERT dashboard
+    ├── mlops_common.py                       # Task 6 shared helpers
+    ├── test_*.py                             # Unit tests (Tasks 3-6)
+    ├── notebooks/                            # Task 1-6 notebooks
     ├── README.md                             # Part 3 guide
     ├── OBSERVATIONS.md                       # Running findings log for the final reports
     ├── mlflow.db                             # MLflow tracking database
@@ -62,6 +69,8 @@ required to be edited manually.
 - MLflow for Part 3 experiment tracking (`pip install mlflow`); Jupyter for the notebook
 - SHAP and TensorFlow for the Part 3 Task 3 LSTM and explainability workflow
   (`python -m pip install shap tensorflow`; see `Part-3/README.md`)
+- FastAPI, Uvicorn and httpx for the Part 3 Task 6 API and its tests
+  (`python -m pip install fastapi uvicorn httpx`)
 - Python's standard-library `logging` module
 - SQLite-compatible database tools for the Part 1 database and SQL
 - Microsoft Power BI Desktop for the `.pbix` dashboard
@@ -192,7 +201,7 @@ Test results: regression MAE 801 / R² 0.735 (linear) vs MAE 239 / R² 0.959
 Classification scores are inflated because `high_risk` is defined from
 `weather_main`, which is also a feature. See [Part-3/README.md](Part-3/README.md)
 for the full metrics and caveats. Runs are tracked with MLflow
-(`Part-3/mlflow.db`) and reviewed in `Part-3/notebooks/`. No model is deployed.
+(`Part-3/mlflow.db`) and reviewed in `Part-3/notebooks/`. The Task 1 model is registered by Task 4; Task 6 adds a deployment simulation (see below).
 
 Part 3 Task 2 (`Part-3/unsupervised_models.py`) clusters hours with K-means
 (k = 6: weekend/weekday night, weekend daytime, weekday afternoon/evening,
@@ -226,6 +235,25 @@ python Part-3/recommendation_engine.py --day-type weekday --weather "rain/drizzl
 See [Part-3/README.md](Part-3/README.md) for outputs, backtesting, assumptions,
 and the [Task 5 notebook](Part-3/notebooks/Task5_recommendation_system.ipynb).
 
+Part 3 Task 6 simulates moving the model from experiment to deployment. Run it
+after Tasks 1-4 (`mlflow_registry.py` re-points the `champion` alias to v1, so run
+Task 4 first):
+
+```powershell
+python Part-3/model_versions.py   # versions v2, v3 of traffic-volume-regressor; champion alias
+python Part-3/monitoring.py       # drift checks, outputs/monitoring_status.json and monitoring_dashboard.html
+python Part-3/serve_api.py        # FastAPI service on http://127.0.0.1:8000/docs
+```
+
+`traffic-volume-regressor` now has three versions (Random Forest, Gradient
+Boosting, tuned Random Forest; test MAE 238.9, 239.8, 236.8). The differences are
+under 1%, and the `champion` alias is v3 under the agreed promotion rule. The API
+serves `@champion` and predicts same-hour traffic volume. The monitoring replay
+of the test period reports **ALERT / Requires investigation** (every month
+breaches a heuristic drift threshold, largely in weather features). Monitoring is
+a replay of historical data, not a live system. See [Part-3/README.md](Part-3/README.md)
+and the [Task 6 notebook](Part-3/notebooks/Task6_mlops_deployment.ipynb).
+
 ## Logging
 
 Each Python script configures logging in its command-line entry point. Messages
@@ -243,6 +271,9 @@ user-facing command log. The default level is INFO.
 - Part 3 unsupervised analysis: `Part-3/logs/unsupervised_models.log`
 - Part 3 MLflow registry (Task 4): `Part-3/logs/mlflow_registry.log`
 - Part 3 recommendations (Task 5): `Part-3/logs/recommendation_engine.log`
+- Part 3 model versions (Task 6): `Part-3/logs/model_versions.log`
+- Part 3 API (Task 6): `Part-3/logs/serve_api.log`
+- Part 3 monitoring (Task 6): `Part-3/logs/monitoring.log`
 
 Log levels are used as follows: DEBUG records fine-grained troubleshooting
 values; INFO records expected milestones, including saved file paths; WARNING
@@ -291,6 +322,8 @@ automatically regenerated by the Python scripts.
 - Weather categories with very few examples are represented in the encoded
   features but provide limited evidence for general conclusions.
 - Observed weather/traffic relationships are associations, not causal effects.
-- The Part 3 models use one time-based split without tuning or
-  cross-validation; none is validated for deployment. The test period includes
-  partially covered 2018 data.
+- The Part 3 models use one time-based split without cross-validation (except
+  the Task 6 forest tuning, which cross-validates on the training period only);
+  none is validated for production. The test period includes partially covered
+  2018 data. The Task 6 API and monitoring are local simulations with heuristic
+  alert thresholds.

@@ -1,0 +1,119 @@
+2026-11-25 11:03:11,943 INFO __main__: Alert thresholds (heuristic conventions, not derived from this data): feature PSI warning 0.10, alert 0.20; error alert when month MAE > 1.25x the reference MAE; 10 PSI bins from training-period quantiles.
+2026-11-25 11:03:12,895 INFO mlops_common: Loaded traffic-volume-regressor version 3 (alias 'champion').
+2026-11-25 11:03:12,895 INFO mlops_common: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-25 11:03:13,163 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-25 11:03:13,171 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-25 11:03:13,533 INFO __main__: Reference MAE (model traffic-volume-regressor v3, full test period): 236.75 vehicles/h.
+2026-11-25 11:03:13,534 INFO __main__: 2017-10: 126 hours, MAE 239.2 (1.01x), max PSI 6.23 whole / 6.50 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2017-10: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2017-11: 716 hours, MAE 293.2 (1.24x), max PSI 3.07 whole / 1.24 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2017-11: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2017-12: 740 hours, MAE 347.1 (1.47x), max PSI 3.76 whole / 0.33 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2017-12: error drift (MAE 347.1 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-01: 742 hours, MAE 311.7 (1.32x), max PSI 4.32 whole / 1.31 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-01: error drift (MAE 311.7 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-02: 672 hours, MAE 235.3 (0.99x), max PSI 4.51 whole / 0.33 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-02: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-03: 733 hours, MAE 216.6 (0.92x), max PSI 4.26 whole / 0.54 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-03: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-04: 720 hours, MAE 308.6 (1.30x), max PSI 0.95 whole / 0.70 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-04: error drift (MAE 308.6 vs reference 236.8); feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-05: 743 hours, MAE 180.2 (0.76x), max PSI 2.68 whole / 0.54 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-05: feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-06: 719 hours, MAE 162.8 (0.69x), max PSI 3.92 whole / 1.82 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-06: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-07: 744 hours, MAE 195.2 (0.82x), max PSI 4.21 whole / 0.36 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-07: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-08: 740 hours, MAE 172.2 (0.73x), max PSI 4.05 whole / 1.37 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-08: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,534 INFO __main__: 2018-09: 720 hours, MAE 180.9 (0.76x), max PSI 2.19 whole / 0.39 same month -> ALERT.
+2026-11-25 11:03:13,534 WARNING __main__: Monitoring ALERT for 2018-09: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:03:13,546 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,547 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,666 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,667 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,667 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,667 INFO matplotlib.category: Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-11-25 11:03:13,860 INFO __main__: Saved monitoring report to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_report.csv.
+2026-11-25 11:03:13,861 INFO __main__: Saved feature drift table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_feature_drift.csv.
+2026-11-25 11:03:13,862 INFO __main__: Saved weather share table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_weather_shares.csv.
+2026-11-25 11:03:13,863 INFO __main__: Saved status file to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_status.json.
+2026-11-25 11:03:13,864 INFO __main__: Saved dashboard to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_dashboard.html.
+2026-11-25 11:03:13,864 INFO __main__: Overall status: ALERT / Requires investigation (latest month 2018-09; 12 of 12 months ALERT).
+2026-11-25 11:03:13,864 WARNING __main__: System status is ALERT: Feature drift in temp_c: PSI 2.19 vs the whole training period, 0.10 vs the same training month (alert at 0.2). | Feature drift in rain_1h: PSI 0.51 vs the whole training period, 0.39 vs the same training month (alert at 0.2). | Feature drift in clouds_all: PSI 0.21 vs the whole training period, 0.33 vs the same training month (alert at 0.2). | Feature drift in weather_main: PSI 0.58 vs the whole training period, 0.24 vs the same training month (alert at 0.2).
+2026-11-25 11:03:14,461 INFO __main__: Logged monitoring run to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task6-monitoring').
+2026-11-25 11:06:41,698 INFO __main__: Alert thresholds (heuristic conventions, not derived from this data): feature PSI warning 0.10, alert 0.20; error alert when month MAE > 1.25x the reference MAE; 10 PSI bins from training-period quantiles.
+2026-11-25 11:06:42,609 INFO mlops_common: Loaded traffic-volume-regressor version 3 (alias 'champion').
+2026-11-25 11:06:42,609 INFO mlops_common: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-25 11:06:42,862 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-25 11:06:42,870 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-25 11:06:43,219 INFO __main__: Reference MAE (model traffic-volume-regressor v3, full test period): 236.75 vehicles/h.
+2026-11-25 11:06:43,221 INFO __main__: 2017-10: 126 hours, MAE 239.2 (1.01x), max PSI 6.23 whole / 6.50 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2017-10: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2017-11: 716 hours, MAE 293.2 (1.24x), max PSI 3.07 whole / 1.24 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2017-11: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2017-12: 740 hours, MAE 347.1 (1.47x), max PSI 3.76 whole / 0.33 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2017-12: error drift (MAE 347.1 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2018-01: 742 hours, MAE 311.7 (1.32x), max PSI 4.32 whole / 1.31 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2018-01: error drift (MAE 311.7 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2018-02: 672 hours, MAE 235.3 (0.99x), max PSI 4.51 whole / 0.33 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2018-02: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2018-03: 733 hours, MAE 216.6 (0.92x), max PSI 4.26 whole / 0.54 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2018-03: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2018-04: 720 hours, MAE 308.6 (1.30x), max PSI 0.95 whole / 0.70 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2018-04: error drift (MAE 308.6 vs reference 236.8); feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:06:43,221 INFO __main__: 2018-05: 743 hours, MAE 180.2 (0.76x), max PSI 2.68 whole / 0.54 same month -> ALERT.
+2026-11-25 11:06:43,221 WARNING __main__: Monitoring ALERT for 2018-05: feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:06:43,222 INFO __main__: 2018-06: 719 hours, MAE 162.8 (0.69x), max PSI 3.92 whole / 1.82 same month -> ALERT.
+2026-11-25 11:06:43,222 WARNING __main__: Monitoring ALERT for 2018-06: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,222 INFO __main__: 2018-07: 744 hours, MAE 195.2 (0.82x), max PSI 4.21 whole / 0.36 same month -> ALERT.
+2026-11-25 11:06:43,222 WARNING __main__: Monitoring ALERT for 2018-07: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,222 INFO __main__: 2018-08: 740 hours, MAE 172.2 (0.73x), max PSI 4.05 whole / 1.37 same month -> ALERT.
+2026-11-25 11:06:43,222 WARNING __main__: Monitoring ALERT for 2018-08: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,222 INFO __main__: 2018-09: 720 hours, MAE 180.9 (0.76x), max PSI 2.19 whole / 0.39 same month -> ALERT.
+2026-11-25 11:06:43,222 WARNING __main__: Monitoring ALERT for 2018-09: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:06:43,542 INFO __main__: Saved monitoring report to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_report.csv.
+2026-11-25 11:06:43,544 INFO __main__: Saved feature drift table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_feature_drift.csv.
+2026-11-25 11:06:43,545 INFO __main__: Saved weather share table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_weather_shares.csv.
+2026-11-25 11:06:43,545 INFO __main__: Saved status file to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_status.json.
+2026-11-25 11:06:43,546 INFO __main__: Saved dashboard to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_dashboard.html.
+2026-11-25 11:06:43,546 INFO __main__: Overall status: ALERT / Requires investigation (latest month 2018-09; 12 of 12 months ALERT).
+2026-11-25 11:06:43,546 WARNING __main__: System status is ALERT: Feature drift in temp_c: PSI 2.19 vs the whole training period, 0.10 vs the same training month (alert at 0.2; breached vs whole training period). | Feature drift in rain_1h: PSI 0.51 vs the whole training period, 0.39 vs the same training month (alert at 0.2; breached vs whole training period and same training month). | Feature drift in clouds_all: PSI 0.21 vs the whole training period, 0.33 vs the same training month (alert at 0.2; breached vs whole training period and same training month). | Feature drift in weather_main: PSI 0.58 vs the whole training period, 0.24 vs the same training month (alert at 0.2; breached vs whole training period and same training month).
+2026-11-25 11:06:43,999 INFO __main__: Logged monitoring run to sqlite:///C:/Users/prati/Desktop/NUS AI Course/Capstone Project/Submission/Part-3/mlflow.db (experiment 'task6-monitoring').
+2026-11-25 11:10:54,608 INFO __main__: Alert thresholds (heuristic conventions, not derived from this data): feature PSI warning 0.10, alert 0.20; error alert when month MAE > 1.25x the reference MAE; 10 PSI bins from training-period quantiles.
+2026-11-25 11:10:55,655 INFO mlops_common: Loaded traffic-volume-regressor version 3 (alias 'champion').
+2026-11-25 11:10:55,655 INFO mlops_common: Reading C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\data\processed\Metro_Interstate_Traffic_Volume_ml.csv.
+2026-11-25 11:10:55,916 INFO train_models: Holiday flag: 53 holiday dates spread over 1203 hours.
+2026-11-25 11:10:55,924 INFO train_models: Time split: train 32460 rows (2012-10-02 09:00:00 to 2017-10-26 17:00:00), test 8115 rows (2017-10-26 18:00:00 to 2018-09-30 23:00:00).
+2026-11-25 11:10:56,349 INFO __main__: Reference MAE (model traffic-volume-regressor v3, full test period): 236.75 vehicles/h.
+2026-11-25 11:10:56,350 INFO __main__: 2017-10: 126 hours, MAE 239.2 (1.01x), max PSI 6.23 whole / 6.50 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2017-10: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2017-11: 716 hours, MAE 293.2 (1.24x), max PSI 3.07 whole / 1.24 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2017-11: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2017-12: 740 hours, MAE 347.1 (1.47x), max PSI 3.76 whole / 0.33 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2017-12: error drift (MAE 347.1 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-01: 742 hours, MAE 311.7 (1.32x), max PSI 4.32 whole / 1.31 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-01: error drift (MAE 311.7 vs reference 236.8); feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-02: 672 hours, MAE 235.3 (0.99x), max PSI 4.51 whole / 0.33 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-02: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-03: 733 hours, MAE 216.6 (0.92x), max PSI 4.26 whole / 0.54 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-03: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-04: 720 hours, MAE 308.6 (1.30x), max PSI 0.95 whole / 0.70 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-04: error drift (MAE 308.6 vs reference 236.8); feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-05: 743 hours, MAE 180.2 (0.76x), max PSI 2.68 whole / 0.54 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-05: feature drift in temp_c, rain_1h, weather_main.
+2026-11-25 11:10:56,350 INFO __main__: 2018-06: 719 hours, MAE 162.8 (0.69x), max PSI 3.92 whole / 1.82 same month -> ALERT.
+2026-11-25 11:10:56,350 WARNING __main__: Monitoring ALERT for 2018-06: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,351 INFO __main__: 2018-07: 744 hours, MAE 195.2 (0.82x), max PSI 4.21 whole / 0.36 same month -> ALERT.
+2026-11-25 11:10:56,351 WARNING __main__: Monitoring ALERT for 2018-07: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,351 INFO __main__: 2018-08: 740 hours, MAE 172.2 (0.73x), max PSI 4.05 whole / 1.37 same month -> ALERT.
+2026-11-25 11:10:56,351 WARNING __main__: Monitoring ALERT for 2018-08: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,351 INFO __main__: 2018-09: 720 hours, MAE 180.9 (0.76x), max PSI 2.19 whole / 0.39 same month -> ALERT.
+2026-11-25 11:10:56,351 WARNING __main__: Monitoring ALERT for 2018-09: feature drift in temp_c, rain_1h, clouds_all, weather_main.
+2026-11-25 11:10:56,689 INFO __main__: Saved monitoring report to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_report.csv.
+2026-11-25 11:10:56,691 INFO __main__: Saved feature drift table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_feature_drift.csv.
+2026-11-25 11:10:56,692 INFO __main__: Saved weather share table to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_weather_shares.csv.
+2026-11-25 11:10:56,692 INFO __main__: Saved status file to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_status.json.
+2026-11-25 11:10:56,693 INFO __main__: Saved dashboard to C:\Users\prati\Desktop\NUS AI Course\Capstone Project\Submission\Part-3\outputs\monitoring_dashboard.html.
+2026-11-25 11:10:56,693 INFO __main__: Overall status: ALERT / Requires investigation (latest month 2018-09; 12 of 12 months ALERT).
+2026-11-25 11:10:56,693 WARNING __main__: System status is ALERT: Feature drift in temp_c: PSI 2.19 vs the whole training period, 0.10 vs the same training month (alert at 0.2; breached vs whole training period). | Feature drift in rain_1h: PSI 0.51 vs the whole training period, 0.39 vs the same training month (alert at 0.2; breached vs whole training period and same training month). | Feature drift in clouds_all: PSI 0.21 vs the whole training period, 0.33 vs the same training month (alert at 0.2; breached vs whole training period and same training month). | Feature drift in weather_main: PSI 0.58 vs the whole training period, 0.24 vs the same training month (alert at 0.2; breached vs whole training period and same training month).
