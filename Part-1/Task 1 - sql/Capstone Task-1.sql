@@ -32,13 +32,33 @@ group by year;
 
 /* average indicates the increase / decrease. 2012 - baseline, 2013 - increase, 2014 - decrease, 2015 - decrease, 2016 - decrease, 2017 - increase
 
+/* 1.2 (continued) Year-over-year change in average hourly traffic volume.
+   Uses the same raw-table basis as the query above. */
+WITH yearly AS (
+    SELECT SUBSTR(date_time, INSTR(date_time, ' ') - 4, 4) AS year,
+           SUM(traffic_volume) / COUNT(date_time) AS average
+    FROM Metro_Interstate_Traffic_Volume
+    WHERE SUBSTR(date_time, INSTR(date_time, ' ') - 4, 4) BETWEEN '2012' AND '2017'
+    GROUP BY year
+)
+SELECT year,
+       average,
+       average - LAG(average) OVER (ORDER BY year) AS change_vs_prev_year,
+       ROUND(100.0 * (average - LAG(average) OVER (ORDER BY year))
+             / LAG(average) OVER (ORDER BY year), 1) AS pct_change
+FROM yearly
+ORDER BY year;
+
+/* 
 OBSERVATIONS:
-1. The large swings in total volume come mostly from missing data, not demand. While total volume shows a large swing over the year, its mostly due to number of data points made available
-2. Underlying traffic was roughly flat from 2012 to 2016, then grew in 2017. This is evident from the average numbers
-
-*/
-
+1. The large swings in total volume come mostly from missing data, not demand. While total volume shows a large swing across the years, 
+it is mostly due to the number of data points made available (for example 2,559 records in 2012 versus 10,605 in 2017).
+2. Underlying traffic was roughly flat from 2012 to 2016, then grew in 2017. This is evident from the change in the average hourly volume (see the year-over-year query below): 
+2013 +79 (+2.5%), 2014 -36 (-1.1%), 2015 -8 (-0.2%), 2016 -73 (-2.3%), 2017 +171 (+5.4%). 
+Every change up to 2016 is within about 2.5%, while 2017 is the only year with a clear rise.
 /*
+
+
 1.3 Analyse temperature around holidays
 Compare temperature patterns for 2015, 2016 and 2017 during:
 •	New Year's Day 
